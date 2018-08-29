@@ -46,7 +46,7 @@
 			<table id="carTable" class="table table-striped">
 				<thead>
 					<tr>
-						<th>Plat Number</th>
+						<th>Plate Number</th>
 						<th>Brand</th>
 						<th>Model</th>
 						<th>Horse Power</th>
