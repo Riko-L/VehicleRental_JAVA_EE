@@ -31,13 +31,13 @@
 <!--Client -->
 	<servlet>
 		<servlet-name>clients</servlet-name>
-		<jsp-file>/pages/clients.jsp</jsp-file>
+		<jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>
 	</servlet>
 	
 <!--Car -->
 	<servlet>
 		<servlet-name>cars</servlet-name>
-		<jsp-file>/pages/cars.jsp</jsp-file>
+		<jsp-file>/WEB-INF/pages/cars.jsp</jsp-file>
 	</servlet>
 
 </web-app>
