@@ -40,18 +40,18 @@ function buildEmptyLine(){
 
 
 $( document ).ready(function() {
-	$.ajax({
-		url:"../CarServlet",
-		data:{
-			 action:"getCars"
-		 }
-	})
-	.done(function(data) {
-		if(data!=undefined && data.cars!=undefined && data.cars.length>0 ){
-			buildLines(data.cars);
-		}
-		else{
-			buildEmptyLine();
-		}
-  })
+//	$.ajax({
+//		url:"../CarServlet",
+//		data:{
+//			 action:"getCars"
+//		 }
+//	})
+//	.done(function(data) {
+//		if(data!=undefined && data.cars!=undefined && data.cars.length>0 ){
+//			buildLines(data.cars);
+//		}
+//		else{
+//			buildEmptyLine();
+//		}
+//  })
 })

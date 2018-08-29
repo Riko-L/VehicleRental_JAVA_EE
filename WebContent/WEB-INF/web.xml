@@ -18,11 +18,11 @@
 <!--Car -->
 	<servlet>
 		<servlet-name>CarServlet</servlet-name>
-		<servlet-class>com.campusnumerique.vehiclerental.servlet.client.CarServlet</servlet-class>
+		<servlet-class>com.campusnumerique.vehiclerental.servlet.car.CarServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CarServlet</servlet-name>
-		<url-pattern>/CarServlet</url-pattern>
+		<url-pattern>/cars</url-pattern>
 	</servlet-mapping>
 
 
@@ -34,16 +34,10 @@
 		<jsp-file>/pages/clients.jsp</jsp-file>
 	</servlet>
 	
-
 <!--Car -->
 	<servlet>
 		<servlet-name>cars</servlet-name>
 		<jsp-file>/pages/cars.jsp</jsp-file>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>cars</servlet-name>
-		<url-pattern>/cars</url-pattern>
-	</servlet-mapping>
-
 
 </web-app>
