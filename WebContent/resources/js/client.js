@@ -27,19 +27,19 @@ function buildEmptyLine(){
 
 
 
-$( document ).ready(function() {
-	$.ajax({
-		url:"/ClientServlet",
-		data:{
-			 action:"getClients"
-		 }
-	})
-	.done(function(data) {
-		if(data!=undefined && data.clients!=undefined && data.clients.length>0 ){
-			buildLines(data.clients);
-		}
-		else{
-			buildEmptyLine();
-		}
-  })
-})
+//$( document ).ready(function() {
+//	$.ajax({
+//		url:"/ClientServlet",
+//		data:{
+//			 action:"getClients"
+//		 }
+//	})
+//	.done(function(data) {
+//		if(data!=undefined && data.clients!=undefined && data.clients.length>0 ){
+//			buildLines(data.clients);
+//		}
+//		else{
+//			buildEmptyLine();
+//		}
+//  })
+//})

@@ -12,7 +12,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ClientServlet</servlet-name>
-		<url-pattern>/ClientServlet</url-pattern>
+		<url-pattern>/clients</url-pattern>
 	</servlet-mapping>
 	
 <!--Car -->
@@ -33,10 +33,7 @@
 		<servlet-name>clients</servlet-name>
 		<jsp-file>/pages/clients.jsp</jsp-file>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>clients</servlet-name>
-		<url-pattern>/clients</url-pattern>
-	</servlet-mapping>
+	
 
 <!--Car -->
 	<servlet>
