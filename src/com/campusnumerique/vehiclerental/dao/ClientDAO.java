@@ -38,7 +38,16 @@ public class ClientDAO extends DAO<Client>{
 		    ResultSet.CONCUR_READ_ONLY
 		  ).executeQuery("SELECT * FROM client WHERE id = " + id);
 		if(result.first())
-			client = new Client(id, result.getString("login"), result.getString("firstName"), result.getString("lastName"), result.getString("mail"));         
+			client = new Client(
+					id,
+					result.getString("login"),
+					result.getString("firstName"),
+					result.getString("lastName"),
+					result.getString("mail"),
+					result.getDate("birthDate"),
+					result.getString("licenseNumber"),
+					result.getDate("licenseDate")
+					);          
 		
 		return client;
 	}
@@ -52,7 +61,16 @@ public class ClientDAO extends DAO<Client>{
 		  ).executeQuery("SELECT * FROM client");
 		while(result.next()){
 			Client client = new Client(); 
-			client = new Client(result.getInt("id"), result.getString("login"), result.getString("firstName"), result.getString("lastName"), result.getString("mail"));    
+			client = new Client(
+					result.getInt("id"),
+					result.getString("login"),
+					result.getString("firstName"),
+					result.getString("lastName"),
+					result.getString("mail"),
+					result.getDate("birthDate"),
+					result.getString("licenseNumber"),
+					result.getDate("licenseDate")
+					);    
 			clients.add(client);
 		}
 		return clients;
@@ -68,7 +86,16 @@ public class ClientDAO extends DAO<Client>{
 			  ).executeQuery("SELECT * FROM client");
 			while(result.next()){
 				Client client = new Client(); 
-				client = new Client(result.getInt("id"), result.getString("login"), result.getString("firstName"), result.getString("lastName"), result.getString("mail"));    
+				client = new Client(
+						result.getInt("id"),
+						result.getString("login"),
+						result.getString("firstName"),
+						result.getString("lastName"),
+						result.getString("mail"),
+						result.getDate("birthDate"),
+						result.getString("licenseNumber"),
+						result.getDate("licenseDate")
+						);     
 				clients.put(client.getInfos());
 			}
 		} catch (SQLException e) {
@@ -77,5 +104,4 @@ public class ClientDAO extends DAO<Client>{
 		}
 		return clients;
 	}
-
 }
