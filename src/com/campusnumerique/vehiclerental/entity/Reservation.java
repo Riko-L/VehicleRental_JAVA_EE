@@ -15,6 +15,7 @@ public class Reservation implements Serializable{
 	private Date dateEnd;
 	private int kilometerNumber;
 	private Double rentalPrice;
+	private int dayNumber;
 	
 	
 	public Reservation() {}
@@ -82,6 +83,16 @@ public class Reservation implements Serializable{
 
 	public int getId() {
 		return id;
+	}
+
+
+	public int getDayNumber() {
+		return dayNumber;
+	}
+
+
+	public void setDayNumber(int dayNumber) {
+		this.dayNumber = dayNumber;
 	}
 
 
