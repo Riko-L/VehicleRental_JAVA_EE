@@ -1,6 +1,8 @@
 package com.campusnumerique.vehiclerental.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -15,6 +17,7 @@ public class Car implements Serializable{
 	private int horsePower;
 	private Double reservationPrice;
 	private Double kilometerPrice;
+	private List<Reservation> reservations;
 	
 	
 	public Car() {}
@@ -28,6 +31,7 @@ public class Car implements Serializable{
 		setHorsePower(horsePower);
 		setReservationPrice(reservationPrice);
 		setKilometerPrice(kilometerPrice);
+		setReservations(new ArrayList<Reservation>());
 	}
 	
 	public int getId() {
@@ -86,6 +90,25 @@ public class Car implements Serializable{
 	public void setKilometerPrice(Double kilometerPrice) {
 		this.kilometerPrice = kilometerPrice;
 	}
+	
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+	
+	public void addReservation (Reservation reservation) {
+		this.reservations.add(reservation);
+		
+	}
+
+	public void delReservation (Reservation reservation) {
+		this.reservations.remove(reservation);
+		
+	}
+	
 	
 	public JSONObject getInfos() {
 		JSONObject infos= new JSONObject();
