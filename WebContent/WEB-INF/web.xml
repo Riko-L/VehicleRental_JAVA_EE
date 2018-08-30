@@ -36,4 +36,8 @@
     <servlet-name>reservation</servlet-name>
     <jsp-file>/WEB-INF/pages/reservation.jsp</jsp-file>
   </servlet>
+   <servlet>
+    <servlet-name>selectVehicle</servlet-name>
+    <jsp-file>/WEB-INF/pages/selectVehicle.jsp</jsp-file>
+  </servlet>
 </web-app>
