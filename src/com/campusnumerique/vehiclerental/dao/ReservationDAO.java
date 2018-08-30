@@ -1,8 +1,10 @@
 package com.campusnumerique.vehiclerental.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.campusnumerique.vehiclerental.entity.Reservation;
@@ -11,19 +13,66 @@ public class ReservationDAO extends DAO<Reservation>{
 
 	@Override
 	public boolean create(Reservation obj) {
-		// TODO Auto-generated method stub
-		return false;
+		Reservation reservation = new Reservation();
+		boolean isOk = false;
+		
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement("INSERT INTO reservation("
+					+ "reservationNumber,"
+					+ "dateStart,"
+					+ "dateEnd,"
+					+ "kilometerNumber,"
+					+ "rentalPrice)"
+					+ " VALUES (?, ?, ?, ?, ?)");
+			stmt.setString(1, obj.getReservationNumber());
+			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getYear(), obj.getDateStart().getMonth(), obj.getDateStart().getDay()));
+			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getYear(), obj.getDateEnd().getMonth(), obj.getDateEnd().getDay()));
+			stmt.setInt(4, obj.getKilometerNumber());
+			stmt.setDouble(5, obj.getRentalPrice());
+			
+			int result = stmt.executeUpdate(); 
+			
+			if(result == 0 ) {
+				isOk = false;
+			} else {
+				isOk = true;
+			}
+			
+		} catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+		
+		return isOk;
 	}
 
 	@Override
-	public boolean delete(Reservation obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(Reservation obj){
+		
+		boolean isOk = false;
+		
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM reservation WHERE reservationNumber=?");
+			stmt.setString(1, obj.getReservationNumber());
+			
+			int result = stmt.executeUpdate();
+			
+			if(result == 0 ) {
+				isOk = false;
+			} else {
+				isOk = true;
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return isOk;
 	}
 
 	@Override
 	public boolean update(Reservation obj) {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -68,18 +117,4 @@ public class ReservationDAO extends DAO<Reservation>{
 		
 		return reservations;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
