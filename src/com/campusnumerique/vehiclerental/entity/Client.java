@@ -108,10 +108,10 @@ public class Client {
 		this.reservations = reservations;
 	}
 	public void addReservations(Reservation reservation) {
-		this.reservations.add(rerservation);
+		this.reservations.add(reservation);
 	}
 	public void delReservations(Reservation reservation) {
-		this.reservations.remove(rerservation);
+		this.reservations.remove(reservation);
 	}	
 	
 	public int getAge() {

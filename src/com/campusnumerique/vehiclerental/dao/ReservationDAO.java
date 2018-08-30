@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.campusnumerique.vehiclerental.entity.Reservation;
+
 public class ReservationDAO extends DAO<Reservation>{
 
 	@Override
@@ -35,7 +37,6 @@ public class ReservationDAO extends DAO<Reservation>{
 			  ).executeQuery("SELECT * FROM reservation WHERE id = " + id);
 			if(result.first())
 				reservation = new Reservation(
-						id,
 						result.getString("reservationNumber"),
 						result.getDate("dateStart"),
 						result.getDate("dateEnd"),
@@ -56,7 +57,6 @@ public class ReservationDAO extends DAO<Reservation>{
 		while(result.next()) {
 			Reservation reservation = new Reservation();
 			reservation = new Reservation(
-					result.getInt("id"),
 					result.getString("reservationNumber"),
 					result.getDate("dateStart"),
 					result.getDate("dateEnd"),
