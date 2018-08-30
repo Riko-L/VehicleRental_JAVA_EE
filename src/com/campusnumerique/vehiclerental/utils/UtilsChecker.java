@@ -32,7 +32,7 @@ public class UtilsChecker {
 					Date dateStartResaCar = reservation.getDateStart();
 					Date dateEndResaCar = reservation.getDateEnd();
 
-					if (!(dateEnd.before(dateStartResaCar) || dateStart.after(dateEndResaCar))) {
+					if ((dateStart.before(dateStartResaCar) && dateStart.after(dateEndResaCar)) || (dateEnd.before(dateStartResaCar) && dateEnd.after(dateEndResaCar))) {
 						isAvialable = false;
 					} else {
 						isAvialable = true;
@@ -46,6 +46,11 @@ public class UtilsChecker {
 		}
 
 		return isAvialable;
+	}
+	
+	private boolean isBetween() {
+		
+		return false;
 	}
 
 }
