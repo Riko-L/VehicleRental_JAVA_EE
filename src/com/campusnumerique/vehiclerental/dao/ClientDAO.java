@@ -36,7 +36,7 @@ public class ClientDAO extends DAO<Client>{
 		ResultSet result = this.connection.createStatement(
 		    ResultSet.TYPE_SCROLL_INSENSITIVE, 
 		    ResultSet.CONCUR_READ_ONLY
-		  ).executeQuery("SELECT * FROM client WHERE id = " + id);
+		  ).executeQuery("SELECT * FROM client WHERE id = '" + id + "'");
 		if(result.first())
 			client = new Client(
 					id,
@@ -52,6 +52,30 @@ public class ClientDAO extends DAO<Client>{
 		return client;
 	}
 
+	
+	public Client findByLogin(String login) throws SQLException{
+		Client client = new Client();  
+		
+		ResultSet result = this.connection.createStatement(
+		    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		    ResultSet.CONCUR_READ_ONLY
+		  ).executeQuery("SELECT * FROM client WHERE login = '" + login + "'");
+		if(result.first())
+			client = new Client(
+					result.getInt("id"),
+					login,
+					result.getString("firstName"),
+					result.getString("lastName"),
+					result.getString("mail"),
+					result.getDate("birthDate"),
+					result.getString("licenseNumber"),
+					result.getDate("licenseDate")
+					);          
+		
+		return client;
+	}
+	
+	
 	@Override
 	public List<Client> findAll() throws SQLException{
 		ArrayList<Client> clients = new ArrayList<Client>();

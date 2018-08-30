@@ -9,5 +9,11 @@
 	<jsp:include page="/WEB-INF/pages/nav.jsp" />
 	<br />
 
+<h1>Hello Select Page</h1>
+
+
+${reservation}
+${client}
+
 </body>
 </html>

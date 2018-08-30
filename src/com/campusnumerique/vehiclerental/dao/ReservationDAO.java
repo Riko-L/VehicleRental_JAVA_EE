@@ -4,16 +4,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import com.campusnumerique.vehiclerental.entity.Reservation;
 
 public class ReservationDAO extends DAO<Reservation>{
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean create(Reservation obj) {
-		Reservation reservation = new Reservation();
+		
 		boolean isOk = false;
 		
 		try {
@@ -83,7 +83,7 @@ public class ReservationDAO extends DAO<Reservation>{
 		ResultSet result = this.connection.createStatement(
 			    ResultSet.TYPE_SCROLL_INSENSITIVE, 
 			    ResultSet.CONCUR_READ_ONLY
-			  ).executeQuery("SELECT * FROM reservation WHERE id = " + id);
+			  ).executeQuery("SELECT * FROM reservation WHERE id = '" + id +"'");
 			if(result.first())
 				reservation = new Reservation(
 						result.getString("reservationNumber"),
