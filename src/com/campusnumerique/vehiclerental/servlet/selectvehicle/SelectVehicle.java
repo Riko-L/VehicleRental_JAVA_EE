@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SelectVehicle
  */
-@WebServlet("/SelectVehicle")
+
 public class SelectVehicle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,6 @@ public class SelectVehicle extends HttpServlet {
 		
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("selectVehicle");
 		
-		//
 		
 		
 		rdSelectVehicle.forward(request, response);
