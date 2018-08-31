@@ -9,7 +9,7 @@
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
 		<br/>
 		<div class="container" id="content">
-			<h2 class="text-center text-primary">Réservation</h2><br/>
+			<h2 class="text-center text-primary">Reservation</h2><br/>
 			<form action="/reservation" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-4">

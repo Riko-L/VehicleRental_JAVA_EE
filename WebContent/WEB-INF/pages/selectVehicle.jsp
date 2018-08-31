@@ -14,10 +14,10 @@
 			<form action="/validation" method="POST">
 				<jsp:include page="/WEB-INF/pages/tableCars.jsp"></jsp:include>
 				<div class="form-row">
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						<button type="submit" value="submit" class="form-control btn-primary" value="Select Vehicle">Submit</button>
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						<a href="/reservation" class="form-control btn-secondary text-center" role="button">Return</a>
 					</div>
 				</div>
