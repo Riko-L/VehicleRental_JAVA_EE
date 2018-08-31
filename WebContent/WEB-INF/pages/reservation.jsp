@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/WEB-INF/pages/header.jsp">
@@ -17,7 +19,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">From</div>
 					        </div>
-							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date">
+							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date" value="<%= session.getAttribute("dateStart") %>">
 						</div>
 					</div>
 					<div class="form-group col-md-4">
@@ -25,7 +27,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">To</div>
 					        </div>
-							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="Date">
+							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="Date" value="<%= session.getAttribute("dateEnd") %>">
 						</div>
 					</div>
 					<div class="form-group col-md-4">
@@ -33,7 +35,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Days</div>
 					        </div>
-							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking">
+							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking" <%= session.getAttribute("dayNumber") %>>
 								
 						</div>
 					</div>
@@ -57,7 +59,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Km</div>
 					        </div>
-							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="estimate during the rental period"><br/>
+							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="estimate during the rental period" value="<%= session.getAttribute("kilometerNumber") %>"><br/>
 						</div>
 					</div>
 				</div>
