@@ -69,6 +69,7 @@ public class ReservationServlet extends HttpServlet {
 		Date dateEnd;
 		int kilometerNumber;
 		int dayNumber;
+		String kind;
 		String reservationNumber = UUID.randomUUID().toString();
 		
 		reservation.setReservationNumber(reservationNumber);
@@ -141,6 +142,19 @@ public class ReservationServlet extends HttpServlet {
 			return;
 		}
 
+		if (request.getParameter("kind") != null && !request.getParameter("kind").isEmpty()) {
+
+			kind = request.getParameter("kind");
+			session.setAttribute("kind",kind);
+			reservation.setKind(kind);
+
+		} else {
+			request.setAttribute("error", "Day Number is not ...");
+			rdReservation.forward(request, response);
+			return;
+		}
+		
+		
 		request.setAttribute("client", client);
 		request.setAttribute("reservation", reservation);
 		
