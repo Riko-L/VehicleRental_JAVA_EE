@@ -127,9 +127,8 @@ public class Reservation implements Serializable{
 		infos.put("kilometerNumber", kilometerNumber);
 		infos.put("rentalPrice", rentalPrice);
 		infos.put("dayNumber", dayNumber);
-		infos.put("car", car.getPlateNumber());
-		infos.put("clientFirstName", client.getFirstName());
-		infos.put("clientLastName", client.getLastName());
+		infos.put("car", car);
+		infos.put("client", client);
 		return infos; 
 	}
 	

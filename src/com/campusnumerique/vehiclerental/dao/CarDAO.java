@@ -77,17 +77,18 @@ public class CarDAO extends DAO<Car>{
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	public List<Car> findByFilter(Date dateStartResa,Date dateEndResa, int horsePower) throws SQLException {
 		ArrayList<Car> cars = new ArrayList<Car>();
 		
 		String query = "select * from car JOIN reservation ON car.id = reservation.id_car Where (reservation.dateStart BETWEEN ? AND ?) AND (reservation.dateEnd BETWEEN ? AND ?) AND (? BETWEEN reservation.dateStart AND reservation.dateEnd) AND (car.horsePower < ?);";
 		
 		PreparedStatement stmt = this.connection.prepareStatement(query);
-		stmt.setDate(1, (java.sql.Date) dateStartResa);
-		stmt.setDate(2, (java.sql.Date) dateEndResa);
-		stmt.setDate(3, (java.sql.Date) dateStartResa);
-		stmt.setDate(4, (java.sql.Date) dateEndResa);
-		stmt.setDate(5, (java.sql.Date) dateStartResa);
+		stmt.setDate(1, new java.sql.Date(dateStartResa.getDate()));
+		stmt.setDate(2, new java.sql.Date(dateEndResa.getDate()));
+		stmt.setDate(3, new java.sql.Date(dateStartResa.getDate()));
+		stmt.setDate(4, new java.sql.Date(dateEndResa.getDate()));
+		stmt.setDate(5, new java.sql.Date(dateStartResa.getDate()));
 		stmt.setInt(6, horsePower);
 		
 		ResultSet result = stmt.executeQuery();
