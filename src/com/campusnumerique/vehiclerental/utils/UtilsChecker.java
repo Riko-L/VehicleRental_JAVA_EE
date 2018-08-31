@@ -15,9 +15,9 @@ public class UtilsChecker {
 		int horsePower;
 		if (age < 18) {
 			horsePower = Constante.AGE_MOINS_DE_18;
-		} else if (age >= 18 || age < 21) {
+		} else if (age >= 18 && age < 21) {
 			horsePower = Constante.AGE_MOINS_DE_21;
-		} else if (age >= 21 || age < 25) {
+		} else if (age >= 21 && age < 25) {
 			horsePower = Constante.AGE_ENTRE_21_ET_25;
 		} else {
 			horsePower = Constante.AGE_PLUS_25;
