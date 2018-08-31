@@ -45,9 +45,10 @@
 					          <div class="input-group-text">Kind</div>
 					        </div>
 							<select class="form-control" id="genre">
-								<option>Tourism Car</option>
-	      						<option>Utility Car</option>
-	      						<option>Motorbike</option>
+								<option selected>Choose...</option>
+								<option value="1">Tourism Car</option>
+	      						<option value="2">Utility Car</option>
+	      						<option value="3">Motorbike</option>
 							</select><br/>
 						</div>
 					</div>
