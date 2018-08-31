@@ -1,6 +1,12 @@
 
+<%@page import="com.campusnumerique.vehiclerental.utils.Constante"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Out"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +25,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">From</div>
 					        </div>
-							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date" value="<%= session.getAttribute("dateStart") %>">
+							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date" value="${sessionScope.dateStart}">
 						</div>
 					</div>
 					<div class="form-group col-md-4">
@@ -27,7 +33,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">To</div>
 					        </div>
-							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="Date" value="<%= session.getAttribute("dateEnd") %>">
+							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="Date" value="${sessionScope.dateEnd}">
 						</div>
 					</div>
 					<div class="form-group col-md-4">
@@ -35,7 +41,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Days</div>
 					        </div>
-							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking" <%= session.getAttribute("dayNumber") %>>
+							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking" value="${sessionScope.dayNumber}" readonly="readonly">
 								
 						</div>
 					</div>
@@ -47,10 +53,10 @@
 					          <div class="input-group-text">Kind</div>
 					        </div>
 							<select class="form-control" id="kind" name="kind">
-								<option selected>Choose...</option>
-								<option value="1">Tourism Car</option>
-	      						<option value="2">Utility Car</option>
-	      						<option value="3">Motorbike</option>
+								<option value="<%= Constante.KIND_NO_CHOICE %>" <%if (session.getAttribute("kind") != null && session.getAttribute("kind").equals(Constante.KIND_NO_CHOICE)){ %> selected <% } %>>Choose...</option>
+								<option value="<%= Constante.KIND_TOURISM_CAR %>" <%if (session.getAttribute("kind") != null && session.getAttribute("kind").equals(Constante.KIND_TOURISM_CAR)){ %> selected <% } %> >Tourism Car</option>
+	      						<option value="<%= Constante.KIND_UTILITY_CAR %>"<%if (session.getAttribute("kind") != null && session.getAttribute("kind").equals(Constante.KIND_UTILITY_CAR)){ %> selected <% } %> >Utility Car</option>
+	      						<option value="<%= Constante.KIND_MOTORBIKE %>"<%if (session.getAttribute("kind") != null && session.getAttribute("kind").equals(Constante.KIND_MOTORBIKE)){ %> selected <% } %>>Motorbike</option>
 							</select><br/>
 						</div>
 					</div>
@@ -59,11 +65,16 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Km</div>
 					        </div>
-							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="estimate during the rental period" value="<%= session.getAttribute("kilometerNumber") %>"><br/>
+							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="estimate during the rental period" value="${sessionScope.kilometerNumber}"><br/>
 						</div>
 					</div>
 				</div>
 				<input type="submit" class="form-control btn-primary" value="Select Vehicle" /><br/>
+				<% if(request.getAttribute("error") != null) { %>
+				<div class="alert alert-danger">
+					  <strong>Warning !</strong> <%= request.getAttribute("error") %>
+				</div>
+				<%} %>
 			</form>
 		</div>
 	</body>

@@ -55,7 +55,7 @@ public class SelectVehicleServlet extends HttpServlet {
 		}
 
 		try {
-			List<Car> cars = carDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(), checkAgeResult);
+			List<Car> cars = carDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(), checkAgeResult , reservation.getKind());
 			request.setAttribute("cars", cars);
 			response.setStatus(HttpServletResponse.SC_OK);
 

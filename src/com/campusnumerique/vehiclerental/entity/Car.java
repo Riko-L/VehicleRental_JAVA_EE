@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.json.JSONObject;
 
+import com.campusnumerique.vehiclerental.utils.Constante;
+
 public class Car implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,7 @@ public class Car implements Serializable{
 	private int horsePower;
 	private Double reservationPrice;
 	private Double kilometerPrice;
-	private String kind;
+	private int kind;
 	private List<Reservation> reservations;
 	
 	
@@ -33,7 +35,7 @@ public class Car implements Serializable{
 		setReservationPrice(reservationPrice);
 		setKilometerPrice(kilometerPrice);
 		setReservations(new ArrayList<Reservation>());
-		setKind("Tourism Car");
+		setKind(Constante.KIND_TOURISM_CAR);
 	}
 	
 	public int getId() {
@@ -77,11 +79,11 @@ public class Car implements Serializable{
 		this.horsePower = horsePower;
 	}
 
-	public String getKind() {
+	public int getKind() {
 		return kind;
 	}
 
-	public void setKind(String kind) {
+	public void setKind(int kind) {
 		this.kind = kind;
 	}
 

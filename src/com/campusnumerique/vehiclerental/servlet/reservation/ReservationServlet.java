@@ -64,12 +64,12 @@ public class ReservationServlet extends HttpServlet {
 		Client client = new Client();
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("SelectVehicleServlet");
 		RequestDispatcher rdReservation = request.getServletContext().getNamedDispatcher("reservation");
-		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy");
 		Date dateStart;
 		Date dateEnd;
 		int kilometerNumber;
 		int dayNumber;
-		String kind;
+		int kind;
 		String reservationNumber = UUID.randomUUID().toString();
 		
 		reservation.setReservationNumber(reservationNumber);
@@ -93,13 +93,13 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dateStart") != null && !request.getParameter("dateStart").isEmpty()) {
 			try {
 				dateStart = formater.parse(request.getParameter("dateStart"));
-				session.setAttribute("dateStart",dateStart);
+				session.setAttribute("dateStart",formater.format(dateStart));
 				reservation.setDateStart(dateStart);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		} else {
-			request.setAttribute("error", "Date is empty");
+			request.setAttribute("error", "Date 'From' is required");
 			rdReservation.forward(request, response);
 			return;
 		}
@@ -107,25 +107,36 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dateEnd") != null && !request.getParameter("dateEnd").isEmpty()) {
 			try {
 				dateEnd = formater.parse(request.getParameter("dateEnd"));
-				session.setAttribute("dateEnd",dateEnd);
+				session.setAttribute("dateEnd",formater.format(dateEnd));
 				reservation.setDateEnd(dateEnd);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		} else {
-			request.setAttribute("error", "Date is empty");
+			request.setAttribute("error", "Date 'to' is required");
 			rdReservation.forward(request, response);
 			return;
 		}
 
 		if (request.getParameter("kilometerNumber") != null && !request.getParameter("kilometerNumber").isEmpty()) {
 
-			kilometerNumber = Integer.parseInt(request.getParameter("kilometerNumber"));
-			session.setAttribute("kilometerNumber",kilometerNumber);
-			reservation.setKilometerNumber(kilometerNumber);
+			String kilometer = request.getParameter("kilometerNumber");
+					
+					if(kilometer.matches("^[0-9]*$")) {
+						kilometerNumber = Integer.parseInt(kilometer);
+						session.setAttribute("kilometerNumber",kilometerNumber);
+						reservation.setKilometerNumber(kilometerNumber);
+					}else {
+						
+						request.setAttribute("error", "Kilometer must be only a digit number");
+						rdReservation.forward(request, response);
+						return;
+					}
+			
+			
 
 		} else {
-			request.setAttribute("error", "Kilometer Number is empty");
+			request.setAttribute("error", "Kilometer is required");
 			rdReservation.forward(request, response);
 			return;
 		}
@@ -137,19 +148,19 @@ public class ReservationServlet extends HttpServlet {
 			reservation.setDayNumber(dayNumber);
 
 		} else {
-			request.setAttribute("error", "Day Number is not ...");
+			request.setAttribute("error", "Day Number is required");
 			rdReservation.forward(request, response);
 			return;
 		}
 
-		if (request.getParameter("kind") != null && !request.getParameter("kind").isEmpty()) {
+		if (request.getParameter("kind") != null && !request.getParameter("kind").isEmpty() && !request.getParameter("kind").equals("0")) {
 
-			kind = request.getParameter("kind");
+			kind = Integer.parseInt(request.getParameter("kind"));
 			session.setAttribute("kind",kind);
 			reservation.setKind(kind);
 
 		} else {
-			request.setAttribute("error", "Day Number is not ...");
+			request.setAttribute("error", "Kind is required");
 			rdReservation.forward(request, response);
 			return;
 		}
@@ -157,7 +168,7 @@ public class ReservationServlet extends HttpServlet {
 		
 		request.setAttribute("client", client);
 		request.setAttribute("reservation", reservation);
-		
+		System.out.println(reservation.getInfos().toString());
 		rdSelectVehicle.forward(request, response);
 	}
 

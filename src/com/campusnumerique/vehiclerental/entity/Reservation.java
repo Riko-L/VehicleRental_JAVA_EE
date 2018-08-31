@@ -16,7 +16,7 @@ public class Reservation implements Serializable{
 	private int kilometerNumber;
 	private Double rentalPrice;
 	private int dayNumber;
-	private String kind;
+	private int kind;
 	private Car car;
 	private Client client;
 	
@@ -24,7 +24,7 @@ public class Reservation implements Serializable{
 	public Reservation() {}
 	
 	
-	public Reservation(String reservationNumber, Date dateStart, Date dateEnd, int kilometerNumber, Double rentalPrice , String kind) {
+	public Reservation(String reservationNumber, Date dateStart, Date dateEnd, int kilometerNumber, Double rentalPrice , int kind) {
 		this.reservationNumber = reservationNumber;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
@@ -120,12 +120,12 @@ public class Reservation implements Serializable{
 	}
 
 	
-	public String getKind() {
+	public int getKind() {
 		return kind;
 	}
 
 
-	public void setKind(String kind) {
+	public void setKind(int kind) {
 		this.kind = kind;
 	}
 

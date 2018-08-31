@@ -18,7 +18,7 @@ $(function() {
             var d1 = $(this).datepicker("getDate");
             d1.setDate(d1.getDate() + 0); // change to + 1 if necessary
             var d2 = $(this).datepicker("getDate");
-            d2.setDate(d2.getDate() + 30); // change to + 29 if necessary
+            d2.setDate(d2.getDate() + 180); // change to + 29 if necessary
             $("#dateEnd").datepicker("setDate", null);
             $("#dateEnd").datepicker("option", "minDate", d1);
             $("#dateEnd").datepicker("option", "maxDate", d2);

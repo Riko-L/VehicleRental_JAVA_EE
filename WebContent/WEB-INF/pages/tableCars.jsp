@@ -32,7 +32,7 @@
 					<td class="text-center"><%=cars.get(i).getReservationPrice()%></td>
 					<td class="text-center"><%=cars.get(i).getKilometerPrice()%></td>
  					<% if( request.getParameter("dateStart") != null ) { %>
-					<td><input class="form-check-input" type="radio" name="choiceCheck" id="choiceCheck"></td>
+					<td><input class="form-check-input" type="radio" name="choiceCheck" id="<%=cars.get(i).getId()%>" <% if(i == 0) { %> checked="checked" <%} %>  ></td>
  					<% } %>
 				</tr>
 				<% }

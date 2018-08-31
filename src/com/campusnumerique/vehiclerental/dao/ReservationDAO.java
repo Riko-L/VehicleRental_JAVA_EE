@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.campusnumerique.vehiclerental.entity.Reservation;
+import com.campusnumerique.vehiclerental.utils.Constante;
 
 public class ReservationDAO extends DAO<Reservation>{
 
@@ -25,8 +26,8 @@ public class ReservationDAO extends DAO<Reservation>{
 					+ "rentalPrice)"
 					+ " VALUES (?, ?, ?, ?, ?)");
 			stmt.setString(1, obj.getReservationNumber());
-			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getTime()));
-			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getTime()));
+			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getTime() + Constante.DAY));
+			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getTime() + Constante.DAY));
 			stmt.setInt(4, obj.getKilometerNumber());
 			stmt.setDouble(5, obj.getRentalPrice());
 			
@@ -91,7 +92,7 @@ public class ReservationDAO extends DAO<Reservation>{
 						result.getDate("dateEnd"),
 						result.getInt("kilometerNumber"),
 						result.getDouble("rentalPrice"),
-						result.getString("kind")
+						result.getInt("kind")
 						);
 		
 			return reservation;
@@ -112,7 +113,7 @@ public class ReservationDAO extends DAO<Reservation>{
 					result.getDate("dateEnd"),
 					result.getInt("kilometerNumber"),
 					result.getDouble("rentalPrice"),
-					result.getString("kind")
+					result.getInt("kind")
 					);
 			reservations.add(reservation);
 		}

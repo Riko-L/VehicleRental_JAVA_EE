@@ -6,10 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.json.JSONArray;
-
 import com.campusnumerique.vehiclerental.entity.Car;
+import com.campusnumerique.vehiclerental.utils.Constante;
 
 public class CarDAO extends DAO<Car>{
 
@@ -78,17 +77,19 @@ public class CarDAO extends DAO<Car>{
 	
 	
 	@SuppressWarnings("deprecation")
-	public List<Car> findByFilter(Date dateStartResa,Date dateEndResa, int horsePower) throws SQLException {
+	public List<Car> findByFilter(Date dateStartResa,Date dateEndResa, int horsePower ,int kind) throws SQLException {
 		ArrayList<Car> cars = new ArrayList<Car>();
 		
-		String query = "select * from car WHERE car.id NOT IN (select * from car JOIN reservation ON car.id = reservation.id_car Where (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) AND (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) AND (reservation.dateStart BETWEEN ? AND ?)) AND (car.horsePower < ?);";
+		
+		String query = "select * from car WHERE car.id NOT IN (select car.id from car JOIN reservation ON car.id = reservation.id_car Where (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) OR (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) OR (reservation.dateStart BETWEEN ? AND ?)) AND (car.horsePower < ?) AND (car.kind = ?);";
 		
 		PreparedStatement stmt = this.connection.prepareStatement(query);
-		stmt.setDate(1, new java.sql.Date(dateStartResa.getTime()));
-		stmt.setDate(2, new java.sql.Date(dateEndResa.getTime()));
-		stmt.setDate(3, new java.sql.Date(dateStartResa.getTime()));
-		stmt.setDate(4, new java.sql.Date(dateEndResa.getTime()));
+		stmt.setDate(1, new java.sql.Date(dateStartResa.getTime() + Constante.DAY));
+		stmt.setDate(2, new java.sql.Date(dateEndResa.getTime() + Constante.DAY ));
+		stmt.setDate(3, new java.sql.Date(dateStartResa.getTime() + Constante.DAY));
+		stmt.setDate(4, new java.sql.Date(dateEndResa.getTime() + Constante.DAY));
 		stmt.setInt(5, horsePower);
+		stmt.setInt(6, kind);
 		
 		System.out.println(stmt.toString());
 		ResultSet result = stmt.executeQuery();
