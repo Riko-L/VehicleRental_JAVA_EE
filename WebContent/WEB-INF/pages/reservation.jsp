@@ -9,36 +9,55 @@
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
 		<br/>
 		<div class="container" id="content">
-				<h2 class="text-center text-primary">Réservation</h2><br/>
+			<h2 class="text-center text-primary">Réservation</h2><br/>
 			<form action="/reservation" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<label>Date</label>
 						<div class="input-group">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">From</div>
 					        </div>
-							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date From">
+							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date">
 						</div>
 					</div>
 					<div class="form-group col-md-4">
-						<label>Date</label>
 						<div class="input-group">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">To</div>
 					        </div>
-							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="To">
+							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="Date">
 						</div>
 					</div>
 					<div class="form-group col-md-4">
-						<label>Day Number</label>
-						<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Day Number">
+						<div class="input-group">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text">Days</div>
+					        </div>
+							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking">
+								
+						</div>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<label>Kilometer Number</label>
-						<input type="text" class="form-control" name="kilometerNumber" placeholder="Kilometer Number"><br/>
+						<div class="input-group">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text">Kind</div>
+					        </div>
+							<select class="form-control" id="genre">
+								<option>Tourism Car</option>
+	      						<option>Utility Car</option>
+	      						<option>Motorbike</option>
+							</select><br/>
+						</div>
+					</div>
+					<div class="form-group col-md-4">
+						<div class="input-group">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text">Km</div>
+					        </div>
+							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="estimate during the rental period"><br/>
+						</div>
 					</div>
 				</div>
 				<input type="submit" class="form-control btn-primary" value="Select Vehicle" /><br/>
