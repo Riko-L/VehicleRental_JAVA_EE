@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.campusnumerique.vehiclerental.entity.Car"%>
+<%@ page import="com.campusnumerique.vehiclerental.entity.Reservation"%>
 
 <%List<Car> cars = (List<Car>) request.getAttribute("cars");%>
-
 <!DOCTYPE html>
 <html>
 	<body>
@@ -31,16 +31,18 @@
 					<td class="text-center"><%=cars.get(i).getColor()%></td>
 					<td class="text-center"><%=cars.get(i).getReservationPrice()%></td>
 					<td class="text-center"><%=cars.get(i).getKilometerPrice()%></td>
-					<td><input class="form-check-input" type="checkbox" value="" id="choiceCheck"></td>
+ 					<% if( request.getParameter("dateStart") != null ) { %>
+					<td><input class="form-check-input" type="radio" name="choiceCheck" id="choiceCheck"></td>
+ 					<% } %>
 				</tr>
-				<%}
-					} else {%>
+				<% }
+					} else { %>
 				<tr>
 					<td>No data Found</td>
 				</tr>
-				<%}%>
+				<% } %>
 
 			</tbody>
 		</table>
-	</body	>
+	</body>
 </html>
