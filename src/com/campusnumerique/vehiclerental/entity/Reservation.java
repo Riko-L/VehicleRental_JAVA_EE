@@ -16,6 +16,8 @@ public class Reservation implements Serializable{
 	private int kilometerNumber;
 	private Double rentalPrice;
 	private int dayNumber;
+	private Car car;
+	private Client client;
 	
 	
 	public Reservation() {}
@@ -96,54 +98,23 @@ public class Reservation implements Serializable{
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
-		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
-		result = prime * result + id;
-		result = prime * result + kilometerNumber;
-		result = prime * result + ((rentalPrice == null) ? 0 : rentalPrice.hashCode());
-		result = prime * result + ((reservationNumber == null) ? 0 : reservationNumber.hashCode());
-		return result;
+	public Car getCar() {
+		return car;
 	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Reservation other = (Reservation) obj;
-		if (dateEnd == null) {
-			if (other.dateEnd != null)
-				return false;
-		} else if (!dateEnd.equals(other.dateEnd))
-			return false;
-		if (dateStart == null) {
-			if (other.dateStart != null)
-				return false;
-		} else if (!dateStart.equals(other.dateStart))
-			return false;
-		if (id != other.id)
-			return false;
-		if (kilometerNumber != other.kilometerNumber)
-			return false;
-		if (rentalPrice == null) {
-			if (other.rentalPrice != null)
-				return false;
-		} else if (!rentalPrice.equals(other.rentalPrice))
-			return false;
-		if (reservationNumber == null) {
-			if (other.reservationNumber != null)
-				return false;
-		} else if (!reservationNumber.equals(other.reservationNumber))
-			return false;
-		return true;
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
+
+	public Client getClient() {
+		return client;
+	}
+
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	
@@ -155,7 +126,11 @@ public class Reservation implements Serializable{
 		infos.put("dateEnd", dateEnd);
 		infos.put("kilometerNumber", kilometerNumber);
 		infos.put("rentalPrice", rentalPrice);
-		return infos;
+		infos.put("dayNumber", dayNumber);
+		infos.put("car", car.getPlateNumber());
+		infos.put("clientFirstName", client.getFirstName());
+		infos.put("clientLastName", client.getLastName());
+		return infos; 
 	}
 	
 

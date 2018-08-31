@@ -6,29 +6,33 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.campusnumerique.vehiclerental.dao.CarDAO;
+import com.campusnumerique.vehiclerental.dao.ReservationDAO;
 import com.campusnumerique.vehiclerental.entity.Car;
+import com.campusnumerique.vehiclerental.entity.Client;
+import com.campusnumerique.vehiclerental.entity.Reservation;
+import com.campusnumerique.vehiclerental.utils.Constante;
+import com.campusnumerique.vehiclerental.utils.UtilsChecker;
 
 /**
  * Servlet implementation class SelectVehicle
  */
 
-public class SelectVehicle extends HttpServlet {
+public class SelectVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CarDAO carDAO = null;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectVehicle() {
+    public SelectVehicleServlet() {
         super();
         carDAO=new CarDAO();
-        // TODO Auto-generated constructor stub
+       
     }
 
 	/**
@@ -37,6 +41,21 @@ public class SelectVehicle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("selectVehicle");
+		int checkAgeResult = 0;
+		Reservation reservation = null;
+		
+		if(request.getAttribute("client") != null) {
+		Client client = (Client) request.getAttribute("client");
+		int age = client.getAge();
+		checkAgeResult = UtilsChecker.checkAge(age);
+		}
+		
+		if(request.getAttribute("reservation") != null) {
+			reservation = (Reservation) request.getAttribute("reservation");
+		}
+		
+		
+		if(checkAgeResult == Constante.AGE_PLUS_25) {
 		try {
 			List<Car> cars = carDAO.findAll();
 			request.setAttribute("cars", cars);
@@ -48,7 +67,21 @@ public class SelectVehicle extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			e.printStackTrace();
 		}
-
+		}else {
+			try {
+				List<Car> cars = carDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(), checkAgeResult);
+				request.setAttribute("cars", cars);
+				response.setStatus(HttpServletResponse.SC_OK);
+				
+				rdSelectVehicle.forward(request, response);
+				
+			} catch (SQLException | ServletException | IOException e) {
+				response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+				e.printStackTrace();
+			}
+			
+			
+		}
 		
 		
 	}
