@@ -62,7 +62,7 @@ public class ReservationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Reservation reservation = new Reservation();
 		Client client = new Client();
-		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("SelectVehicle");
+		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("SelectVehicleServlet");
 		RequestDispatcher rdReservation = request.getServletContext().getNamedDispatcher("reservation");
 		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 		Date dateStart;
