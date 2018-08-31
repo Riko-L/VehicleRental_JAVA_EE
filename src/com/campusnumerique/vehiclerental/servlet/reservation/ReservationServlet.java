@@ -137,6 +137,7 @@ public class ReservationServlet extends HttpServlet {
 
 		request.setAttribute("client", client);
 		request.setAttribute("reservation", reservation);
+		
 		rdSelectVehicle.forward(request, response);
 	}
 
