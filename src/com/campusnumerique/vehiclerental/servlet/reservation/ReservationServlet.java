@@ -79,6 +79,8 @@ public class ReservationServlet extends HttpServlet {
 			if(!clientBean.getLogin().equals("NoUserLogin") ) {
 			try {
 				client = clientDAO.findByLogin(clientBean.getLogin());
+				reservation.setClient(client);
+				
 			} catch (SQLException e) {
 	
 				e.printStackTrace();
@@ -90,6 +92,7 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dateStart") != null && !request.getParameter("dateStart").isEmpty()) {
 			try {
 				dateStart = formater.parse(request.getParameter("dateStart"));
+				session.setAttribute("dateStart",dateStart);
 				reservation.setDateStart(dateStart);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -103,6 +106,7 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dateEnd") != null && !request.getParameter("dateEnd").isEmpty()) {
 			try {
 				dateEnd = formater.parse(request.getParameter("dateEnd"));
+				session.setAttribute("dateEnd",dateEnd);
 				reservation.setDateEnd(dateEnd);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -116,6 +120,7 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("kilometerNumber") != null && !request.getParameter("kilometerNumber").isEmpty()) {
 
 			kilometerNumber = Integer.parseInt(request.getParameter("kilometerNumber"));
+			session.setAttribute("kilometerNumber",kilometerNumber);
 			reservation.setKilometerNumber(kilometerNumber);
 
 		} else {
@@ -127,6 +132,7 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dayNumber") != null && !request.getParameter("dayNumber").isEmpty()) {
 
 			dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
+			session.setAttribute("dayNumber",dayNumber);
 			reservation.setDayNumber(dayNumber);
 
 		} else {

@@ -25,17 +25,13 @@
     <url-pattern>/reservation</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>SelectVehicle</servlet-name>
-    <servlet-class>com.campusnumerique.vehiclerental.servlet.selectvehicle.SelectVehicle</servlet-class>
+    <servlet-name>SelectVehicleServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.selectvehicle.SelectVehicleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SelectVehicle</servlet-name>
+    <servlet-name>SelectVehicleServlet</servlet-name>
     <url-pattern>/selection</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  
   <servlet>
     <servlet-name>clients</servlet-name>
     <jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>

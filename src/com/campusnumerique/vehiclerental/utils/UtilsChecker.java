@@ -8,18 +8,21 @@ import com.campusnumerique.vehiclerental.entity.Reservation;
 
 public class UtilsChecker {
 
-	public String checkAge(int age) {
-		String message;
+	public static  int checkAge(int age) {
+		// 0 pad de permis
+		// -1 all
+		
+		int horsePower;
 		if (age < 18) {
-			message = Constante.AGE_MOINS_DE_18;
+			horsePower = Constante.AGE_MOINS_DE_18;
 		} else if (age >= 18 || age < 21) {
-			message = Constante.AGE_MOINS_DE_21;
+			horsePower = Constante.AGE_MOINS_DE_21;
 		} else if (age >= 21 || age < 25) {
-			message = Constante.AGE_ENTRE_21_ET_25;
+			horsePower = Constante.AGE_ENTRE_21_ET_25;
 		} else {
-			message = Constante.AGE_PLUS_25;
+			horsePower = Constante.AGE_PLUS_25;
 		}
-		return message;
+		return horsePower;
 	}
 
 	public boolean carIsAvialable(Car car, Date dateStart, Date dateEnd) {
