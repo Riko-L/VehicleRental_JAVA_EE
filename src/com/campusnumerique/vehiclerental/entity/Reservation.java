@@ -16,6 +16,7 @@ public class Reservation implements Serializable{
 	private int kilometerNumber;
 	private Double rentalPrice;
 	private int dayNumber;
+	private String kind;
 	private Car car;
 	private Client client;
 	
@@ -23,12 +24,13 @@ public class Reservation implements Serializable{
 	public Reservation() {}
 	
 	
-	public Reservation(String reservationNumber, Date dateStart, Date dateEnd, int kilometerNumber, Double rentalPrice ) {
+	public Reservation(String reservationNumber, Date dateStart, Date dateEnd, int kilometerNumber, Double rentalPrice , String kind) {
 		this.reservationNumber = reservationNumber;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.kilometerNumber = kilometerNumber;
 		this.rentalPrice = rentalPrice;
+		this.kind = kind;
 		
 	}
 
@@ -118,6 +120,16 @@ public class Reservation implements Serializable{
 	}
 
 	
+	public String getKind() {
+		return kind;
+	}
+
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+
 	public JSONObject getInfos() {
 		JSONObject infos = new JSONObject();
 		infos.put("id", id);
@@ -128,6 +140,7 @@ public class Reservation implements Serializable{
 		infos.put("rentalPrice", rentalPrice);
 		infos.put("dayNumber", dayNumber);
 		infos.put("car", car);
+		infos.put("kind", kind);
 		infos.put("client", client);
 		return infos; 
 	}

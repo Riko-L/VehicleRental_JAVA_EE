@@ -90,7 +90,8 @@ public class ReservationDAO extends DAO<Reservation>{
 						result.getDate("dateStart"),
 						result.getDate("dateEnd"),
 						result.getInt("kilometerNumber"),
-						result.getDouble("rentalPrice")
+						result.getDouble("rentalPrice"),
+						result.getString("kind")
 						);
 		
 			return reservation;
@@ -110,7 +111,8 @@ public class ReservationDAO extends DAO<Reservation>{
 					result.getDate("dateStart"),
 					result.getDate("dateEnd"),
 					result.getInt("kilometerNumber"),
-					result.getDouble("rentalPrice")
+					result.getDouble("rentalPrice"),
+					result.getString("kind")
 					);
 			reservations.add(reservation);
 		}

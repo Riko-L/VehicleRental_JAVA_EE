@@ -46,7 +46,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Kind</div>
 					        </div>
-							<select class="form-control" id="genre">
+							<select class="form-control" id="kind" name="kind">
 								<option selected>Choose...</option>
 								<option value="1">Tourism Car</option>
 	      						<option value="2">Utility Car</option>

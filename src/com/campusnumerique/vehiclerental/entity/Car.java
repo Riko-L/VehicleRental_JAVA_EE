@@ -17,6 +17,7 @@ public class Car implements Serializable{
 	private int horsePower;
 	private Double reservationPrice;
 	private Double kilometerPrice;
+	private String kind;
 	private List<Reservation> reservations;
 	
 	
@@ -32,6 +33,7 @@ public class Car implements Serializable{
 		setReservationPrice(reservationPrice);
 		setKilometerPrice(kilometerPrice);
 		setReservations(new ArrayList<Reservation>());
+		setKind("Tourism Car");
 	}
 	
 	public int getId() {
@@ -73,6 +75,14 @@ public class Car implements Serializable{
 
 	public void setHorsePower(int horsePower) {
 		this.horsePower = horsePower;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 
 	public Double getReservationPrice() {
@@ -120,6 +130,7 @@ public class Car implements Serializable{
 			infos.put("horsePower", horsePower);
 			infos.put("reservationPrice", reservationPrice);
 			infos.put("kilometerPrice", kilometerPrice);
+			infos.put("kind", kind);
 		return infos;
 		
 	}
