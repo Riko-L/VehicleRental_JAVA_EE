@@ -16,7 +16,7 @@
     <servlet-name>CarServlet</servlet-name>
     <url-pattern>/cars</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ReservationServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationServlet</servlet-class>
   </servlet>
@@ -24,6 +24,18 @@
     <servlet-name>ReservationServlet</servlet-name>
     <url-pattern>/reservation</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>SelectVehicle</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.selectvehicle.SelectVehicle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectVehicle</servlet-name>
+    <url-pattern>/selection</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
   <servlet>
     <servlet-name>clients</servlet-name>
     <jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>
@@ -36,7 +48,7 @@
     <servlet-name>reservation</servlet-name>
     <jsp-file>/WEB-INF/pages/reservation.jsp</jsp-file>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>selectVehicle</servlet-name>
     <jsp-file>/WEB-INF/pages/selectVehicle.jsp</jsp-file>
   </servlet>
