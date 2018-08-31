@@ -25,8 +25,8 @@ public class ReservationDAO extends DAO<Reservation>{
 					+ "rentalPrice)"
 					+ " VALUES (?, ?, ?, ?, ?)");
 			stmt.setString(1, obj.getReservationNumber());
-			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getYear(), obj.getDateStart().getMonth(), obj.getDateStart().getDay()));
-			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getYear(), obj.getDateEnd().getMonth(), obj.getDateEnd().getDay()));
+			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getTime()));
+			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getTime()));
 			stmt.setInt(4, obj.getKilometerNumber());
 			stmt.setDouble(5, obj.getRentalPrice());
 			
