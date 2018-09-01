@@ -74,8 +74,10 @@
 				<div class="alert alert-danger">
 					  <strong>Warning !</strong> <%= request.getAttribute("error") %>
 				</div>
-				<%} %>
+				<% } %>
 			</form>
 		</div>
+		
+		<jsp:include page="/WEB-INF/pages/footer.jsp"/>
 	</body>
 </html>

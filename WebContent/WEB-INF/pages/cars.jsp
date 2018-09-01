@@ -13,5 +13,8 @@
 		<h2 class="text-center text-primary">Cars List</h2><br/>
 			<jsp:include page="/WEB-INF/pages/tableCars.jsp"></jsp:include>
 	</div>
+	
+	
+	<jsp:include page="/WEB-INF/pages/footer.jsp"/>
 </body>
 </html>

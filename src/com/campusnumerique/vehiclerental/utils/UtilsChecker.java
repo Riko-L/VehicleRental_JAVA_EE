@@ -9,8 +9,6 @@ import com.campusnumerique.vehiclerental.entity.Reservation;
 public class UtilsChecker {
 
 	public static  int checkAge(int age) {
-		// 0 pad de permis
-		// -1 all
 		
 		int horsePower;
 		if (age < 18) {
@@ -25,6 +23,11 @@ public class UtilsChecker {
 		return horsePower;
 	}
 
+	public static Double CalculRentalPrice(int kilometerNumber, Double kilometerPrice, Double reservationPrice) {
+		
+		return kilometerNumber*kilometerPrice + reservationPrice;
+	}
+	
 	public boolean carIsAvialable(Car car, Date dateStart, Date dateEnd) {
 
 		boolean isAvialable = false;
@@ -56,4 +59,6 @@ public class UtilsChecker {
 		return dateToCheck.after(dateStart) && dateToCheck.before(dateEnd);
 	}
 
+	
+	
 }

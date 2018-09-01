@@ -7,8 +7,7 @@
 	List<Client> clients = (List) request.getAttribute("clients");
 %>
 
-<jsp:useBean id="client" scope="session"
-	class="com.campusnumerique.vehiclerental.bean.ClientBean" />
+
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/pages/header.jsp">
@@ -52,5 +51,7 @@
 			</table>
 		</div>
 	</div>
+	
+	<jsp:include page="/WEB-INF/pages/footer.jsp"/>
 </body>
 </html>

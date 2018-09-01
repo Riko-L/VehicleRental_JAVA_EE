@@ -23,13 +23,21 @@ public class ReservationDAO extends DAO<Reservation>{
 					+ "dateStart,"
 					+ "dateEnd,"
 					+ "kilometerNumber,"
-					+ "rentalPrice)"
-					+ " VALUES (?, ?, ?, ?, ?)");
+					+ "rentalPrice,"
+					+ "dayNumber,"
+					+ "kind,"
+					+ "id_car,"
+					+ "id_client)"
+					+ " VALUES (?, ?, ?, ?, ? , ? ,? ,? ,?)");
 			stmt.setString(1, obj.getReservationNumber());
 			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getTime() + Constante.DAY));
 			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getTime() + Constante.DAY));
 			stmt.setInt(4, obj.getKilometerNumber());
 			stmt.setDouble(5, obj.getRentalPrice());
+			stmt.setInt(6, obj.getDayNumber());
+			stmt.setInt(7, obj.getKind());
+			stmt.setInt(8, obj.getCar().getId());
+			stmt.setInt(9, obj.getClient().getId());
 			
 			int result = stmt.executeUpdate(); 
 			

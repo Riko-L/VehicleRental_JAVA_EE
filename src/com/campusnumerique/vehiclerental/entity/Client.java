@@ -3,12 +3,17 @@ package com.campusnumerique.vehiclerental.entity;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-public class Client {
+public class Client implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id=0;
 	private String login="";
 	private String firstName="";
@@ -144,4 +149,82 @@ public class Client {
 	public String toString(){
 		return getInfos().toString();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + (isGuest ? 1231 : 1237);
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((licenseDate == null) ? 0 : licenseDate.hashCode());
+		result = prime * result + ((licenseNumber == null) ? 0 : licenseNumber.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
+		result = prime * result + ((reservations == null) ? 0 : reservations.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (age != other.age)
+			return false;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (isGuest != other.isGuest)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (licenseDate == null) {
+			if (other.licenseDate != null)
+				return false;
+		} else if (!licenseDate.equals(other.licenseDate))
+			return false;
+		if (licenseNumber == null) {
+			if (other.licenseNumber != null)
+				return false;
+		} else if (!licenseNumber.equals(other.licenseNumber))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (mail == null) {
+			if (other.mail != null)
+				return false;
+		} else if (!mail.equals(other.mail))
+			return false;
+		if (reservations == null) {
+			if (other.reservations != null)
+				return false;
+		} else if (!reservations.equals(other.reservations))
+			return false;
+		return true;
+	}
+	
+	
 }

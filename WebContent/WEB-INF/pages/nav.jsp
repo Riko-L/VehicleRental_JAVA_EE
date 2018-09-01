@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <jsp:useBean id="client" scope="session"
+ <jsp:useBean id="clientBean" scope="session"
 	class="com.campusnumerique.vehiclerental.bean.ClientBean" />
 
 <nav class="navbar navbar-light " id="header">
@@ -15,6 +15,6 @@
 					<li class="nav-item"><a class="nav-link" href="./reservation">Reservation</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li>User Connected: <%=client.getLogin()%></li>
+			<li>User Connected: <%=clientBean.getLogin()%></li>
 		</ul>
 	</nav>

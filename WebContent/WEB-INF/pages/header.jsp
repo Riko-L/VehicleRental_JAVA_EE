@@ -24,13 +24,6 @@
 <!-- General -->
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/resources/css/global.css" />
-<script
-	src="${pageContext.servletContext.contextPath}/resources/js/client.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/resources/js/car.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/resources/js/reservation.js"></script>
-
 
 
 </head>
