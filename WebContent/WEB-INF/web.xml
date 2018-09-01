@@ -17,6 +17,14 @@
     <url-pattern>/cars</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>CarAjaxServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.car.CarAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarAjaxServlet</servlet-name>
+    <url-pattern>/carsajax</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ReservationServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationServlet</servlet-class>
   </servlet>
@@ -32,6 +40,15 @@
     <servlet-name>SelectVehicleServlet</servlet-name>
     <url-pattern>/selection</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>ValidationServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.validation.ValidationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidationServlet</servlet-name>
+    <url-pattern>/validation</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>clients</servlet-name>
     <jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>
@@ -48,4 +65,9 @@
     <servlet-name>selectVehicle</servlet-name>
     <jsp-file>/WEB-INF/pages/selectVehicle.jsp</jsp-file>
   </servlet>
+    <servlet>
+    <servlet-name>validation_VUE</servlet-name>
+    <jsp-file>/WEB-INF/pages/validation.jsp</jsp-file>
+  </servlet>
+  
 </web-app>

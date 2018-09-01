@@ -44,7 +44,7 @@ public class ReservationServlet extends HttpServlet {
 		
 		//Pour les tests
 		HttpSession session = request.getSession();
-		session.setAttribute("client", new ClientBean("Alex"));
+		session.setAttribute("clientBean", new ClientBean("Alex"));
 		
 		
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("reservation");
@@ -75,8 +75,8 @@ public class ReservationServlet extends HttpServlet {
 		reservation.setReservationNumber(reservationNumber);
 		
 		
-		if(session.getAttribute("client") != null ) {
-			ClientBean clientBean = (ClientBean) session.getAttribute("client");
+		if(session.getAttribute("clientBean") != null ) {
+			ClientBean clientBean = (ClientBean) session.getAttribute("clientBean");
 			if(!clientBean.getLogin().equals("NoUserLogin") ) {
 			try {
 				client = clientDAO.findByLogin(clientBean.getLogin());
@@ -165,10 +165,11 @@ public class ReservationServlet extends HttpServlet {
 			return;
 		}
 		
-		
+		session.setAttribute("reservation", reservation);
+		session.setAttribute("client", client);
 		request.setAttribute("client", client);
 		request.setAttribute("reservation", reservation);
-		System.out.println(reservation.getInfos().toString());
+		
 		rdSelectVehicle.forward(request, response);
 	}
 

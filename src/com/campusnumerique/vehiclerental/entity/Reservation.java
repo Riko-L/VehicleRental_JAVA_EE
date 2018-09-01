@@ -150,6 +150,77 @@ public class Reservation implements Serializable{
 	public String toString() {
 		return getInfos().toString();
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((car == null) ? 0 : car.hashCode());
+		result = prime * result + ((client == null) ? 0 : client.hashCode());
+		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
+		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
+		result = prime * result + dayNumber;
+		result = prime * result + id;
+		result = prime * result + kilometerNumber;
+		result = prime * result + kind;
+		result = prime * result + ((rentalPrice == null) ? 0 : rentalPrice.hashCode());
+		result = prime * result + ((reservationNumber == null) ? 0 : reservationNumber.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		if (car == null) {
+			if (other.car != null)
+				return false;
+		} else if (!car.equals(other.car))
+			return false;
+		if (client == null) {
+			if (other.client != null)
+				return false;
+		} else if (!client.equals(other.client))
+			return false;
+		if (dateEnd == null) {
+			if (other.dateEnd != null)
+				return false;
+		} else if (!dateEnd.equals(other.dateEnd))
+			return false;
+		if (dateStart == null) {
+			if (other.dateStart != null)
+				return false;
+		} else if (!dateStart.equals(other.dateStart))
+			return false;
+		if (dayNumber != other.dayNumber)
+			return false;
+		if (id != other.id)
+			return false;
+		if (kilometerNumber != other.kilometerNumber)
+			return false;
+		if (kind != other.kind)
+			return false;
+		if (rentalPrice == null) {
+			if (other.rentalPrice != null)
+				return false;
+		} else if (!rentalPrice.equals(other.rentalPrice))
+			return false;
+		if (reservationNumber == null) {
+			if (other.reservationNumber != null)
+				return false;
+		} else if (!reservationNumber.equals(other.reservationNumber))
+			return false;
+		return true;
+	}
+
+
 	
 	
 	

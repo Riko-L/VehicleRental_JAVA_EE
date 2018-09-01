@@ -142,6 +142,76 @@ public class Car implements Serializable{
 	public String toString(){
 		return getInfos().toString();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + horsePower;
+		result = prime * result + id;
+		result = prime * result + ((kilometerPrice == null) ? 0 : kilometerPrice.hashCode());
+		result = prime * result + kind;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((plateNumber == null) ? 0 : plateNumber.hashCode());
+		result = prime * result + ((reservationPrice == null) ? 0 : reservationPrice.hashCode());
+		result = prime * result + ((reservations == null) ? 0 : reservations.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		if (brand == null) {
+			if (other.brand != null)
+				return false;
+		} else if (!brand.equals(other.brand))
+			return false;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
+		if (horsePower != other.horsePower)
+			return false;
+		if (id != other.id)
+			return false;
+		if (kilometerPrice == null) {
+			if (other.kilometerPrice != null)
+				return false;
+		} else if (!kilometerPrice.equals(other.kilometerPrice))
+			return false;
+		if (kind != other.kind)
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (plateNumber == null) {
+			if (other.plateNumber != null)
+				return false;
+		} else if (!plateNumber.equals(other.plateNumber))
+			return false;
+		if (reservationPrice == null) {
+			if (other.reservationPrice != null)
+				return false;
+		} else if (!reservationPrice.equals(other.reservationPrice))
+			return false;
+		if (reservations == null) {
+			if (other.reservations != null)
+				return false;
+		} else if (!reservations.equals(other.reservations))
+			return false;
+		return true;
+	}
 	
 	
 }
