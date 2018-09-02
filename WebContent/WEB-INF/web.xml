@@ -17,14 +17,6 @@
     <url-pattern>/cars</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>CarAjaxServlet</servlet-name>
-    <servlet-class>com.campusnumerique.vehiclerental.servlet.car.CarAjaxServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CarAjaxServlet</servlet-name>
-    <url-pattern>/carsajax</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>ReservationServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationServlet</servlet-class>
   </servlet>
@@ -40,7 +32,7 @@
     <servlet-name>SelectVehicleServlet</servlet-name>
     <url-pattern>/selection</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>ValidationServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.validation.ValidationServlet</servlet-class>
   </servlet>
@@ -48,26 +40,45 @@
     <servlet-name>ValidationServlet</servlet-name>
     <url-pattern>/validation</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>CarAjaxServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.car.CarAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarAjaxServlet</servlet-name>
+    <url-pattern>/carsajax</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ReservationAjaxServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationAjaxServlet</servlet-name>
+    <url-pattern>/reservationajax</url-pattern>
+  </servlet-mapping>
   
   <servlet>
-    <servlet-name>clients</servlet-name>
+    <servlet-name>clients_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>cars</servlet-name>
+    <servlet-name>cars_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/cars.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>reservation</servlet-name>
+    <servlet-name>reservation_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/reservation.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>selectVehicle</servlet-name>
+    <servlet-name>selectVehicle_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/selectVehicle.jsp</jsp-file>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>validation_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/validation.jsp</jsp-file>
   </servlet>
-  
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/WEB-INF/pages/error.jsp</location>
+  </error-page>
 </web-app>

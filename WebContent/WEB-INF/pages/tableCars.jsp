@@ -37,8 +37,8 @@
 				</tr>
 				<% }
 					} else { %>
-				<tr>
-					<td>No data Found</td>
+				<tr id="notFoundTableRow">
+					<td class="text-center" colspan="7">No car found !</td>
 				</tr>
 				<% } %>
 

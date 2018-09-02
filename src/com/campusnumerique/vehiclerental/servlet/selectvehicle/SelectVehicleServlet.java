@@ -40,7 +40,7 @@ public class SelectVehicleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("selectVehicle");
+		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("selectVehicle_VUE");
 		int checkAgeResult = 0;
 		Reservation reservation = null;
 

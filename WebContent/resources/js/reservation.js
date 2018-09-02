@@ -36,3 +36,31 @@ $(function() {
         }
     });
 });
+
+
+$( document ).ready(function() {
+	$('#kind').select2({
+		 minimumResultsForSearch: -1,
+		 theme: "bootstrap",
+		 ajax: {
+		        url: "/reservationajax",
+		        dataType: 'json',
+		        type: "GET",
+		        data: function () {
+	                return {
+	                    action: "getKind"
+	                };
+	            },
+		        processResults: function (data) {
+                    var res = data.results.map(function (item) {
+                    	console.log(item);
+                        return {id: item.id, text: item.label};
+                    });
+                return {
+                    results: res
+                };
+            }
+		    },
+		    	
+		});
+});
