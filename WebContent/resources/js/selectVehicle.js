@@ -45,9 +45,13 @@ $(function() {
 
 
 $( document ).ready(function() {
+	
 		if( document.getElementById("carTable")){
 		var id = $("#carTable > tbody > tr").first().find('input[name=choiceCheck]').data('id');
 		getCarsInfos(id);
+		}
+		if(document.getElementById("notFoundTableRow")){
+			$("#rentalPriceShow").parent().parent().remove();
 		}
 	
 });

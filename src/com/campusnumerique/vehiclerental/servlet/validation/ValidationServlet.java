@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
 import com.campusnumerique.vehiclerental.dao.ReservationDAO;
 import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.Client;
@@ -61,14 +63,15 @@ public class ValidationServlet extends HttpServlet {
 				reservationDAO.create(reservation);
 				
 				session.removeAttribute("reservation");
-				
+				session.invalidate();
+				request.setAttribute("reservation", reservation);
 				response.setStatus(HttpServletResponse.SC_OK);
 				rd.forward(request, response);
 				return;
 				
 			}else{
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-				rd.forward(request, response);
+				
 				return;
 			}
 

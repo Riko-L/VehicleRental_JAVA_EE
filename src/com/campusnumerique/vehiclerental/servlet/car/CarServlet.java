@@ -38,7 +38,7 @@ public class CarServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		
-		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("cars");
+		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("cars_VUE");
 				try {
 					List<Car> cars = carDAO.findAll();
 					request.setAttribute("cars", cars);

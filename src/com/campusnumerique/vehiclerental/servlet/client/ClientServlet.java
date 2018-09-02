@@ -38,7 +38,7 @@ public class ClientServlet extends HttpServlet {
 		try {
 			List<Client> clients  = clientDAO.findAll();
 			request.setAttribute("clients", clients);
-			RequestDispatcher rd = request.getServletContext().getNamedDispatcher("clients");
+			RequestDispatcher rd = request.getServletContext().getNamedDispatcher("clients_VUE");
 			response.setStatus(HttpServletResponse.SC_OK);
 			rd.forward(request, response);
 			

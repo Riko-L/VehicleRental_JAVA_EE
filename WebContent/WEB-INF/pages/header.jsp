@@ -25,5 +25,10 @@
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/resources/css/global.css" />
 
+<!-- Select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+
 
 </head>

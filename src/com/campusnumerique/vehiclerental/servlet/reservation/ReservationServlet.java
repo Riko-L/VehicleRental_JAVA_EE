@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -47,7 +48,7 @@ public class ReservationServlet extends HttpServlet {
 		session.setAttribute("clientBean", new ClientBean("Alex"));
 		
 		
-		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("reservation");
+		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("reservation_VUE");
 
 		rd.forward(request, response);
 
@@ -63,16 +64,16 @@ public class ReservationServlet extends HttpServlet {
 		Reservation reservation = new Reservation();
 		Client client = new Client();
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("SelectVehicleServlet");
-		RequestDispatcher rdReservation = request.getServletContext().getNamedDispatcher("reservation");
+		RequestDispatcher rdReservation = request.getServletContext().getNamedDispatcher("reservation_VUE");
 		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy");
 		Date dateStart;
 		Date dateEnd;
 		int kilometerNumber;
 		int dayNumber;
 		int kind;
-		String reservationNumber = UUID.randomUUID().toString();
-		
-		reservation.setReservationNumber(reservationNumber);
+		StringBuilder reservationNumber = new StringBuilder("RESA_");
+		reservationNumber.append(Calendar.getInstance().getTimeInMillis());
+		reservation.setReservationNumber(reservationNumber.toString());
 		
 		
 		if(session.getAttribute("clientBean") != null ) {
@@ -93,12 +94,12 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dateStart") != null && !request.getParameter("dateStart").isEmpty()) {
 			try {
 				dateStart = formater.parse(request.getParameter("dateStart"));
-				session.setAttribute("dateStart",formater.format(dateStart));
 				reservation.setDateStart(dateStart);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		} else {
+			session.setAttribute("reservation", reservation);
 			request.setAttribute("error", "Date 'From' is required");
 			rdReservation.forward(request, response);
 			return;
@@ -107,12 +108,12 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dateEnd") != null && !request.getParameter("dateEnd").isEmpty()) {
 			try {
 				dateEnd = formater.parse(request.getParameter("dateEnd"));
-				session.setAttribute("dateEnd",formater.format(dateEnd));
 				reservation.setDateEnd(dateEnd);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		} else {
+			session.setAttribute("reservation", reservation);
 			request.setAttribute("error", "Date 'to' is required");
 			rdReservation.forward(request, response);
 			return;
@@ -124,10 +125,9 @@ public class ReservationServlet extends HttpServlet {
 					
 					if(kilometer.matches("^[0-9]*$")) {
 						kilometerNumber = Integer.parseInt(kilometer);
-						session.setAttribute("kilometerNumber",kilometerNumber);
 						reservation.setKilometerNumber(kilometerNumber);
 					}else {
-						
+						session.setAttribute("reservation", reservation);
 						request.setAttribute("error", "Kilometer must be only a digit number");
 						rdReservation.forward(request, response);
 						return;
@@ -136,6 +136,7 @@ public class ReservationServlet extends HttpServlet {
 			
 
 		} else {
+			session.setAttribute("reservation", reservation);
 			request.setAttribute("error", "Kilometer is required");
 			rdReservation.forward(request, response);
 			return;
@@ -144,10 +145,10 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("dayNumber") != null && !request.getParameter("dayNumber").isEmpty()) {
 
 			dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
-			session.setAttribute("dayNumber",dayNumber);
 			reservation.setDayNumber(dayNumber);
 
 		} else {
+			session.setAttribute("reservation", reservation);
 			request.setAttribute("error", "Day Number is required");
 			rdReservation.forward(request, response);
 			return;
@@ -156,10 +157,10 @@ public class ReservationServlet extends HttpServlet {
 		if (request.getParameter("kind") != null && !request.getParameter("kind").isEmpty() && !request.getParameter("kind").equals("0")) {
 
 			kind = Integer.parseInt(request.getParameter("kind"));
-			session.setAttribute("kind",kind);
 			reservation.setKind(kind);
 
 		} else {
+			session.setAttribute("reservation", reservation);
 			request.setAttribute("error", "Kind is required");
 			rdReservation.forward(request, response);
 			return;
