@@ -90,8 +90,6 @@ public class CarDAO extends DAO<Car>{
 		stmt.setDate(4, new java.sql.Date(dateEndResa.getTime() + Constante.DAY));
 		stmt.setInt(5, horsePower);
 		stmt.setInt(6, kind);
-		
-		System.out.println(stmt.toString());
 		ResultSet result = stmt.executeQuery();
 		while(result.next()){
 			Car car = new Car(

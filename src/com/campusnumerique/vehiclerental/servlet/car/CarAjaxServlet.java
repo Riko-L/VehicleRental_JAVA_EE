@@ -35,8 +35,10 @@ public class CarAjaxServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		Reservation reservation = null;
+		
 		if(session!=null && !session.isNew()) {
 			reservation = (Reservation) session.getAttribute("reservation");
 		}
@@ -46,8 +48,7 @@ public class CarAjaxServlet extends HttpServlet {
 		if(request.getParameter("action").equals("getCarsInfos")) {
 			Writer out = response.getWriter();
 			int id = Integer.parseInt(request.getParameter("id"));
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
+			
 			try {
 				Car car = carDAO.find(id);
 				Double rentalPrice = UtilsChecker.CalculRentalPrice(reservation.getKilometerNumber(), car.getKilometerPrice(), car.getReservationPrice());

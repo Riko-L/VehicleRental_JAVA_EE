@@ -19,7 +19,7 @@
 	</jsp:include>
 	<body>
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
-		<br/>
+		
 		<div class="container" id="content">
 			<h2 class="text-center text-primary">Reservation</h2><br/>
 			<form action="/reservation" method="POST">

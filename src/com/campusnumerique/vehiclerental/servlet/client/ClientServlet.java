@@ -34,7 +34,8 @@ public class ClientServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
 		try {
 			List<Client> clients  = clientDAO.findAll();
 			request.setAttribute("clients", clients);

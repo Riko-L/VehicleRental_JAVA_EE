@@ -7,7 +7,6 @@ function getCarsInfos(id) {
 		}
 	}).done(function(data) {
 		if (data != undefined && data.car != undefined && data.rentalPrice != undefined) {
-			console.log("RentalPrice : " + data.rentalPrice);
 			$("#rentalPriceShow").text(data.rentalPrice);
 			$("#rentalPrice").val(data.rentalPrice);
 		} else {
@@ -18,7 +17,7 @@ function getCarsInfos(id) {
 
 
 $(function() {
-
+	if( document.getElementsByName("choiceCheck") != undefined && document.getElementsByName("choiceCheck").length != 0){
 	$("#carTable > tbody > tr").on("mouseenter mouseleave", function(event) {
 
 		if (event.type === 'mouseenter') {
@@ -41,17 +40,27 @@ $(function() {
 		getCarsInfos(id);
 
 	});
+	
+	}
 });
 
 
 $( document ).ready(function() {
 	
-		if( document.getElementById("carTable")){
-		var id = $("#carTable > tbody > tr").first().find('input[name=choiceCheck]').data('id');
+		if( document.getElementsByName("choiceCheck") != undefined && document.getElementsByName("choiceCheck").length != 0){
+			var $firstElement = $("#carTable > tbody > tr").first();
+		var id = $firstElement.find('input[name=choiceCheck]').data('id');
+		$firstElement.addClass('selectColor');
 		getCarsInfos(id);
 		}
 		if(document.getElementById("notFoundTableRow")){
 			$("#rentalPriceShow").parent().parent().remove();
+			$(":submit").prop("disabled", true);
+			$(":submit").removeClass("btn-primary");
+			$(":submit").addClass("btn-secondary");
+			$("#returnBTN").removeClass("btn-secondary");
+			$("#returnBTN").addClass("btn-primary");
+	
 		}
 	
 });

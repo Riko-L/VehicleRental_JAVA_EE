@@ -5,9 +5,7 @@
 <%@ page import="com.campusnumerique.vehiclerental.entity.Reservation"%>
 
 <%List<Car> cars = (List<Car>) request.getAttribute("cars");%>
-<!DOCTYPE html>
-<html>
-	<body>
+
 		<table id="carTable" class="table table-striped">
 			<thead>
 				<tr>
@@ -44,5 +42,3 @@
 
 			</tbody>
 		</table>
-	</body>
-</html>

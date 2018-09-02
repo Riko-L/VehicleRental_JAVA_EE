@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,6 +65,8 @@ public class ReservationServlet extends HttpServlet {
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("SelectVehicleServlet");
 		RequestDispatcher rdReservation = request.getServletContext().getNamedDispatcher("reservation_VUE");
 		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
 		Date dateStart;
 		Date dateEnd;
 		int kilometerNumber;
@@ -119,13 +120,33 @@ public class ReservationServlet extends HttpServlet {
 			return;
 		}
 
+		if (request.getParameter("dayNumber") != null && !request.getParameter("dayNumber").isEmpty()) {
+
+			dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
+			reservation.setDayNumber(dayNumber);
+
+		} else {
+			session.setAttribute("reservation", reservation);
+			request.setAttribute("error", "Day Number is required");
+			rdReservation.forward(request, response);
+			return;
+		}
+		
 		if (request.getParameter("kilometerNumber") != null && !request.getParameter("kilometerNumber").isEmpty()) {
 
 			String kilometer = request.getParameter("kilometerNumber");
 					
 					if(kilometer.matches("^[0-9]*$")) {
 						kilometerNumber = Integer.parseInt(kilometer);
-						reservation.setKilometerNumber(kilometerNumber);
+						if(kilometerNumber != 0 ) {
+							reservation.setKilometerNumber(kilometerNumber);
+							
+						}else {
+							session.setAttribute("reservation", reservation);
+							request.setAttribute("error", "Kilometer must be greater than 0 ");
+							rdReservation.forward(request, response);
+							return;
+						}
 					}else {
 						session.setAttribute("reservation", reservation);
 						request.setAttribute("error", "Kilometer must be only a digit number");
@@ -142,17 +163,7 @@ public class ReservationServlet extends HttpServlet {
 			return;
 		}
 
-		if (request.getParameter("dayNumber") != null && !request.getParameter("dayNumber").isEmpty()) {
-
-			dayNumber = Integer.parseInt(request.getParameter("dayNumber"));
-			reservation.setDayNumber(dayNumber);
-
-		} else {
-			session.setAttribute("reservation", reservation);
-			request.setAttribute("error", "Day Number is required");
-			rdReservation.forward(request, response);
-			return;
-		}
+		
 
 		if (request.getParameter("kind") != null && !request.getParameter("kind").isEmpty() && !request.getParameter("kind").equals("0")) {
 

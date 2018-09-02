@@ -16,8 +16,8 @@
 	</jsp:include>
 	<body>
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
-		<br/>
-		<h1>Reservation confirmation</h1>
+		
+		<h1>Reservation is validate </h1>
 		<p>ReservationNumber: ${reservation.reservationNumber}</p>
 		<p>FirstName: ${reservation.client.firstName}</p>
 		<p>LastName: ${reservation.client.lastName}</p>
