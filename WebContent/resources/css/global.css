@@ -11,6 +11,7 @@
 	padding-top:10px;
 	padding-bottom:10px;
 	border-radius:20px;
+	margin-top: 50px;
 }
 .selectColor{
 	background-color: #0080ff!important;
@@ -18,4 +19,7 @@
 }
 .hoverColor{
 	background-color: #869ba8!important;
+}
+.nounderline{
+   text-decoration-line: none !important;
 }

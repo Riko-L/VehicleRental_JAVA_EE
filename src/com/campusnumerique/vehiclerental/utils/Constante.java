@@ -11,7 +11,7 @@ public class Constante {
 	
 	public final static int DAY = 86400000;
 	
-	public final static int KIND_NO_CHOICE = 0;
+	
 	public final static int KIND_TOURISM_CAR = 1;
 	public final static int KIND_UTILITY_CAR = 2;
 	public final static int KIND_MOTORBIKE = 3;

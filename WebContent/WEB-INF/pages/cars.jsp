@@ -8,7 +8,7 @@
 </jsp:include>
 <body>
 	<jsp:include page="/WEB-INF/pages/nav.jsp" />
-	<br />
+
 	<div class="container" id="content">
 		<h2 class="text-center text-primary">Cars List</h2><br/>
 			<jsp:include page="/WEB-INF/pages/tableCars.jsp"></jsp:include>

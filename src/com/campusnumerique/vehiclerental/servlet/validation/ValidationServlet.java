@@ -47,6 +47,7 @@ public class ValidationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("validation_VUE");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
 		Reservation reservation;
 		Client client;
 		Car car;
@@ -63,7 +64,6 @@ public class ValidationServlet extends HttpServlet {
 				reservationDAO.create(reservation);
 				
 				session.removeAttribute("reservation");
-				session.invalidate();
 				request.setAttribute("reservation", reservation);
 				response.setStatus(HttpServletResponse.SC_OK);
 				rd.forward(request, response);
@@ -75,6 +75,10 @@ public class ValidationServlet extends HttpServlet {
 				return;
 			}
 
+		}else {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			
+			return;
 		}
 
 	}

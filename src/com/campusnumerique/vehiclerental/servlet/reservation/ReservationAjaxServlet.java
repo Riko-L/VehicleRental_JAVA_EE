@@ -3,8 +3,7 @@ package com.campusnumerique.vehiclerental.servlet.reservation;
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.campusnumerique.vehiclerental.dao.DAO;
+
 import com.campusnumerique.vehiclerental.dao.KindDAO;
-import com.campusnumerique.vehiclerental.entity.Kind;
+
 
 
 /**
@@ -42,6 +41,7 @@ public class ReservationAjaxServlet extends HttpServlet {
 		JSONArray kinds = new JSONArray();
 		Writer out = response.getWriter();
 		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		JSONObject results = new JSONObject();
 		if(request.getParameter("action") != null && !request.getParameter("action").isEmpty()) {
 			

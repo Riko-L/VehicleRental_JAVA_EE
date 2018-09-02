@@ -39,9 +39,12 @@ $(function() {
 
 
 $( document ).ready(function() {
+	
+	
 	$('#kind').select2({
 		 minimumResultsForSearch: -1,
-		 theme: "bootstrap",
+		 theme: "bootstrap4",
+		 placeholder: 'Select an option',
 		 ajax: {
 		        url: "/reservationajax",
 		        dataType: 'json',
@@ -53,7 +56,7 @@ $( document ).ready(function() {
 	            },
 		        processResults: function (data) {
                     var res = data.results.map(function (item) {
-                    	console.log(item);
+                    	
                         return {id: item.id, text: item.label};
                     });
                 return {

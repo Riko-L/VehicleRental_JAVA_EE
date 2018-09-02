@@ -10,7 +10,7 @@
 	</jsp:include>
 	<body>
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
-		<br/>
+		
 		Message: <%=exception.getMessage()%>
 
 StackTrace:

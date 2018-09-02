@@ -15,7 +15,7 @@
 </jsp:include> 
 <body>
 	<jsp:include page="/WEB-INF/pages/nav.jsp" />
-	<br />
+	
 	<div class="container" id="content">
 		<div class="row">
 			<h2>Client List</h2>
