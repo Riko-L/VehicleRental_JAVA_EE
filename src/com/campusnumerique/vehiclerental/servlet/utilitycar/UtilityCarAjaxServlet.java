@@ -5,16 +5,12 @@ import java.io.Writer;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.JSONObject;
-
 import com.campusnumerique.vehiclerental.dao.UtilityCarDAO;
-import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.Reservation;
 import com.campusnumerique.vehiclerental.entity.UtilityCar;
 import com.campusnumerique.vehiclerental.utils.UtilsChecker;
@@ -55,15 +51,15 @@ public class UtilityCarAjaxServlet extends HttpServlet {
 			
 			try {
 				UtilityCar utilityCar = utilityCarDAO.find(id);
-				Double rentalPrice = UtilsChecker.CalculRentalPriceCar(reservation.getKilometerNumber(), car.getKilometerPrice(), car.getReservationPrice());
-				JSONObject carJSON = new JSONObject();
-				carJSON.put("car", car.getInfos());
-				carJSON.put("rentalPrice", rentalPrice);
+				Double rentalPrice = UtilsChecker.CalculRentalPriceUtilityCar(reservation.getKilometerNumber(), utilityCar.getKilometerPrice(), utilityCar.getReservationPrice(),utilityCar.getVolume());
+				JSONObject utilityCarJSON = new JSONObject();
+				utilityCarJSON.put("utilityCar", utilityCar.getInfos());
+				utilityCarJSON.put("rentalPrice", rentalPrice);
 				reservation.setRentalPrice(rentalPrice);
-				reservation.setCar(car);
-				session.setAttribute("car", car);
+				reservation.setUtilityCar(utilityCar);
+				session.setAttribute("utilityCar", utilityCar);
 				session.setAttribute("reservation", reservation);
-				out.write(carJSON.toString());
+				out.write(utilityCarJSON.toString());
 				response.setStatus(HttpServletResponse.SC_OK);
 				
 			} catch (SQLException e) {

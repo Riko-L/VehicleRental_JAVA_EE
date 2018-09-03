@@ -45,7 +45,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Days</div>
 					        </div>
-							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking" value="${reservation.dayNumber}" style="background-color:white;" disabled="disabled">
+							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking" value="${reservation.dayNumber}" style="background-color:white;" readonly="readonly">
 								
 						</div>
 					</div>
