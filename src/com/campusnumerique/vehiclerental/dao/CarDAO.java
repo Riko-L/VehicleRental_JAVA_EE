@@ -76,7 +76,7 @@ public class CarDAO extends DAO<Car>{
 	}
 	
 	
-	@SuppressWarnings("deprecation")
+	
 	public List<Car> findByFilter(Date dateStartResa,Date dateEndResa, int horsePower ,int kind) throws SQLException {
 		ArrayList<Car> cars = new ArrayList<Car>();
 		

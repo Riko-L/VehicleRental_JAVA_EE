@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.campusnumerique.vehiclerental.entity.Car;
+import org.json.JSONArray;
 import com.campusnumerique.vehiclerental.entity.UtilityCar;
 import com.campusnumerique.vehiclerental.utils.Constante;
 
@@ -44,10 +43,10 @@ public class UtilityCarDAO extends DAO<UtilityCar> {
 	}
 
 	public List<UtilityCar> findByFilter(Date dateStartResa,Date dateEndResa, int horsePower ,int kind) throws SQLException {
-		ArrayList<Car> cars = new ArrayList<Car>();
+		ArrayList<UtilityCar> utilityCars = new ArrayList<UtilityCar>();
 		
 		
-		String query = "select * from car WHERE car.id NOT IN (select car.id from car JOIN reservation ON car.id = reservation.id_car Where (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) OR (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) OR (reservation.dateStart BETWEEN ? AND ?)) AND (car.horsePower < ?) AND (car.kind = ?);";
+		String query = "select * from utilitycar WHERE utilitycar.id NOT IN (select utilitycar.id from utilitycar JOIN reservation ON utilitycar.id = reservation.id_utilitycar Where (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) OR (? BETWEEN reservation.dateStart  AND reservation.dateEnd ) OR (reservation.dateStart BETWEEN ? AND ?)) AND (utilitycar.horsePower < ?) AND (utilitycar.kind = ?);";
 		
 		PreparedStatement stmt = this.connection.prepareStatement(query);
 		stmt.setDate(1, new java.sql.Date(dateStartResa.getTime() + Constante.DAY));
@@ -58,7 +57,7 @@ public class UtilityCarDAO extends DAO<UtilityCar> {
 		stmt.setInt(6, kind);
 		ResultSet result = stmt.executeQuery();
 		while(result.next()){
-			Car car = new Car(
+			UtilityCar utilityCar = new UtilityCar(
 					result.getInt("id"),
 					result.getString("brand"),
 					result.getString("model"),
@@ -66,11 +65,41 @@ public class UtilityCarDAO extends DAO<UtilityCar> {
 					result.getString("color"),
 					result.getInt("horsePower"),
 					result.getDouble("reservationPrice"),
-					result.getDouble("kilometerPrice")); 
+					result.getDouble("kilometerPrice"),
+					result.getInt("volume")); 
 			
-			cars.add(car);
+			utilityCars.add(utilityCar);
 		}
-		return null;
+		return utilityCars;
+	}
+	
+	public JSONArray findAllAsJson() {
+		JSONArray utilityCars = new JSONArray();
+		ResultSet result;
+		try {
+			result = this.connection.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE, 
+					ResultSet.CONCUR_READ_ONLY
+					).executeQuery("SELECT * FROM utilitycar");
+			while(result.next()){
+				UtilityCar utilityCar = new UtilityCar(
+						result.getInt("id"),
+						result.getString("brand"),
+						result.getString("model"),
+						result.getString("plateNumber"),
+						result.getString("color"),
+						result.getInt("horsePower"),
+						result.getDouble("reservationPrice"),
+						result.getDouble("kilometerPrice"),
+						result.getInt("volume")); 
+				
+				utilityCars.put(utilityCar.getInfos());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilityCars;
 	}
 	
 }
