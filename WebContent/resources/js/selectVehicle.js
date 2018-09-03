@@ -17,13 +17,13 @@ function getCarsInfos(id) {
 
 function getUtilityCarsInfos(id) {
 	$.ajax({
-		url : "./utilitycarssajax",
+		url : "./utilitycarsajax",
 		data : {
 			action : "getUtilityCarsInfos",
 			id : id
 		}
 	}).done(function(data) {
-		if (data != undefined && data.car != undefined && data.rentalPrice != undefined) {
+		if (data != undefined && data.utilityCar != undefined && data.rentalPrice != undefined) {
 			$("#rentalPriceShow").text(data.rentalPrice);
 			$("#rentalPrice").val(data.rentalPrice);
 		} else {
@@ -40,7 +40,7 @@ function getMotorBikesInfos(id) {
 			id : id
 		}
 	}).done(function(data) {
-		if (data != undefined && data.car != undefined && data.rentalPrice != undefined) {
+		if (data != undefined && data.motorBike != undefined && data.rentalPrice != undefined) {
 			$("#rentalPriceShow").text(data.rentalPrice);
 			$("#rentalPrice").val(data.rentalPrice);
 		} else {
@@ -53,7 +53,19 @@ function getMotorBikesInfos(id) {
 
 $(function() {
 	if (document.getElementsByName("choiceCheck") != undefined && document.getElementsByName("choiceCheck").length != 0) {
-		$("#carTable > tbody > tr").on("mouseenter mouseleave", function(event) {
+		
+		var $tr= null;
+	
+		if (document.getElementById("carTable") != undefined && document.getElementById("carTable").length != 0) {
+			$tr = $("#carTable > tbody > tr");
+		} else if (document.getElementById("utilityCarTable") != undefined && document.getElementById("utilityCarTable").length != 0) {
+			$tr = $("#utilityCarTable > tbody > tr");
+
+		} else if (document.getElementById("motorBikeTable") != undefined && document.getElementById("motorBikeTable").length != 0) {
+			$tr = $("#motorBikeTable > tbody > tr");
+		}
+		
+		$tr.on("mouseenter mouseleave", function(event) {
 
 			if (event.type === 'mouseenter') {
 				$(this).addClass('hoverColor');
@@ -67,12 +79,20 @@ $(function() {
 		});
 
 
-		$("#carTable > tbody > tr").on("click", function() {
+		$tr.on("click", function() {
 			var id = $(this).find('input[name=choiceCheck]').data('id');
 			$(this).parent().find('tr').removeClass('selectColor');
 			$(this).find('input[name=choiceCheck]').prop("checked", true);
 			$(this).addClass('selectColor');
-			getCarsInfos(id);
+			if (document.getElementById("carTable") != undefined && document.getElementById("carTable").length != 0) {
+				getCarsInfos(id);
+			} else if (document.getElementById("utilityCarTable") != undefined && document.getElementById("utilityCarTable").length != 0) {
+				getUtilityCarsInfos(id);
+
+			} else if (document.getElementById("motorBikeTable") != undefined && document.getElementById("motorBikeTable").length != 0) {
+				getMotorBikesInfos(id);
+			}
+			
 
 		});
 

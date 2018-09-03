@@ -18,6 +18,8 @@ public class Reservation implements Serializable{
 	private int dayNumber;
 	private int kind;
 	private Car car;
+	private UtilityCar utilityCar;
+	private MotorBike motorBike;
 	private Client client;
 	
 	
@@ -107,6 +109,26 @@ public class Reservation implements Serializable{
 
 	public void setCar(Car car) {
 		this.car = car;
+	}
+
+
+	public UtilityCar getUtilityCar() {
+		return utilityCar;
+	}
+
+
+	public void setUtilityCar(UtilityCar utilityCar) {
+		this.utilityCar = utilityCar;
+	}
+
+
+	public MotorBike getMotorBike() {
+		return motorBike;
+	}
+
+
+	public void setMotorBike(MotorBike motorBike) {
+		this.motorBike = motorBike;
 	}
 
 

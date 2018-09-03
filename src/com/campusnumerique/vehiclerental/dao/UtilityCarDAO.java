@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.json.JSONArray;
+
+import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.UtilityCar;
 import com.campusnumerique.vehiclerental.utils.Constante;
 
@@ -32,8 +34,26 @@ public class UtilityCarDAO extends DAO<UtilityCar> {
 
 	@Override
 	public UtilityCar find(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		UtilityCar utilityCar = new UtilityCar();  
+		
+		ResultSet result = this.connection.createStatement(
+		    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		    ResultSet.CONCUR_READ_ONLY
+		  ).executeQuery("SELECT * FROM utilityCar WHERE id = '" + id + "'");
+		if(result.first())
+			utilityCar =  new UtilityCar(
+					id,
+					result.getString("brand"),
+					result.getString("model"),
+					result.getString("plateNumber"),
+					result.getString("color"),
+					result.getInt("horsePower"),
+					result.getDouble("reservationPrice"),
+					result.getDouble("kilometerPrice"),
+					result.getInt("volume"));        
+		
+		return utilityCar;
+	
 	}
 
 	@Override
