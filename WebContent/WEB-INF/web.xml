@@ -40,7 +40,7 @@
     <servlet-name>ValidationServlet</servlet-name>
     <url-pattern>/validation</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>CarAjaxServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.car.CarAjaxServlet</servlet-class>
   </servlet>
@@ -48,7 +48,7 @@
     <servlet-name>CarAjaxServlet</servlet-name>
     <url-pattern>/carsajax</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ReservationAjaxServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationAjaxServlet</servlet-class>
   </servlet>
@@ -56,7 +56,6 @@
     <servlet-name>ReservationAjaxServlet</servlet-name>
     <url-pattern>/reservationajax</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>clients_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>
