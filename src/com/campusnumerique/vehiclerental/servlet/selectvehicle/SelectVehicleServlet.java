@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.campusnumerique.vehiclerental.dao.CarDAO;
 import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.Client;
+import com.campusnumerique.vehiclerental.entity.MotorBike;
 import com.campusnumerique.vehiclerental.entity.Reservation;
+import com.campusnumerique.vehiclerental.entity.UtilityCar;
+import com.campusnumerique.vehiclerental.utils.Constante;
 import com.campusnumerique.vehiclerental.utils.UtilsChecker;
 
 /**
@@ -23,6 +26,8 @@ import com.campusnumerique.vehiclerental.utils.UtilsChecker;
 public class SelectVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CarDAO carDAO = null;
+	private UtilityCarDAO utilityCarDAO = null;
+	private MotorBikeDAO motorBikeDAO = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -30,7 +35,8 @@ public class SelectVehicleServlet extends HttpServlet {
 	public SelectVehicleServlet() {
 		super();
 		carDAO = new CarDAO();
-
+		utilityCarDAO = new UtilityCarDAO();
+		motorBikeDAO = new MotorBikeDAO();
 	}
 
 	/**
@@ -53,20 +59,53 @@ public class SelectVehicleServlet extends HttpServlet {
 
 		if (request.getAttribute("reservation") != null) {
 			reservation = (Reservation) request.getAttribute("reservation");
+
+			if (reservation.getKind() == Constante.KIND_TOURISM_CAR) {
+				try {
+					List<Car> cars = carDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
+							checkAgeResult, reservation.getKind());
+					request.setAttribute("cars", cars);
+					response.setStatus(HttpServletResponse.SC_OK);
+
+					rdSelectVehicle.forward(request, response);
+					return;
+				} catch (SQLException | ServletException | IOException e) {
+					response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+					e.printStackTrace();
+				}
+			}else if (reservation.getKind() == Constante.KIND_UTILITY_CAR) {
+				try {
+					List<UtilityCar> utilityCar = utilityCarDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
+							checkAgeResult, reservation.getKind());
+					request.setAttribute("utilityCar", utilityCar);
+					response.setStatus(HttpServletResponse.SC_OK);
+
+					rdSelectVehicle.forward(request, response);
+					return;
+				} catch (SQLException | ServletException | IOException e) {
+					response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+			}else if(reservation.getKind() == Constante.KIND_MOTORBIKE) {
+				try {
+					List<MotorBike> motorBikes = motorBikeDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
+							 reservation.getKind());
+					request.setAttribute("motorBikes", motorBikes);
+					response.setStatus(HttpServletResponse.SC_OK);
+
+					rdSelectVehicle.forward(request, response);
+					return;
+				} catch (SQLException | ServletException | IOException e) {
+					response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+					e.printStackTrace();
+				}
+				
+			}
 		}
-
-		try {
-			List<Car> cars = carDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(), checkAgeResult , reservation.getKind());
-			request.setAttribute("cars", cars);
-			response.setStatus(HttpServletResponse.SC_OK);
-
-			rdSelectVehicle.forward(request, response);
-
-		} catch (SQLException | ServletException | IOException e) {
-			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-			e.printStackTrace();
-		}
-
 	}
 
 	/**

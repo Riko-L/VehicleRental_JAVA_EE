@@ -176,7 +176,7 @@ public class ReservationServlet extends HttpServlet {
 			rdReservation.forward(request, response);
 			return;
 		}
-		
+		https://
 		session.setAttribute("reservation", reservation);
 		session.setAttribute("client", client);
 		request.setAttribute("client", client);

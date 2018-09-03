@@ -51,7 +51,7 @@ public class CarAjaxServlet extends HttpServlet {
 			
 			try {
 				Car car = carDAO.find(id);
-				Double rentalPrice = UtilsChecker.CalculRentalPrice(reservation.getKilometerNumber(), car.getKilometerPrice(), car.getReservationPrice());
+				Double rentalPrice = UtilsChecker.CalculRentalPriceCar(reservation.getKilometerNumber(), car.getKilometerPrice(), car.getReservationPrice());
 				JSONObject carJSON = new JSONObject();
 				carJSON.put("car", car.getInfos());
 				carJSON.put("rentalPrice", rentalPrice);
