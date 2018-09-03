@@ -66,8 +66,6 @@
     <servlet-name>MotorBikeAjaxServlet</servlet-name>
     <url-pattern>/motorbikesajax</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>ReservationAjaxServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationAjaxServlet</servlet-class>
