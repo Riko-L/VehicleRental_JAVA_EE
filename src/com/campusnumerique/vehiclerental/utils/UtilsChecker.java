@@ -23,10 +23,45 @@ public class UtilsChecker {
 		return horsePower;
 	}
 
-	public static Double CalculRentalPrice(int kilometerNumber, Double kilometerPrice, Double reservationPrice) {
+	/**
+	 * Calcul for car
+	 * @param kilometerNumber
+	 * @param kilometerPrice
+	 * @param reservationPrice
+	 * @return
+	 */
+	public static Double CalculRentalPriceCar(int kilometerNumber, Double kilometerPrice, Double reservationPrice) {
 		
 		return kilometerNumber*kilometerPrice + reservationPrice;
 	}
+	
+	/**
+	 * Calcul for MotorBike
+	 * @param kilometerNumber
+	 * @param kilometerPrice
+	 * @param reservationPrice
+	 * @param volume
+	 * @return
+	 */
+	public static Double CalculRentalPriceMotorBike(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int volume ) {
+		
+		return (volume*0.05)*kilometerNumber*kilometerPrice + reservationPrice;
+	}
+	
+	
+	/**
+	 * Calcul for Utility Car
+	 * @param kilometerNumber
+	 * @param kilometerPrice
+	 * @param reservationPrice
+	 * @param capacity
+	 * @return
+	 */
+	public static Double CalculRentalPriceUtilityCar(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int capacity ) {
+		
+		return (capacity*0.001)*kilometerNumber*kilometerPrice + reservationPrice;
+	}
+	
 	
 	public boolean carIsAvialable(Car car, Date dateStart, Date dateEnd) {
 
