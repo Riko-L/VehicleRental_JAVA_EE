@@ -76,9 +76,10 @@ public class MotorBikeDAO extends DAO<MotorBike> {
 		stmt.setDate(4, new java.sql.Date(dateEndResa.getTime() + Constante.DAY));
 		
 		stmt.setInt(5, kind);
+		
 		ResultSet result = stmt.executeQuery();
 		while(result.next()){
-			MotorBike car = new MotorBike(
+			MotorBike motorBike = new MotorBike(
 					result.getInt("id"),
 					result.getString("brand"),
 					result.getString("model"),
@@ -89,8 +90,9 @@ public class MotorBikeDAO extends DAO<MotorBike> {
 					result.getDouble("kilometerPrice"),
 					result.getInt("capacity")); 
 			
-			motorBikes.add(car);
+			motorBikes.add(motorBike);
 		}
+		
 		return motorBikes;
 	}
 
