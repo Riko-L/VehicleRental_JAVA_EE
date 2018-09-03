@@ -23,7 +23,7 @@
 			<c:if test="${not empty requestScope.utilityCar}">
 				<jsp:include page="/WEB-INF/pages/utilityCarTable.jsp"></jsp:include>
 			</c:if>
-			<c:if test="${not empty requestScope.motorBike}">
+			<c:if test="${not empty requestScope.motorBikes}">
 				<jsp:include page="/WEB-INF/pages/motorBikeTable.jsp"></jsp:include>
 			</c:if>
 			

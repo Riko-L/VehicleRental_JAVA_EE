@@ -4,7 +4,7 @@
 <%@ page import="com.campusnumerique.vehiclerental.entity.MotorBike"%>
 <%@ page import="com.campusnumerique.vehiclerental.entity.Reservation"%>
 
-<%List<MotorBike> motorBikes = (List<MotorBike>) request.getAttribute("motorBike");%>
+<%List<MotorBike> motorBikes = (List<MotorBike>) request.getAttribute("motorBikes");%>
 
 		<table id="motorBikeTable" class="table table-striped">
 			<thead>
@@ -38,10 +38,9 @@
 				<% }
 					} else { %>
 				<tr id="notFoundTableRow">
-					<td class="text-center" colspan="7">No MotorBike found !</td>
+					<td class="text-center" colspan="8">No MotorBike found !</td>
 				</tr>
 				<% } %>
 
 			</tbody>
 		</table>
-html>
