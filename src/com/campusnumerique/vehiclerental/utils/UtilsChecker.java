@@ -43,9 +43,9 @@ public class UtilsChecker {
 	 * @param volume
 	 * @return
 	 */
-	public static Double CalculRentalPriceMotorBike(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int volume ) {
+	public static Double CalculRentalPriceMotorBike(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int capacity ) {
 		
-		return (volume*0.05)*kilometerNumber*kilometerPrice + reservationPrice;
+		return (capacity*0.001)*kilometerNumber*kilometerPrice + reservationPrice;
 	}
 	
 	
@@ -57,9 +57,9 @@ public class UtilsChecker {
 	 * @param capacity
 	 * @return
 	 */
-	public static Double CalculRentalPriceUtilityCar(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int capacity ) {
+	public static Double CalculRentalPriceUtilityCar(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int volume ) {
 		
-		return (capacity*0.001)*kilometerNumber*kilometerPrice + reservationPrice;
+		return (volume*0.05)*kilometerNumber*kilometerPrice + reservationPrice;
 	}
 	
 	

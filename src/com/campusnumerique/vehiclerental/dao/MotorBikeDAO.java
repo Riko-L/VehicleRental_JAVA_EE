@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.json.JSONArray;
+
+import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.MotorBike;
 import com.campusnumerique.vehiclerental.utils.Constante;
 
@@ -33,8 +35,25 @@ public class MotorBikeDAO extends DAO<MotorBike> {
 
 	@Override
 	public MotorBike find(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		MotorBike motorBike = new MotorBike();
+		
+		ResultSet result = this.connection.createStatement(
+			    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+			    ResultSet.CONCUR_READ_ONLY
+			  ).executeQuery("SELECT * FROM motorbike WHERE id = '" + id + "'");
+			if(result.first())
+				motorBike =  new MotorBike(
+						id,
+						result.getString("brand"),
+						result.getString("model"),
+						result.getString("plateNumber"),
+						result.getString("color"),
+						result.getInt("horsePower"),
+						result.getDouble("reservationPrice"),
+						result.getDouble("kilometerPrice"),
+						result.getInt("capacity"));
+			
+			return motorBike;
 	}
 
 	@Override
