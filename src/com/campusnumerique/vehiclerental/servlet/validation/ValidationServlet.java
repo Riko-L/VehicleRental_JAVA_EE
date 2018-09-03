@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 import com.campusnumerique.vehiclerental.dao.ReservationDAO;
 import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.Client;
+import com.campusnumerique.vehiclerental.entity.MotorBike;
 import com.campusnumerique.vehiclerental.entity.Reservation;
+import com.campusnumerique.vehiclerental.entity.UtilityCar;
 
 /**
  * Servlet implementation class ValidationServlet
@@ -51,15 +53,32 @@ public class ValidationServlet extends HttpServlet {
 		Reservation reservation;
 		Client client;
 		Car car;
+		UtilityCar utilityCar;
+		MotorBike motorBike;
+		
 		HttpSession session = request.getSession();
 
 		if (!session.isNew() && session != null) {
 			if (session.getAttribute("reservation") != null && session.getAttribute("client") != null) {
 				reservation = (Reservation) session.getAttribute("reservation");
-				client = (Client) session.getAttribute("client"); 
-				car = (Car) session.getAttribute("car"); 
-				client.addReservations(reservation);
-				car.addReservation(reservation);
+				client = (Client) session.getAttribute("client");
+				
+				if(session.getAttribute("car") != null) {
+					
+					car = (Car) session.getAttribute("car"); 
+					client.addReservations(reservation);
+					car.addReservation(reservation);
+				}else if(session.getAttribute("utilityCar") != null) {
+					utilityCar = (UtilityCar) session.getAttribute("utilityCar"); 
+					client.addReservations(reservation);
+					utilityCar.addReservation(reservation);
+				}else if(session.getAttribute("motorBike") != null) {
+					motorBike = (MotorBike) session.getAttribute("motorBike"); 
+					client.addReservations(reservation);
+					motorBike.addReservation(reservation);
+					
+				}
+						
 				
 				reservationDAO.create(reservation);
 				

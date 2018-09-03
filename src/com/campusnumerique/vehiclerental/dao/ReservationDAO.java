@@ -27,8 +27,10 @@ public class ReservationDAO extends DAO<Reservation>{
 					+ "dayNumber,"
 					+ "kind,"
 					+ "id_car,"
-					+ "id_client)"
-					+ " VALUES (?, ?, ?, ?, ? , ? ,? ,? ,?)");
+					+ "id_client,"
+					+ "id_utilitycar,"
+					+ "id_motorbike)"
+					+ " VALUES (?, ?, ?, ?, ? , ? ,? ,? ,? ?,?)");
 			stmt.setString(1, obj.getReservationNumber());
 			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getTime() + Constante.DAY));
 			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getTime() + Constante.DAY));
@@ -36,8 +38,10 @@ public class ReservationDAO extends DAO<Reservation>{
 			stmt.setDouble(5, obj.getRentalPrice());
 			stmt.setInt(6, obj.getDayNumber());
 			stmt.setInt(7, obj.getKind());
-			stmt.setInt(8, obj.getCar().getId());
-			stmt.setInt(9, obj.getClient().getId());
+			stmt.setInt(8, (obj.getCar() == null ? null : obj.getCar().getId()));
+			stmt.setInt(9, (obj.getClient().getId()));
+			stmt.setInt(10, (obj.getUtilityCar() == null ? null : obj.getUtilityCar().getId()));
+			stmt.setInt(11, (obj.getMotorBike() == null ? null : obj.getMotorBike().getId()));
 			
 			int result = stmt.executeUpdate(); 
 			
