@@ -48,6 +48,26 @@
     <servlet-name>CarAjaxServlet</servlet-name>
     <url-pattern>/carsajax</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>UtilityCarAjaxServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.utilitycar.UtilityCarAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UtilityCarAjaxServlet</servlet-name>
+    <url-pattern>/utilitycarsajax</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>MotorBikeAjaxServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.motorbike.MotorBikeAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MotorBikeAjaxServlet</servlet-name>
+    <url-pattern>/motorbikesajax</url-pattern>
+  </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>ReservationAjaxServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationAjaxServlet</servlet-class>
