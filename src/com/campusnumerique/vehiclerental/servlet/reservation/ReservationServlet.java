@@ -26,6 +26,7 @@ import com.campusnumerique.vehiclerental.entity.Reservation;
 public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ClientDAO clientDAO = null;
+	private Client client;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -44,8 +45,10 @@ public class ReservationServlet extends HttpServlet {
 		
 		//Pour les tests
 		HttpSession session = request.getSession();
-		session.setAttribute("clientBean", new ClientBean("Alex"));
 		
+		ClientBean clientBean = new ClientBean("Alex");;
+		
+		session.setAttribute("clientBean",clientBean );
 		
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("reservation_VUE");
 
@@ -61,7 +64,6 @@ public class ReservationServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Reservation reservation = new Reservation();
-		Client client = new Client();
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("SelectVehicleServlet");
 		RequestDispatcher rdReservation = request.getServletContext().getNamedDispatcher("reservation_VUE");
 		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy");
@@ -76,22 +78,7 @@ public class ReservationServlet extends HttpServlet {
 		reservationNumber.append(Calendar.getInstance().getTimeInMillis());
 		reservation.setReservationNumber(reservationNumber.toString());
 		
-		
-		if(session.getAttribute("clientBean") != null ) {
-			ClientBean clientBean = (ClientBean) session.getAttribute("clientBean");
-			if(!clientBean.getLogin().equals("NoUserLogin") ) {
-			try {
-				client = clientDAO.findByLogin(clientBean.getLogin());
-				reservation.setClient(client);
-				
-			} catch (SQLException e) {
 	
-				e.printStackTrace();
-			}
-		}
-		}
-		
-		
 		if (request.getParameter("dateStart") != null && !request.getParameter("dateStart").isEmpty()) {
 			try {
 				dateStart = formater.parse(request.getParameter("dateStart"));
@@ -178,8 +165,6 @@ public class ReservationServlet extends HttpServlet {
 		}
 	
 		session.setAttribute("reservation", reservation);
-		session.setAttribute("client", client);
-		request.setAttribute("client", client);
 		request.setAttribute("reservation", reservation);
 		
 		rdSelectVehicle.forward(request, response);

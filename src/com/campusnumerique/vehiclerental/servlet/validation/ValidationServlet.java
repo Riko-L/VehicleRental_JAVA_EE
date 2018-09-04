@@ -1,6 +1,8 @@
 package com.campusnumerique.vehiclerental.servlet.validation;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import com.campusnumerique.vehiclerental.bean.ClientBean;
+import com.campusnumerique.vehiclerental.dao.ClientDAO;
 import com.campusnumerique.vehiclerental.dao.ReservationDAO;
 import com.campusnumerique.vehiclerental.entity.Car;
 import com.campusnumerique.vehiclerental.entity.Client;
@@ -23,6 +26,7 @@ import com.campusnumerique.vehiclerental.entity.UtilityCar;
 public class ValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReservationDAO reservationDAO = null;
+	private ClientDAO clientDAO = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -30,6 +34,7 @@ public class ValidationServlet extends HttpServlet {
 	public ValidationServlet() {
 		super();
 		reservationDAO = new ReservationDAO();
+		clientDAO = new ClientDAO();
 	}
 
 	/**
@@ -51,7 +56,8 @@ public class ValidationServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		Reservation reservation;
-		Client client;
+		Client client = null;
+		ClientBean clientBean;
 		Car car;
 		UtilityCar utilityCar;
 		MotorBike motorBike;
@@ -59,9 +65,17 @@ public class ValidationServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (!session.isNew() && session != null) {
-			if (session.getAttribute("reservation") != null && session.getAttribute("client") != null) {
+			if (session.getAttribute("reservation") != null && session.getAttribute("clientBean") != null) {
 				reservation = (Reservation) session.getAttribute("reservation");
-				client = (Client) session.getAttribute("client");
+				clientBean = (ClientBean) session.getAttribute("clientBean");
+				
+				try {
+					client = clientDAO.findByLogin(clientBean.getLogin());
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+				
 				
 				if(request.getAttribute("car") != null) {
 					car = (Car) request.getAttribute("car");
@@ -80,7 +94,7 @@ public class ValidationServlet extends HttpServlet {
 					motorBike.addReservation(reservation);
 					
 				}
-						
+				reservation.setClient(client);
 				
 				boolean recordOk = reservationDAO.create(reservation);
 				

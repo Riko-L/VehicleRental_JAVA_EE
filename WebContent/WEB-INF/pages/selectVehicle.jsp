@@ -3,6 +3,7 @@
 <%@ page errorPage="/WEB-INF/pages/error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="clientBean" scope="session" type="com.campusnumerique.vehiclerental.bean.ClientBean" />
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/pages/header.jsp">
@@ -12,7 +13,7 @@
 	<jsp:include page="/WEB-INF/pages/nav.jsp" />
 
 	<div class="container" id="content">
-		<h2 class="text-center text-primary">Hello ${client.firstName}.
+		<h2 class="text-center text-primary">Hello <%=clientBean.getFirstName() %>.
 			You can now select your vehicle</h2>
 		<br />
 		<form action="/validation" method="POST">

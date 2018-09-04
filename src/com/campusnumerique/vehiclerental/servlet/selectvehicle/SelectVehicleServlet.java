@@ -9,8 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.dao.CarDAO;
+import com.campusnumerique.vehiclerental.dao.ClientDAO;
 import com.campusnumerique.vehiclerental.dao.MotorBikeDAO;
 import com.campusnumerique.vehiclerental.dao.UtilityCarDAO;
 import com.campusnumerique.vehiclerental.entity.Car;
@@ -30,12 +33,13 @@ public class SelectVehicleServlet extends HttpServlet {
 	private CarDAO carDAO = null;
 	private UtilityCarDAO utilityCarDAO = null;
 	private MotorBikeDAO motorBikeDAO = null;
-
+	private ClientDAO clientDAO = null;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SelectVehicleServlet() {
 		super();
+		clientDAO = new ClientDAO();
 		carDAO = new CarDAO();
 		utilityCarDAO = new UtilityCarDAO();
 		motorBikeDAO = new MotorBikeDAO();
@@ -52,9 +56,17 @@ public class SelectVehicleServlet extends HttpServlet {
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("selectVehicle_VUE");
 		int checkAgeResult = 0;
 		Reservation reservation = null;
-
-		if (request.getAttribute("client") != null) {
-			Client client = (Client) request.getAttribute("client");
+		HttpSession session = request.getSession();
+		ClientBean clientBean = (ClientBean) session.getAttribute("clientBean");
+		Client client = null;
+		
+		if (session.getAttribute("clientBean") != null) {
+			try {
+				client = clientDAO.findByLogin(clientBean.getLogin());
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
 			int age = client.getAge();
 			checkAgeResult = UtilsChecker.checkAge(age);
 		}
