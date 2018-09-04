@@ -17,6 +17,22 @@
     <url-pattern>/cars</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>MotorBikeServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.motorbike.MotorBikeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MotorBikeServlet</servlet-name>
+    <url-pattern>/motorBikes</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UtilityCarServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.utilitycar.UtilityCarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UtilityCarServlet</servlet-name>
+    <url-pattern>/utilityCars</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ReservationServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationServlet</servlet-class>
   </servlet>
@@ -48,8 +64,7 @@
     <servlet-name>CarAjaxServlet</servlet-name>
     <url-pattern>/carsajax</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>UtilityCarAjaxServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.utilitycar.UtilityCarAjaxServlet</servlet-class>
   </servlet>
@@ -57,8 +72,7 @@
     <servlet-name>UtilityCarAjaxServlet</servlet-name>
     <url-pattern>/utilitycarsajax</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>MotorBikeAjaxServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.motorbike.MotorBikeAjaxServlet</servlet-class>
   </servlet>
@@ -81,6 +95,14 @@
   <servlet>
     <servlet-name>cars_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/cars.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>motorBikes_VUE</servlet-name>
+    <jsp-file>/WEB-INF/pages/motorBikes.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>utilityCars_VUE</servlet-name>
+    <jsp-file>/WEB-INF/pages/utilityCars.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>reservation_VUE</servlet-name>

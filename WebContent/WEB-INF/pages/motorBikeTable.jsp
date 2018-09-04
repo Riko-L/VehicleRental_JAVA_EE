@@ -12,8 +12,8 @@
 					<th class="text-center">Plate Number</th>
 					<th class="text-center">Brand</th>
 					<th class="text-center">Model</th>
-					<th class="text-center">Horse Power</th>
 					<th class="text-center">Color</th>
+					<th class="text-center">Horse Power</th>
 					<th class="text-center">Capacity</th>
 					<th class="text-center">Reservation Price</th>
 					<th class="text-center">Kilometer Price</th>
@@ -26,8 +26,8 @@
 					<td class="text-center"><%=motorBikes.get(i).getPlateNumber()%></td>
 					<td class="text-center"><%=motorBikes.get(i).getBrand()%></td>
 					<td class="text-center"><%=motorBikes.get(i).getModel()%></td>
-					<td class="text-center"><%=motorBikes.get(i).getHorsePower()%></td>
 					<td class="text-center"><%=motorBikes.get(i).getColor()%></td>
+					<td class="text-center"><%=motorBikes.get(i).getHorsePower()%></td>
 					<td class="text-center"><%=motorBikes.get(i).getCapacity()%></td>
 					<td class="text-center"><%=motorBikes.get(i).getReservationPrice()%></td>
 					<td class="text-center"><%=motorBikes.get(i).getKilometerPrice()%></td>

@@ -4,7 +4,7 @@
 <%@ page import="com.campusnumerique.vehiclerental.entity.UtilityCar"%>
 <%@ page import="com.campusnumerique.vehiclerental.entity.Reservation"%>
 
-<%List<UtilityCar> utilityCars = (List<UtilityCar>) request.getAttribute("utilityCar");%>
+<%List<UtilityCar> utilityCars = (List<UtilityCar>) request.getAttribute("utilityCars");%>
 
 		<table id="utilityCarTable" class="table table-striped">
 			<thead>
@@ -38,7 +38,7 @@
 				<% }
 					} else { %>
 				<tr id="notFoundTableRow">
-					<td class="text-center" colspan="7">No utility Car found !</td>
+					<td class="text-center" colspan="8">No utility Car found !</td>
 				</tr>
 				<% } %>
 
