@@ -43,8 +43,17 @@
 					<div class="input-group">
 				        <div class="input-group-prepend">
 				          <div class="input-group-text">Brand</div>
-				        </div>
-						<input type="text" class="form-control" value="${reservation.car.brand || reservation.utilityCar.brand || reservation.motorBike.brand}" style="background-color:white;" disabled>
+				        </div> 
+				        
+				        <c:if test="${not empty reservation.car.brand}">
+						<input type="text" class="form-control" value="${reservation.car.brand}" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty reservation.utilityCar.brand}">
+						<input type="text" class="form-control" value="${reservation.utilityCar.brand}" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty reservation.motorBike.brand}">
+						<input type="text" class="form-control" value="${reservation.motorBike.brand}" style="background-color:white;" disabled>
+						</c:if>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -52,7 +61,15 @@
 				        <div class="input-group-prepend">
 				          <div class="input-group-text">Model</div>
 				        </div>
-						<input type="text" class="form-control" value="${reservation.car.model || reservation.utilityCar.model || reservation.motorBike.model}" style="background-color:white;" disabled>
+				        <c:if test="${not empty  reservation.car.model}">
+						<input type="text" class="form-control" value="${reservation.car.model}" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty  reservation.utilityCar.model}">
+						<input type="text" class="form-control" value="${reservation.utilityCar.model}" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty  reservation.motorBike.model}">
+						<input type="text" class="form-control" value="${reservation.motorBike.model}" style="background-color:white;" disabled>
+						</c:if>
 					</div>
 				</div>
 			</div><br/>
@@ -62,7 +79,15 @@
 				        <div class="input-group-prepend">
 				          <div class="input-group-text">Plate Number</div>
 				        </div>
-						<input type="text" class="form-control" value="${reservation.car.plateNumber || reservation.utilityCar.plateNumber || reservation.motorBike.plateNumber}" style="background-color:white;" disabled>
+				        <c:if test="${not empty  reservation.car.plateNumber}">
+						<input type="text" class="form-control" value="${reservation.car.plateNumber}" style="background-color:white;" disabled>
+						</c:if>
+						 <c:if test="${not empty reservation.utilityCar.plateNumber}">
+						<input type="text" class="form-control" value="${reservation.utilityCar.plateNumber}" style="background-color:white;" disabled>
+						</c:if>
+						 <c:if test="${not empty reservation.motorBike.plateNumber}">
+						<input type="text" class="form-control" value="${reservation.motorBike.plateNumber}" style="background-color:white;" disabled>
+						</c:if>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -70,7 +95,15 @@
 				        <div class="input-group-prepend">
 				          <div class="input-group-text">Color</div>
 				        </div>
-						<input type="text" class="form-control" value="${reservation.car.color || reservation.utilityCar.color || reservation.motorBike.color}" style="background-color:white;" disabled>
+				        <c:if test="${not empty reservation.car.color}">
+						<input type="text" class="form-control" value="${reservation.car.color}" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty reservation.utilityCar.color}">
+						<input type="text" class="form-control" value="${reservation.utilityCar.color}" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty reservation.motorBike.color}">
+						<input type="text" class="form-control" value="${reservation.motorBike.color}" style="background-color:white;" disabled>
+						</c:if>
 					</div>
 				</div>
 			</div><br/>
@@ -116,7 +149,15 @@
 				        <div class="input-group-prepend">
 				          <div class="input-group-text">Additional Km</div>
 				        </div>
-						<input type="text" class="form-control" value="${reservation.car.kilometerPrice || reservation.utilityCar.kilometerPrice || reservation.motorBike.kilometerPrice} €" style="background-color:white;" disabled>
+				        <c:if test="${not empty reservation.car.kilometerPrice}">
+						<input type="text" class="form-control" value="${reservation.car.kilometerPrice} €" style="background-color:white;" disabled>
+						</c:if>
+						  <c:if test="${not empty reservation.utilityCar.kilometerPrice}">
+						<input type="text" class="form-control" value="${reservation.utilityCar.kilometerPrice} €" style="background-color:white;" disabled>
+						</c:if>
+						<c:if test="${not empty reservation.motorBike.kilometerPrice}">
+						<input type="text" class="form-control" value="${reservation.motorBike.kilometerPrice} €" style="background-color:white;" disabled>
+						</c:if>
 					</div>
 				</div>
 			</div><br/>

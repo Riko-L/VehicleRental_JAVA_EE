@@ -63,17 +63,19 @@ public class ValidationServlet extends HttpServlet {
 				reservation = (Reservation) session.getAttribute("reservation");
 				client = (Client) session.getAttribute("client");
 				
-				if(session.getAttribute("car") != null) {
-					
-					car = (Car) session.getAttribute("car"); 
+				if(request.getAttribute("car") != null) {
+					car = (Car) request.getAttribute("car");
+					reservation.setCar(car);
 					client.addReservations(reservation);
 					car.addReservation(reservation);
-				}else if(session.getAttribute("utilityCar") != null) {
-					utilityCar = (UtilityCar) session.getAttribute("utilityCar"); 
+				}else if(request.getAttribute("utilityCar") != null) {
+					utilityCar = (UtilityCar) request.getAttribute("utilityCar"); 
+					reservation.setUtilityCar(utilityCar);
 					client.addReservations(reservation);
 					utilityCar.addReservation(reservation);
-				}else if(session.getAttribute("motorBike") != null) {
-					motorBike = (MotorBike) session.getAttribute("motorBike"); 
+				}else if(request.getAttribute("motorBike") != null) {
+					motorBike = (MotorBike) request.getAttribute("motorBike"); 
+					reservation.setMotorBike(motorBike);
 					client.addReservations(reservation);
 					motorBike.addReservation(reservation);
 					
@@ -82,6 +84,7 @@ public class ValidationServlet extends HttpServlet {
 				
 				reservationDAO.create(reservation);
 				
+				request.getSession().removeAttribute("reservation");
 				session.removeAttribute("reservation");
 				request.setAttribute("reservation", reservation);
 				response.setStatus(HttpServletResponse.SC_OK);
