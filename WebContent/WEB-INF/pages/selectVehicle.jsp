@@ -20,7 +20,7 @@
 			<c:if test="${not empty requestScope.cars}">
 				<jsp:include page="/WEB-INF/pages/tableCars.jsp"></jsp:include>
 			</c:if>
-			<c:if test="${not empty requestScope.utilityCar}">
+			<c:if test="${not empty requestScope.utilityCars}">
 				<jsp:include page="/WEB-INF/pages/utilityCarTable.jsp"></jsp:include>
 			</c:if>
 			<c:if test="${not empty requestScope.motorBikes}">

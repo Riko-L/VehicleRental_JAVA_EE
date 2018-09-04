@@ -82,10 +82,11 @@ public class ValidationServlet extends HttpServlet {
 				}
 						
 				
-				reservationDAO.create(reservation);
+				boolean recordOk = reservationDAO.create(reservation);
 				
 				request.getSession().removeAttribute("reservation");
 				session.removeAttribute("reservation");
+				request.setAttribute("recordOk", recordOk);
 				request.setAttribute("reservation", reservation);
 				response.setStatus(HttpServletResponse.SC_OK);
 				rd.forward(request, response);

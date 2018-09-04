@@ -77,9 +77,9 @@ public class SelectVehicleServlet extends HttpServlet {
 				}
 			}else if (reservation.getKind() == Constante.KIND_UTILITY_CAR) {
 				try {
-					List<UtilityCar> utilityCar = utilityCarDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
+					List<UtilityCar> utilityCars = utilityCarDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
 							checkAgeResult, reservation.getKind());
-					request.setAttribute("utilityCar", utilityCar);
+					request.setAttribute("utilityCars", utilityCars);
 					response.setStatus(HttpServletResponse.SC_OK);
 
 					rdSelectVehicle.forward(request, response);
