@@ -35,11 +35,8 @@ public class ReservationDAO extends DAO<Reservation> {
 			} else {
 				stmt.setInt(8, obj.getCar().getId());
 			}
-			System.out.println("car : " + obj.getCar());
 
 			stmt.setInt(9, obj.getClient().getId());
-
-			System.out.println("client : " + obj.getClient());
 
 			if (obj.getUtilityCar() == null) {
 
@@ -47,16 +44,13 @@ public class ReservationDAO extends DAO<Reservation> {
 			} else {
 				stmt.setInt(10, obj.getUtilityCar().getId());
 			}
-			System.out.println("utility car : " + obj.getUtilityCar());
 
 			if (obj.getMotorBike() == null) {
 				stmt.setNull(11, java.sql.Types.INTEGER);
 			} else {
 				stmt.setInt(11, obj.getMotorBike().getId());
 			}
-			System.out.println("motorBike : " + obj.getMotorBike());
 
-			System.out.println("Requete :" + stmt);
 			int result = stmt.executeUpdate();
 
 			if (result == 0) {
