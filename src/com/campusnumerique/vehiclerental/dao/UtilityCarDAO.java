@@ -9,6 +9,7 @@ import java.util.List;
 import org.json.JSONArray;
 
 import com.campusnumerique.vehiclerental.entity.Car;
+import com.campusnumerique.vehiclerental.entity.MotorBike;
 import com.campusnumerique.vehiclerental.entity.UtilityCar;
 import com.campusnumerique.vehiclerental.utils.Constante;
 
@@ -39,7 +40,7 @@ public class UtilityCarDAO extends DAO<UtilityCar> {
 		ResultSet result = this.connection.createStatement(
 		    ResultSet.TYPE_SCROLL_INSENSITIVE, 
 		    ResultSet.CONCUR_READ_ONLY
-		  ).executeQuery("SELECT * FROM utilityCar WHERE id = '" + id + "'");
+		  ).executeQuery("SELECT * FROM utilitycar WHERE id = '" + id + "'");
 		if(result.first())
 			utilityCar =  new UtilityCar(
 					id,
@@ -53,13 +54,30 @@ public class UtilityCarDAO extends DAO<UtilityCar> {
 					result.getInt("volume"));        
 		
 		return utilityCar;
-	
 	}
 
 	@Override
 	public List<UtilityCar> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<UtilityCar> utilityCars = new ArrayList<UtilityCar>();
+		ResultSet result = this.connection.createStatement(
+			    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+			    ResultSet.CONCUR_READ_ONLY
+			  ).executeQuery("SELECT * FROM utilitycar");
+		while(result.next()){
+			UtilityCar utilityCar = new UtilityCar(
+					result.getInt("id"),
+					result.getString("brand"),
+					result.getString("model"),
+					result.getString("plateNumber"),
+					result.getString("color"),
+					result.getInt("horsePower"),
+					result.getDouble("reservationPrice"),
+					result.getDouble("kilometerPrice"),
+					result.getInt("volume"));
+			
+			utilityCars.add(utilityCar);
+		}
+		return utilityCars;
 	}
 
 	public List<UtilityCar> findByFilter(Date dateStartResa,Date dateEndResa, int horsePower ,int kind) throws SQLException {

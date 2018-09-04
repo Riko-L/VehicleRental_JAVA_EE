@@ -58,8 +58,26 @@ public class MotorBikeDAO extends DAO<MotorBike> {
 
 	@Override
 	public List<MotorBike> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<MotorBike> motorBikes = new ArrayList<MotorBike>();
+		ResultSet result = this.connection.createStatement(
+			    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+			    ResultSet.CONCUR_READ_ONLY
+			  ).executeQuery("SELECT * FROM motorbike");
+		while(result.next()){
+			MotorBike motorBike = new MotorBike(
+					result.getInt("id"),
+					result.getString("brand"),
+					result.getString("model"),
+					result.getString("plateNumber"),
+					result.getString("color"),
+					result.getInt("horsePower"),
+					result.getDouble("reservationPrice"),
+					result.getDouble("kilometerPrice"),
+					result.getInt("capacity")); 
+			
+			motorBikes.add(motorBike);
+		}
+		return motorBikes;
 	}
 
 	
@@ -91,7 +109,7 @@ public class MotorBikeDAO extends DAO<MotorBike> {
 					result.getInt("capacity")); 
 			
 			motorBikes.add(motorBike);
-		}
+		} 
 		
 		return motorBikes;
 	}
