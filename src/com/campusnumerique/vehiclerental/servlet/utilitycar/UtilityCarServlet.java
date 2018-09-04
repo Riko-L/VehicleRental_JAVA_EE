@@ -37,7 +37,6 @@ public class UtilityCarServlet extends HttpServlet {
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("utilityCars_VUE");
 				try {
 					List<UtilityCar> utilityCars = utilityCarDAO.findAll();
-					System.out.println(utilityCars);
 					request.setAttribute("utilityCars", utilityCars);
 					response.setStatus(HttpServletResponse.SC_OK);
 					rd.forward(request, response) ;
