@@ -3,7 +3,6 @@ package com.campusnumerique.vehiclerental.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class ReservationDAO extends DAO<Reservation> {
 			PreparedStatement stmt = this.connection
 					.prepareStatement("INSERT INTO reservation(" + "reservationNumber," + "dateStart," + "dateEnd,"
 							+ "kilometerNumber," + "rentalPrice," + "dayNumber," + "kind," + "id_car," + "id_client,"
-							+ "id_utilitycar," + "id_motorbike)" + " VALUES (?, ?, ?, ?, ? , ? ,? ,? ,? ?,?)");
+							+ "id_utilitycar," + "id_motorbike)" + " VALUES (?, ?, ?, ?, ? , ? ,? ,? ,?, ? ,?)");
 			stmt.setString(1, obj.getReservationNumber());
 			stmt.setDate(2, new java.sql.Date(obj.getDateStart().getTime() + Constante.DAY));
 			stmt.setDate(3, new java.sql.Date(obj.getDateEnd().getTime() + Constante.DAY));
@@ -31,26 +30,33 @@ public class ReservationDAO extends DAO<Reservation> {
 			stmt.setInt(6, obj.getDayNumber());
 			stmt.setInt(7, obj.getKind());
 
-			if (obj.getCar() != null) {
-				stmt.setInt(8, obj.getCar().getId());
-			} else {
+			if (obj.getCar() == null) {
 				stmt.setNull(8, java.sql.Types.INTEGER);
+			} else {
+				stmt.setInt(8, obj.getCar().getId());
 			}
+			System.out.println("car : " + obj.getCar());
 
 			stmt.setInt(9, obj.getClient().getId());
-			
-			if (obj.getUtilityCar() != null) {
-				stmt.setInt(10, obj.getUtilityCar().getId());
-			} else {
-				stmt.setNull(10, java.sql.Types.INTEGER);
-			}
-			
-			if (obj.getMotorBike() != null) {
-				stmt.setInt(11, obj.getMotorBike().getId());
-			} else {
-				stmt.setNull(11, java.sql.Types.INTEGER);
-			}
 
+			System.out.println("client : " + obj.getClient());
+
+			if (obj.getUtilityCar() == null) {
+
+				stmt.setNull(10, java.sql.Types.INTEGER);
+			} else {
+				stmt.setInt(10, obj.getUtilityCar().getId());
+			}
+			System.out.println("utility car : " + obj.getUtilityCar());
+
+			if (obj.getMotorBike() == null) {
+				stmt.setNull(11, java.sql.Types.INTEGER);
+			} else {
+				stmt.setInt(11, obj.getMotorBike().getId());
+			}
+			System.out.println("motorBike : " + obj.getMotorBike());
+
+			System.out.println("Requete :" + stmt);
 			int result = stmt.executeUpdate();
 
 			if (result == 0) {
