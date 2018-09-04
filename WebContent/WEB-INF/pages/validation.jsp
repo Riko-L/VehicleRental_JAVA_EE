@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page errorPage="/WEB-INF/pages/error.jsp" %>
 <%@ page import="com.campusnumerique.vehiclerental.entity.Car"%>
+<jsp:useBean id="clientBean" scope="session" type="com.campusnumerique.vehiclerental.bean.ClientBean" />
 
 <fmt:formatDate value="${reservation.dateStart}" var="dateStart" type="date" pattern="MM-dd-yyyy" />
 <fmt:formatDate value="${reservation.dateEnd}" var="dateEnd" type="date" pattern="MM-dd-yyyy" />

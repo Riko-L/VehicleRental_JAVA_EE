@@ -7,7 +7,7 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.Out"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-
+<jsp:useBean id="clientBean" scope="session" type="com.campusnumerique.vehiclerental.bean.ClientBean" />
 
 <fmt:formatDate value="${reservation.dateStart}" var="dateStart" type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${reservation.dateEnd}" var="dateEnd" type="date" pattern="dd-MM-yyyy" />
