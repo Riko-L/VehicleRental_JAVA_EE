@@ -17,39 +17,43 @@
 	<jsp:include page="/WEB-INF/pages/nav.jsp" />
 	
 	<div class="container" id="content">
-		<div class="row">
-			<h2>Client List</h2>
-			<table id="userTable" class="table table-striped">
-				<thead>
-					<tr>
-						<th>Login</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						if (clients != null && !clients.isEmpty()) {
-							for (int i = 0; i < clients.size(); ++i) {
-					%>
-					<tr>
-						<td><%=clients.get(i).getLogin()%></td>
-						<td><%=clients.get(i).getFirstName()%></td>
-						<td><%=clients.get(i).getLastName()%></td>
-					</tr>
-					<%
-						}
-						} else {
-					%>
-					<tr>
-						<td>No Data Found</td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
-		</div>
+		<h2 class="text-center text-primary">Client List</h2><br/>
+		<table id="userTable" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Login</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>License Number</th> 
+					<th>Age</th> 
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					if (clients != null && !clients.isEmpty()) {
+						for (int i = 0; i < clients.size(); ++i) {
+				%>
+				<tr>
+					<td><%=clients.get(i).getLogin()%></td>
+					<td><%=clients.get(i).getFirstName()%></td>
+					<td><%=clients.get(i).getLastName()%></td>
+					<td><%=clients.get(i).getMail()%></td>
+					<td><%=clients.get(i).getLicenseNumber()%></td>
+					<td><%=clients.get(i).getAge()%> years</td>
+				</tr>
+				<%
+					}
+					} else {
+				%>
+				<tr>
+					<td>No Data Found</td>
+				</tr>
+				<%
+					}
+				%>
+			</tbody>
+		</table>
 	</div>
 	
 	<jsp:include page="/WEB-INF/pages/footer.jsp"/>
