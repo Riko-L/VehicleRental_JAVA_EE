@@ -19,10 +19,12 @@ public final class ConnexionForm {
 	public ConnexionForm() {
 		clientBean = new ClientBean();
 		errors = new HashMap<>();
+		clientDAO = new ClientDAO();
 
 	}
 	
-	public ClientBean connectPerson(HttpServletRequest request) throws Exception {
+	public ClientBean connectPerson(HttpServletRequest request){
+		
 		
 		if(request.getParameter("password") != null && request.getParameter("mail") != null ) {
 			String password = request.getParameter("password");
@@ -64,16 +66,14 @@ public final class ConnexionForm {
 	
 	
 	private boolean validateConnection(String mail , String password)  {
+		boolean rs = false;
 		
 		int result = clientDAO.connection(password, mail);
 		
 		if(result == 1) {
-			
-			return true;
-		}else {
-			
-			return false;
+			rs = true;
 		}
-		
+			
+		return rs;
 	}
 }

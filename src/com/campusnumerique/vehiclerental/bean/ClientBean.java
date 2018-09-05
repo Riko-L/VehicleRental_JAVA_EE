@@ -17,10 +17,11 @@ public class ClientBean implements Serializable{
 	private String mail;
 	private Client client;
 	private ClientDAO clientDAO;
-
+	private boolean isGuest=false;
 
 	public ClientBean(){
-		setLogin("NoUserLogin");
+		setLogin("Guest");
+		setGuest(true);
 	}
 
 	public ClientBean(String aLogin){
@@ -70,6 +71,14 @@ public class ClientBean implements Serializable{
 	}
 
 	
+	public boolean isGuest() {
+		return isGuest;
+	}
+
+	public void setGuest(boolean isGuest) {
+		this.isGuest = isGuest;
+	}
+
 	private void initialize() {
 		try {
 			client = clientDAO.findByLogin(getLogin());
@@ -90,6 +99,7 @@ public class ClientBean implements Serializable{
 		int result = 1;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
+		result = prime * result + (isGuest ? 1231 : 1237);
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
@@ -112,6 +122,8 @@ public class ClientBean implements Serializable{
 			return false;
 		if (id != other.id)
 			return false;
+		if (isGuest != other.isGuest)
+			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
@@ -133,8 +145,9 @@ public class ClientBean implements Serializable{
 	@Override
 	public String toString() {
 		return "ClientBean [id=" + id + ", login=" + login + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", mail=" + mail + "]";
+				+ ", mail=" + mail + ", isGuest=" + isGuest + "]";
 	}
+
 	
 	
 

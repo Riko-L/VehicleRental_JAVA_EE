@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="clientBean" scope="session"
-	class="com.campusnumerique.vehiclerental.bean.ClientBean" />
+
 
 <nav class="navbar navbar-light " id="header">
 	<a class="navbar-brand" href="#"><img src="${pageContext.servletContext.contextPath}/resources/images/harley-davidson-motorcycle-batteries.png"/>

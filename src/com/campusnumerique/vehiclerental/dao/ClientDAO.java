@@ -31,7 +31,7 @@ public class ClientDAO extends DAO<Client>{
 	}
 	
 	public int connection(String password, String mail) {
-		Client client = new Client();  
+		
 		String sql ="select COUNT(*) from client Where mail = ? AND password = ?";
 		int connection = 0;
 		try {
