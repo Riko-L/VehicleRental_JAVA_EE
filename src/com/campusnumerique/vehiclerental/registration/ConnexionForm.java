@@ -2,7 +2,7 @@ package com.campusnumerique.vehiclerental.registration;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +15,10 @@ public final class ConnexionForm {
 	private ClientBean clientBean;
 	private ClientDAO clientDAO;
 	private Client client;
+	private HashMap<String, String> errors;
 	public ConnexionForm() {
 		clientBean = new ClientBean();
+		errors = new HashMap<>();
 
 	}
 	
@@ -38,7 +40,7 @@ public final class ConnexionForm {
 				
 			}else {
 				
-				throw new Exception("mail or password not valid");
+				setErrors("error", "mail or password is invalid");
 			}
 			
 			return clientBean;
@@ -49,6 +51,17 @@ public final class ConnexionForm {
 		return clientBean;
 	}
 
+	public HashMap<String, String> getErrors(){
+		
+		return this.errors;
+	}
+	
+	public void setErrors(String champ, String message){
+		
+		this.errors.put(champ, message);
+		
+	}
+	
 	
 	private boolean validateConnection(String mail , String password)  {
 		

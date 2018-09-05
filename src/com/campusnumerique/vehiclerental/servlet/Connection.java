@@ -15,12 +15,13 @@ import com.campusnumerique.vehiclerental.registration.ConnexionForm;
  * Servlet implementation class Connection
  */
 public class Connection extends HttpServlet {
-	public static final String ATT_USER         = "client";
-    public static final String ATT_FORM         = "form";
-    public static final String ATT_SESSION_USER = "sessionClient";
-    public static final String VUE              = "/WEB-INF/pages/connection.jsp";
-       
+
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public Connection() {
@@ -32,36 +33,37 @@ public class Connection extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Affichage de la page de connexion */
-        this.getServletContext().getRequestDispatcher(VUE).forward(request, response) ;
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Préparation de l'objet formulaire */
+	
+		String test = request.getServletContext().getContextPath();
+		
         ConnexionForm form = new ConnexionForm();
         
-        /* Traitement de la requête et récupération du bean en résultant */
-        ClientBean client = form.connectPerson(request);
+    
+        ClientBean clientBean = null;
+		try {
+			clientBean = form.connectPerson(request);
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		}
         
-        /* Récupération de la session depuis la requête */
+      
         HttpSession session = request.getSession();
         
-        /**
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * Utilisateur à la session, sinon suppression du bean de la session.
-         */
+        
         if (form.getErrors().isEmpty()) {
-            session.setAttribute(ATT_SESSION_USER, client);
+            session.setAttribute("clientBean", clientBean);
         } else {
-            session.setAttribute(ATT_SESSION_USER, null);
+            session.setAttribute("clientBean", null);
         }
         
-        /* Stockage du formulaire et du bean dans l'objet request */
-        request.setAttribute(ATT_FORM, form);
-        request.setAttribute(ATT_USER, client);
-        this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+   
     }
 }
