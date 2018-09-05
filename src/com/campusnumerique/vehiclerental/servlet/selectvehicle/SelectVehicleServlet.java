@@ -34,6 +34,8 @@ public class SelectVehicleServlet extends HttpServlet {
 	private UtilityCarDAO utilityCarDAO = null;
 	private MotorBikeDAO motorBikeDAO = null;
 	private ClientDAO clientDAO = null;
+	private ClientBean clientBean;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -56,20 +58,20 @@ public class SelectVehicleServlet extends HttpServlet {
 		RequestDispatcher rdSelectVehicle = request.getServletContext().getNamedDispatcher("selectVehicle_VUE");
 		int checkAgeResult = 0;
 		Reservation reservation = null;
-		HttpSession session = request.getSession();
-		ClientBean clientBean = (ClientBean) session.getAttribute("clientBean");
 		Client client = null;
+		HttpSession session = request.getSession();
+		clientBean = (ClientBean)session.getAttribute("clientBean");
+
 		
-		if (session.getAttribute("clientBean") != null) {
-			try {
-				client = clientDAO.findByLogin(clientBean.getLogin());
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
-			int age = client.getAge();
-			checkAgeResult = UtilsChecker.checkAge(age);
+		try {
+			client = clientDAO.findByLogin(clientBean.getLogin());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
 		}
+		
+		int age = client.getAge();
+		checkAgeResult = UtilsChecker.checkAge(age);
 
 		if (request.getAttribute("reservation") != null) {
 			reservation = (Reservation) request.getAttribute("reservation");
@@ -87,10 +89,10 @@ public class SelectVehicleServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 					e.printStackTrace();
 				}
-			}else if (reservation.getKind() == Constante.KIND_UTILITY_CAR) {
+			} else if (reservation.getKind() == Constante.KIND_UTILITY_CAR) {
 				try {
-					List<UtilityCar> utilityCars = utilityCarDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
-							checkAgeResult, reservation.getKind());
+					List<UtilityCar> utilityCars = utilityCarDAO.findByFilter(reservation.getDateStart(),
+							reservation.getDateEnd(), checkAgeResult, reservation.getKind());
 					request.setAttribute("utilityCars", utilityCars);
 					response.setStatus(HttpServletResponse.SC_OK);
 
@@ -100,14 +102,11 @@ public class SelectVehicleServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 					e.printStackTrace();
 				}
-				
-				
-				
-				
-			}else if(reservation.getKind() == Constante.KIND_MOTORBIKE) {
+
+			} else if (reservation.getKind() == Constante.KIND_MOTORBIKE) {
 				try {
-					List<MotorBike> motorBikes = motorBikeDAO.findByFilter(reservation.getDateStart(), reservation.getDateEnd(),
-							 reservation.getKind());
+					List<MotorBike> motorBikes = motorBikeDAO.findByFilter(reservation.getDateStart(),
+							reservation.getDateEnd(), reservation.getKind());
 					request.setAttribute("motorBikes", motorBikes);
 					response.setStatus(HttpServletResponse.SC_OK);
 
@@ -117,7 +116,7 @@ public class SelectVehicleServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 					e.printStackTrace();
 				}
-				
+
 			}
 		}
 	}

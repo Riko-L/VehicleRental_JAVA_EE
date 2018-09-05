@@ -27,6 +27,7 @@ public class ValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReservationDAO reservationDAO = null;
 	private ClientDAO clientDAO = null;
+	private ClientBean clientBean;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -57,17 +58,15 @@ public class ValidationServlet extends HttpServlet {
 		response.setContentType("text/html");
 		Reservation reservation;
 		Client client = null;
-		ClientBean clientBean;
 		Car car;
 		UtilityCar utilityCar;
 		MotorBike motorBike;
-		
 		HttpSession session = request.getSession();
+		clientBean = (ClientBean)session.getAttribute("clientBean");
 
 		if (!session.isNew() && session != null) {
-			if (session.getAttribute("reservation") != null && session.getAttribute("clientBean") != null) {
+			if (session.getAttribute("reservation") != null) {
 				reservation = (Reservation) session.getAttribute("reservation");
-				clientBean = (ClientBean) session.getAttribute("clientBean");
 				
 				try {
 					client = clientDAO.findByLogin(clientBean.getLogin());
