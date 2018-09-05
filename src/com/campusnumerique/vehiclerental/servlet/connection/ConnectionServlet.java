@@ -47,9 +47,8 @@ public class ConnectionServlet extends HttpServlet {
 		ClientBean clientBeanOK = null;
 		ConnexionForm form = new ConnexionForm();
 		HttpSession session = request.getSession();
-		PrintWriter out = response.getWriter();
 		clientBean = (ClientBean)session.getAttribute("clientBean");
-		 String requestURL = request.getContextPath();
+		 String requestURL = request.getHeader("referer");
 		
 		if (clientBean.isGuest()) {
 			
@@ -64,8 +63,7 @@ public class ConnectionServlet extends HttpServlet {
 				session.setAttribute("clientBean", clientBean);
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				
-				out.write("connection error");
-				
+				response.sendRedirect(requestURL);
 				
 			}
 
