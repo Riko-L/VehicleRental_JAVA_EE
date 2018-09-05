@@ -8,7 +8,7 @@
     <servlet-name>ConnectionServlet</servlet-name>
     <url-pattern>/connection</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.connection.LogoutServlet</servlet-class>
   </servlet>
