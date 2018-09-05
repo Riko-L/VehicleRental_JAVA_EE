@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.dao.UtilityCarDAO;
 import com.campusnumerique.vehiclerental.entity.UtilityCar;
 
@@ -19,6 +21,7 @@ import com.campusnumerique.vehiclerental.entity.UtilityCar;
 public class UtilityCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilityCarDAO utilityCarDAO = null;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,6 +38,8 @@ public class UtilityCarServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("utilityCars_VUE");
+	
+		
 				try {
 					List<UtilityCar> utilityCars = utilityCarDAO.findAll();
 					request.setAttribute("utilityCars", utilityCars);

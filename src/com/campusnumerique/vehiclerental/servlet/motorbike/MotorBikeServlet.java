@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.dao.MotorBikeDAO;
 import com.campusnumerique.vehiclerental.entity.MotorBike;
 
@@ -19,6 +21,7 @@ import com.campusnumerique.vehiclerental.entity.MotorBike;
 public class MotorBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MotorBikeDAO motorBikeDAO = null;
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,6 +37,7 @@ public class MotorBikeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
+
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("motorBikes_VUE");
 				try {
 					List<MotorBike> motorBikes = motorBikeDAO.findAll();

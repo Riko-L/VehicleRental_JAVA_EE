@@ -1,7 +1,6 @@
 package com.campusnumerique.vehiclerental.servlet.reservation;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.campusnumerique.vehiclerental.bean.ClientBean;
-import com.campusnumerique.vehiclerental.dao.ClientDAO;
-import com.campusnumerique.vehiclerental.entity.Client;
 import com.campusnumerique.vehiclerental.entity.Reservation;
 
 /**
@@ -25,15 +21,14 @@ import com.campusnumerique.vehiclerental.entity.Reservation;
 
 public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ClientDAO clientDAO = null;
-	private Client client;
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ReservationServlet() {
 		super();
-		clientDAO = new ClientDAO();
+		
 	}
 
 	/**
@@ -42,13 +37,6 @@ public class ReservationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		//Pour les tests
-		HttpSession session = request.getSession();
-		
-		ClientBean clientBean = new ClientBean("Alex");;
-		
-		session.setAttribute("clientBean",clientBean );
 		
 		RequestDispatcher rd = request.getServletContext().getNamedDispatcher("reservation_VUE");
 

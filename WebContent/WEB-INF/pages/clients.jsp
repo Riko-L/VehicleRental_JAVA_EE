@@ -3,6 +3,7 @@
    <%@ page errorPage="/WEB-INF/pages/error.jsp" %>
 <%@ page import="java.util.List"%>
 <%@ page import="com.campusnumerique.vehiclerental.entity.Client"%>
+<jsp:useBean id="clientBean" scope="session" type="com.campusnumerique.vehiclerental.bean.ClientBean" />
 <%
 	List<Client> clients = (List) request.getAttribute("clients");
 %>

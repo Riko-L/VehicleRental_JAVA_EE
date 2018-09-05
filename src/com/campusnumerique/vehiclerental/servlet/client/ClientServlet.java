@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.dao.ClientDAO;
 import com.campusnumerique.vehiclerental.entity.Client;
 
@@ -20,7 +22,7 @@ import com.campusnumerique.vehiclerental.entity.Client;
 public class ClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO clientDAO=null;
-    
+
     /**
      * @throws ClassNotFoundException 
      * @see HttpServlet#HttpServlet()
@@ -36,6 +38,8 @@ public class ClientServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
+		HttpSession session = request.getSession();
+
 		try {
 			List<Client> clients  = clientDAO.findAll();
 			request.setAttribute("clients", clients);
