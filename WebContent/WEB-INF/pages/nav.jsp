@@ -7,36 +7,42 @@
 
 
 <nav class="navbar navbar-light " id="header">
-	<a class="navbar-brand" href="#">
+	<div class="navbar-brand">
 		<img src="${pageContext.servletContext.contextPath}/resources/images/challenger-srt-392.png"/>
 		<img src="${pageContext.servletContext.contextPath}/resources/images/SIXT.png"/>
-	</a>
-
+	</div>
+	
 	<ul class="nav nav-pills">
+		<c:if test="${not clientBean.isGuest()}">
 		<li class="nav-item"><a class="btn btn-outline-warning"
 			href="./clients">Client List</a></li>
+		</c:if>
+		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
+			href="./reservationList">Reservation List</a></li>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./cars">Cars List</a></li>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./utilityCars">Utilities List</a></li>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./motorBikes">MotorBikes List</a></li>
+		<c:if test="${not clientBean.isGuest()}">
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./reservation">Reservation</a></li>
+		</c:if>
 	</ul>
-	<ul class="nav nav-pills navbar-right">
+	
+	<div class="nav nav-pills navbar-right">
 		<c:if test="${clientBean.isGuest()}">
-		<li class="nav-item"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connectionModal">Connection</button></li>
-		<li class="nav-item"><button type="button" class="btn btn-success ml-3" data-toggle="modal" data-target="#registrationModal">Registration</button></li>
+		<button class="btn btn-primary nav-item" data-toggle="modal" data-target="#connectionModal">Connection</button>
+		<button class="btn btn-success nav-item ml-3" data-toggle="modal" data-target="#registrationModal">Registration</button>
 		</c:if>
 		<c:if test="${not clientBean.isGuest()}">
-		<li class="nav-item"><button type="button" class="btn btn-info ml-3">Profil ${clientBean.getLogin()}</button></li>
-		<li class="nav-item"><form action="/logout" method="POST"><button type="submit" class="btn btn-danger ml-3">Logout</button></form></li>
+		<button class="btn btn-info nav-item">Profil ${clientBean.getLogin()}</button>
+		<form action="/logout" method="POST"><button type="submit" class="btn btn-danger nav-item ml-3">Logout</button></form>
 		</c:if>
-	</ul>
+	</div>
 	
 	<!-- 	Modal de Connexion -->
-	
 	<div class="modal fade" id="connectionModal" tabindex="-1"
 		role="dialog" aria-labelledby="connectionModalLabel"
 		aria-hidden="true">
