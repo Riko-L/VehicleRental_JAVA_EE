@@ -1,105 +1,66 @@
 package com.campusnumerique.vehiclerental.registration;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.campusnumerique.vehiclerental.bean.ClientBean;
-
-
+import com.campusnumerique.vehiclerental.dao.ClientDAO;
+import com.campusnumerique.vehiclerental.entity.Client;
 
 public final class ConnexionForm {
-	private static final String email = "email";
-	private static final String password = "password";
-	
-	private String result;
-	private Map<String, String>errors = new HashMap<String, String>();
-	
-	public String getResult() {
-		return result;
+
+	private ClientBean clientBean;
+	private ClientDAO clientDAO;
+	private Client client;
+	public ConnexionForm() {
+		clientBean = new ClientBean();
+
 	}
 	
-	public Map<String, String> getErrors() {
-		return errors;
-	}
-	
-	public ClientBean connectPerson(HttpServletRequest request) {
+	public ClientBean connectPerson(HttpServletRequest request) throws Exception {
 		
-		/* Récupération des champs du formulaire */
-        String mail = getFieldValue(request, email);
-        String pwd = getFieldValue(request, password);
-        
-        ClientBean client = new ClientBean();
-	
-        /* Validation du email */
-        try {
-        	validateEmail(mail);
-        	
-        } catch (Exception ex){
-        	setError(email, ex.getMessage());
-        }
-        client.setEmail(mail);
-        
-        /* Validation du password */
-        try {
-        	validatePassword(pwd);
-        	
-        } catch (Exception ex){
-        	setError(pwd, ex.getMessage());
-        	
-        }
-        client.setPassword(pwd);
-	    
-        /* Initialisation du résultat global de la validation. */
-        if (errors.isEmpty()) {
-        	result = "Succès de la connexion";
-        } else {
-        	result = "Echec de la connexion";
-        }
-        
-        return client;
+		if(request.getParameter("password") != null && request.getParameter("mail") != null ) {
+			String password = request.getParameter("password");
+			String mail = request.getParameter("mail");
+			
+			if(validateConnection(mail , password)) {
+				
+				try {
+					client = clientDAO.findByMail(mail);
+					clientBean = new ClientBean(client.getLogin());
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}else {
+				
+				throw new Exception("mail or password not valid");
+			}
+			
+			return clientBean;
+		}
+
+
+
+		return clientBean;
 	}
+
 	
-	/**
-	 * Valide l'adresse email saisie
-	 */
-	private void validateEmail(String mail) throws Exception{
-		if ( mail != null && !mail.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
-            throw new Exception( "Your email isn't valid." );
-        }
-    }
-	
-	/**
-     * Valide le mot de passe saisi
-     */
-    private void validatePassword(String pwd) throws Exception {
-        if (pwd != null) {
-        	if (pwd.length() < 3) {
-                throw new Exception( "Password must contain at least 3 characters." );
-            }
-        } else {
-            throw new Exception( "Thanks to type your password." );
-        }
-    }
-	
-    /**
-    * Ajoute un message correspondant au champ spécifié à la map des erreurs.
-    */
-   private void setError(String field, String message) {
-       errors.put(field, message);
-   }
-   
-   /**
-    * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
-    * sinon.
-    */
-   private static String getFieldValue (HttpServletRequest request, String fieldName) {
-       String value = request.getParameter(fieldName);
-       if (value == null || value.trim().length() == 0 ) {
-           return null;
-       } else {
-           return value;
-       }
-   }	
+	private boolean validateConnection(String mail , String password)  {
+		
+		int result = clientDAO.connection(password, mail);
+		
+		if(result == 1) {
+			
+			return true;
+		}else {
+			
+			return false;
+		}
+		
+	}
 }
