@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <nav class="navbar navbar-light " id="header">
 	<a class="navbar-brand" href="#">
@@ -23,13 +23,14 @@
 			href="./reservation">Reservation</a></li>
 	</ul>
 	<ul class="nav nav-pills navbar-right">
+		<c:if test="${clientBean.isGuest()}">
 		<li class="nav-item"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connectionModal">Connection</button></li>
-		<c:if test="${not clientBean.isGuest()}">
-		<li class="nav-item"><button type="button" class="btn btn-info ml-3">Profil</button></li>
-		<li class="nav-item"><button type="button" class="btn btn-danger ml-3">Disconnect</button></li>
-		</c:if>
 		<li class="nav-item"><button type="button" class="btn btn-success ml-3" data-toggle="modal" data-target="#registrationModal">Registration</button></li>
-		
+		</c:if>
+		<c:if test="${not clientBean.isGuest()}">
+		<li class="nav-item"><button type="button" class="btn btn-info ml-3">Profil ${clientBean.getLogin()}</button></li>
+		<li class="nav-item"><form action="/disconnection" method="POST"><button type="submit" class="btn btn-danger ml-3">Logout</button></form></li>
+		</c:if>
 	</ul>
 	
 	<!-- 	Modal de Connexion -->

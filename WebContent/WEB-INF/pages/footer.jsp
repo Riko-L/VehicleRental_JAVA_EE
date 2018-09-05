@@ -11,7 +11,7 @@
 	src="${pageContext.servletContext.contextPath}/resources/js/selectVehicle.js"></script>
 	
 	<div class="row m-2">
-		<div class="col-md-6 pb-3">
+		<div class="col-md-6 pb-1">
 			<br/><span class="text-white font-weight-bold">Developped by</span><br/>
 			<span class="text-white font-weight-bold">Eric LE DEVEDEC</span><br/>
 			<span class="text-white font-weight-bold">Alexandre BIAGI</span>
