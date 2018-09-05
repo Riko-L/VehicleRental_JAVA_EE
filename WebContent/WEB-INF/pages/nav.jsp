@@ -4,18 +4,85 @@
 	class="com.campusnumerique.vehiclerental.bean.ClientBean" />
 
 <nav class="navbar navbar-light " id="header">
-	<a class="navbar-brand" href="#"> <img
-		src="${pageContext.servletContext.contextPath}/resources/images/delorean.png" />
-
+	<a class="navbar-brand" href="#"><img src="${pageContext.servletContext.contextPath}/resources/images/harley-davidson-motorcycle-batteries.png"/>
+									<img src="${pageContext.servletContext.contextPath}/resources/images/challenger-srt-392.png"/>
 	</a>
+
 	<ul class="nav nav-pills">
-		<li class="nav-item"><a class="nav-link" href="./clients">Client List</a></li>
-		<li class="nav-item"><a class="nav-link" href="./cars">Cars List</a></li>
-		<li class="nav-item"><a class="nav-link" href="./utilityCars">Utilities List</a></li>
-		<li class="nav-item"><a class="nav-link" href="./motorBikes">MotorBikes List</a></li>
-		<li class="nav-item"><a class="nav-link" href="./reservation">Reservation</a></li>
+		<li class="nav-item"><a class="btn btn-outline-info"
+			href="./clients">Client List</a></li>
+		<li class="nav-item"><a class="btn btn-outline-info ml-3"
+			href="./cars">Cars List</a></li>
+		<li class="nav-item"><a class="btn btn-outline-info ml-3"
+			href="./utilityCars">Utilities List</a></li>
+		<li class="nav-item"><a class="btn btn-outline-info ml-3"
+			href="./motorBikes">MotorBikes List</a></li>
+		<li class="nav-item"><a class="btn btn-outline-info ml-3"
+			href="./reservation">Reservation</a></li>
 	</ul>
-	<ul class="nav navbar-nav navbar-right">
-		<li>User Connected: <%=clientBean.getLogin()%></li>
+	<ul class="nav nav-pills navbar-right">
+		<li class="nav-item"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connectionModal">Connection</button></li>
+		<li class="nav-item"><button type="button" class="btn btn-success ml-3" data-toggle="modal" data-target="#registrationModal">Registration</button></li>
+		<%-- 		<li>User Connected: <%=clientBean.getLogin()%></li> --%>
 	</ul>
+	
+	<!-- 	Modal de Connexion -->
+	<div class="modal fade" id="connectionModal" tabindex="-1"
+		role="dialog" aria-labelledby="connectionModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary" id="connectionModalLabel">Connection</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">@</span>
+						</div>
+						<input type="text" class="form-control" placeholder="Email"
+							aria-label="Email" aria-describedby="basic-addon1" name="mail">
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">Pwd</span>
+						</div>
+						<input type="text" class="form-control" placeholder="Password"
+							aria-label="Password" aria-describedby="basic-addon1" name="password">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Connect</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 	Modal d'Inscription -->
+	<div class="modal fade" id="registrationModal" tabindex="-1"
+		role="dialog" aria-labelledby="registrationModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary" id="registrationModalLabel">Registration</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="modal-body">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </nav>
