@@ -1,5 +1,6 @@
 package com.campusnumerique.vehiclerental.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +29,33 @@ public class ClientDAO extends DAO<Client>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	public int connection(String password, String mail) {
+		Client client = new Client();  
+		String sql ="select COUNT(*) from client Where mail = ? AND password = ?";
+		int connection = 0;
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			stmt.setString(1, mail);
+			stmt.setString(2, password);
+			
+			ResultSet result = stmt.executeQuery();
+			
+			if(result.next()) {
+				connection=	result.getInt(1);
+			}else {
+				
+				connection = 0;
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return connection;
+		
+		
+	}
 	@Override
 	public Client find(int id) throws SQLException{
 		Client client = new Client();  
@@ -67,6 +94,28 @@ public class ClientDAO extends DAO<Client>{
 					result.getString("firstName"),
 					result.getString("lastName"),
 					result.getString("mail"),
+					result.getDate("birthDate"),
+					result.getString("licenseNumber"),
+					result.getDate("licenseDate")
+					);          
+		
+		return client;
+	}
+	
+	public Client findByMail(String mail) throws SQLException{
+		Client client = new Client();  
+		
+		ResultSet result = this.connection.createStatement(
+		    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		    ResultSet.CONCUR_READ_ONLY
+		  ).executeQuery("SELECT * FROM client WHERE mail = '" + mail + "'");
+		if(result.first())
+			client = new Client(
+					result.getInt("id"),
+					result.getString("login"),
+					result.getString("firstName"),
+					result.getString("lastName"),
+					mail,
 					result.getDate("birthDate"),
 					result.getString("licenseNumber"),
 					result.getDate("licenseDate")
