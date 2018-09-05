@@ -62,6 +62,7 @@ public class ConnectionServlet extends HttpServlet {
 			} else {
 				session.setAttribute("clientBean", clientBean);
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				request.setAttribute("errorLogin", "Password or mail invalide");
 				
 				response.sendRedirect(requestURL);
 				

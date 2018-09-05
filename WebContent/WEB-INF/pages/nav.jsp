@@ -29,7 +29,7 @@
 		</c:if>
 		<c:if test="${not clientBean.isGuest()}">
 		<li class="nav-item"><button type="button" class="btn btn-info ml-3">Profil ${clientBean.getLogin()}</button></li>
-		<li class="nav-item"><form action="/disconnection" method="POST"><button type="submit" class="btn btn-danger ml-3">Logout</button></form></li>
+		<li class="nav-item"><form action="/logout" method="POST"><button type="submit" class="btn btn-danger ml-3">Logout</button></form></li>
 		</c:if>
 	</ul>
 	
