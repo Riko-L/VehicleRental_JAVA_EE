@@ -27,6 +27,7 @@
 	</ul>
 	
 	<!-- 	Modal de Connexion -->
+	
 	<div class="modal fade" id="connectionModal" tabindex="-1"
 		role="dialog" aria-labelledby="connectionModalLabel"
 		aria-hidden="true">
@@ -39,6 +40,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+				<form action="/connection" method="POST">
 				<div class="modal-body">
 					<div class="input-group">
 						<div class="input-group-prepend">
@@ -60,11 +62,13 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Connect</button>
+					<button type="submit" class="btn btn-primary">Connect</button>
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>
+	
 	
 	<!-- 	Modal d'Inscription -->
 	<div class="modal fade" id="registrationModal" tabindex="-1"
@@ -78,11 +82,29 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<div class="modal-body">
-					
+				</div>
+				<div class="modal-body">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<div class="input-group">
+				        		<div class="input-group-prepend">
+				          			<div class="input-group-text">Firstname</div>
+				        		</div>
+								<input type="text" class="form-control" name="firstname" value="">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="input-group">
+				        		<div class="input-group-prepend">
+		          					<div class="input-group-text">LastName</div>
+				        		</div>
+								<input type="text" class="form-control" name="lastname" value="">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </nav>
