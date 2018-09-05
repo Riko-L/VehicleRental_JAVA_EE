@@ -9,6 +9,14 @@
     <url-pattern>/connection</url-pattern>
   </servlet-mapping>
     <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.connection.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.home.HomeServlet</servlet-class>
   </servlet>
