@@ -12,12 +12,14 @@
 <fmt:formatDate value="${reservation.dateStart}" var="dateStart" type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${reservation.dateEnd}" var="dateEnd" type="date" pattern="dd-MM-yyyy" />
 
+
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/WEB-INF/pages/header.jsp">
 		<jsp:param name="title" value="Reservation" />
 	</jsp:include>
-	<body>
+	<body >
+	
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
 		
 		<div class="container" id="content">

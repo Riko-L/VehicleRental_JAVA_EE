@@ -2,7 +2,10 @@ package com.campusnumerique.vehiclerental.servlet.connection;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ public class ConnectionServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ClientBean clientBean;
+	private String requestURL;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -35,7 +39,7 @@ public class ConnectionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 	}
 
 	/**
@@ -48,7 +52,7 @@ public class ConnectionServlet extends HttpServlet {
 		ConnexionForm form = new ConnexionForm();
 		HttpSession session = request.getSession();
 		clientBean = (ClientBean)session.getAttribute("clientBean");
-		 String requestURL = request.getHeader("referer");
+		
 		
 		if (clientBean.isGuest()) {
 			
@@ -62,9 +66,16 @@ public class ConnectionServlet extends HttpServlet {
 			} else {
 				session.setAttribute("clientBean", clientBean);
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-				request.setAttribute("errorLogin", "Password or mail invalide");
-				
+				session.setAttribute("errorLogin", "Password or mail invalide");
+				try {
+					requestURL = new URI(request.getHeader("referer")).getPath();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
+
 				response.sendRedirect(requestURL);
+				
+				
 				
 			}
 

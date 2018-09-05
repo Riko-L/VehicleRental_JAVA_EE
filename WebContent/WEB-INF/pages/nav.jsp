@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+
 <nav class="navbar navbar-light " id="header">
 	<a class="navbar-brand" href="#">
 		<img src="${pageContext.servletContext.contextPath}/resources/images/challenger-srt-392.png"/>
@@ -47,6 +49,9 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+				<c:if test="${not empty sessionScope.errorLogin}">
+					<span class="text-danger text-center">${sessionScope.errorLogin}</span>
+					</c:if>
 				<form action="/connection" method="POST">
 					<div class="modal-body">
 						<div class="input-group">
@@ -67,6 +72,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
+					
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Connect</button>
@@ -176,5 +182,15 @@
 		</div>
 	</div>
 
+	<c:if test="${not empty sessionScope.errorLogin}">
+
+	<script type="text/javascript">
+	
+		$("#connectionModal").modal();
+	
+	</script>
+</c:if>
+
+<c:remove var="errorLogin" scope="session" />
 
 </nav>
