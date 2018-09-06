@@ -9,6 +9,8 @@
 	src="${pageContext.servletContext.contextPath}/resources/js/reservation.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/resources/js/selectVehicle.js"></script>
+	<script
+	src="${pageContext.servletContext.contextPath}/resources/js/register.js"></script>
 	
 	<div class="row m-2">
 		<div class="col-md-6 pb-1">
