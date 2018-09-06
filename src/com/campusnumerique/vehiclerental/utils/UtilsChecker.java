@@ -45,7 +45,9 @@ public class UtilsChecker {
 	 */
 	public static Double CalculRentalPriceMotorBike(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int capacity ) {
 		
-		return (capacity*0.001)*kilometerNumber*kilometerPrice + reservationPrice;
+	
+		
+		return (double) Math.round(capacity * 0.001 * kilometerNumber * kilometerPrice + reservationPrice);
 	}
 	
 	
@@ -59,41 +61,10 @@ public class UtilsChecker {
 	 */
 	public static Double CalculRentalPriceUtilityCar(int kilometerNumber, Double kilometerPrice, Double reservationPrice, int volume ) {
 		
-		return (volume*0.05)*kilometerNumber*kilometerPrice + reservationPrice;
+		return  (double) Math.round(volume * 0.05 * kilometerNumber * kilometerPrice + reservationPrice);
 	}
 	
 	
-	public boolean carIsAvialable(Car car, Date dateStart, Date dateEnd) {
-
-		boolean isAvialable = false;
-		if (car.getReservations() != null) {
-			if (!car.getReservations().isEmpty()) {
-				List<Reservation> reservations = car.getReservations();
-				for (Reservation reservation : reservations) {
-					Date dateStartResaCar = reservation.getDateStart();
-					Date dateEndResaCar = reservation.getDateEnd();
-
-					if (isBetween(dateStart, dateStartResaCar, dateEndResaCar) || isBetween(dateEnd, dateStartResaCar, dateEndResaCar) || isBetween(dateStartResaCar, dateStart, dateEnd)) {
-						isAvialable = false;
-					} else {
-						isAvialable = true;
-					}
-				}
-
-			} else {
-
-				isAvialable = true;
-			}
-		}
-
-		return isAvialable;
-	}
-	
-	private boolean isBetween(Date dateToCheck , Date dateStart , Date dateEnd) {
-		
-		return dateToCheck.after(dateStart) && dateToCheck.before(dateEnd);
-	}
-
 	
 	
 }

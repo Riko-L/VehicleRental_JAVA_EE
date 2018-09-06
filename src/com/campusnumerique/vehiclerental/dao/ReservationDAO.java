@@ -119,12 +119,14 @@ public class ReservationDAO extends DAO<Reservation> {
 		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 		ResultSet result = this.connection
 				.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-				.executeQuery("select * from reservation as res Join client as clt on  clt.id = res.id_client");
+				.executeQuery("select * from reservation as res JOIN client as clt on  clt.id = res.id_client JOIN kind on kind.id = res.kind");
 		while (result.next()) {
 			Reservation reservation = new Reservation();
 			reservation = new Reservation(result.getInt("id"), result.getString("reservationNumber"), result.getDate("dateStart"),
 					result.getDate("dateEnd"), result.getInt("kilometerNumber"), result.getDouble("rentalPrice"),
 					result.getInt("kind"));
+			
+			reservation.setKindLabel(result.getString("label"));
 			
 			Client client = new Client(result.getInt("id_client"), result.getString("login"), 
 					result.getString("firstName"), result.getString("lastName"), result.getString("mail"), 

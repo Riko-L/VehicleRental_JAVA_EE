@@ -17,6 +17,7 @@ public class Reservation implements Serializable{
 	private Double rentalPrice;
 	private int dayNumber;
 	private int kind;
+	private String kindLabel;
 	private Car car;
 	private UtilityCar utilityCar;
 	private MotorBike motorBike;
@@ -149,6 +150,16 @@ public class Reservation implements Serializable{
 
 	public void setKind(int kind) {
 		this.kind = kind;
+	}
+
+
+	public String getKindLabel() {
+		return kindLabel;
+	}
+
+
+	public void setKindLabel(String kindLabel) {
+		this.kindLabel = kindLabel;
 	}
 
 
