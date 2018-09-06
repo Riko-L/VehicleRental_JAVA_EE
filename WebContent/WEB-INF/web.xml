@@ -64,6 +64,14 @@
     <servlet-name>ReservationServlet</servlet-name>
     <url-pattern>/reservation</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>ReservationManageServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.reservation.ReservationManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationManageServlet</servlet-name>
+    <url-pattern>/reservationManage</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>SelectVehicleServlet</servlet-name>
     <servlet-class>com.campusnumerique.vehiclerental.servlet.selectvehicle.SelectVehicleServlet</servlet-class>
@@ -131,6 +139,10 @@
   <servlet>
     <servlet-name>reservation_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/reservation.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>manageReservation_VUE</servlet-name>
+    <jsp-file>/WEB-INF/pages/manageReservation.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>selectVehicle_VUE</servlet-name>

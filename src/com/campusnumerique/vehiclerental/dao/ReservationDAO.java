@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.campusnumerique.vehiclerental.entity.Client;
 import com.campusnumerique.vehiclerental.entity.Reservation;
 import com.campusnumerique.vehiclerental.utils.Constante;
 
@@ -73,8 +74,8 @@ public class ReservationDAO extends DAO<Reservation> {
 
 		try {
 			PreparedStatement stmt = this.connection
-					.prepareStatement("DELETE FROM reservation WHERE reservationNumber=?");
-			stmt.setString(1, obj.getReservationNumber());
+					.prepareStatement("DELETE FROM reservation WHERE id=?");
+			stmt.setInt(1, obj.getId());
 
 			int result = stmt.executeUpdate();
 
@@ -106,7 +107,7 @@ public class ReservationDAO extends DAO<Reservation> {
 				.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
 				.executeQuery("SELECT * FROM reservation WHERE id = '" + id + "'");
 		if (result.first())
-			reservation = new Reservation(result.getString("reservationNumber"), result.getDate("dateStart"),
+			reservation = new Reservation(id, result.getString("reservationNumber"), result.getDate("dateStart"),
 					result.getDate("dateEnd"), result.getInt("kilometerNumber"), result.getDouble("rentalPrice"),
 					result.getInt("kind"));
 
@@ -118,12 +119,20 @@ public class ReservationDAO extends DAO<Reservation> {
 		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 		ResultSet result = this.connection
 				.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-				.executeQuery("SELECT * FROM reservation");
+				.executeQuery("select * from reservation as res Join client as clt on  clt.id = res.id_client");
 		while (result.next()) {
 			Reservation reservation = new Reservation();
-			reservation = new Reservation(result.getString("reservationNumber"), result.getDate("dateStart"),
+			reservation = new Reservation(result.getInt("id"), result.getString("reservationNumber"), result.getDate("dateStart"),
 					result.getDate("dateEnd"), result.getInt("kilometerNumber"), result.getDouble("rentalPrice"),
 					result.getInt("kind"));
+			
+			Client client = new Client(result.getInt("id_client"), result.getString("login"), 
+					result.getString("firstName"), result.getString("lastName"), result.getString("mail"), 
+					result.getDate("birthDate"), result.getString("licenseNumber"), 
+					result.getDate("licenseDate"));
+			
+			reservation.setClient(client);
+			
 			reservations.add(reservation);
 		}
 
