@@ -71,6 +71,8 @@ $(function() {
 		} else if (document.getElementById("reservationTable") != undefined && document.getElementById("reservationTable").length != 0) {
 			$tr = $("#reservationTable > tbody > tr");
 		
+		}
+		
 		$tr.on("mouseenter mouseleave", function(event) {
 
 			if (event.type === 'mouseenter') {
@@ -105,7 +107,7 @@ $(function() {
 
 		});
 		
-		}
+		
 	}
 });
 
@@ -117,11 +119,13 @@ $(document).ready(function() {
 		if (document.getElementById("carTable") != undefined && document.getElementById("carTable").length != 0) {
 			var $firstElement = $("#carTable > tbody > tr").first();
 			var id = $firstElement.find('input[name=choiceCheck]').data('id');
+			$firstElement.find('input[name=choiceCheck]').prop("checked", true);
 			$firstElement.addClass('selectColor');
 			getCarsInfos(id);
 		} else if (document.getElementById("utilityCarTable") != undefined && document.getElementById("utilityCarTable").length != 0) {
 			var $firstElement = $("#utilityCarTable > tbody > tr").first();
 			var id = $firstElement.find('input[name=choiceCheck]').data('id');
+			$firstElement.find('input[name=choiceCheck]').prop("checked", true);
 			$firstElement.addClass('selectColor');
 			getUtilityCarsInfos(id);
 
@@ -129,13 +133,14 @@ $(document).ready(function() {
 		
 		var $firstElement = $("#motorBikeTable > tbody > tr").first();
 		var id = $firstElement.find('input[name=choiceCheck]').data('id');
+		$firstElement.find('input[name=choiceCheck]').prop("checked", true);
 		$firstElement.addClass('selectColor');
 		getMotorBikesInfos(id);
 		
 		} else if (document.getElementById("reservationTable") != undefined && document.getElementById("reservationTable").length != 0) {
-			
 			var $firstElement = $("#reservationTable > tbody > tr").first();
 			var id = $firstElement.find('input[name=choiceCheck]').data('id');
+			$firstElement.find('input[name=choiceCheck]').prop("checked", true);
 			$firstElement.addClass('selectColor');
 			getReservationInfos(id);
 		}

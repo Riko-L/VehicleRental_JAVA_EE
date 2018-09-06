@@ -38,7 +38,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-3 offset-md-3">
 					<button type="submit" value="submit"
-						class="form-control btn-primary" value="Select Vehicle">Confirm
+						class="form-control btn-primary">Confirm
 						my reservation</button>
 				</div>
 				<div class="form-group col-md-3">

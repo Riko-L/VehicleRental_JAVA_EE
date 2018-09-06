@@ -26,7 +26,7 @@
 					for (int i = 0; i < reservations.size(); ++i) {%>
 			<tr>
 				<td class="text-center"><%=reservations.get(i).getReservationNumber()%></td>
-				<td class="text-center"><%=reservations.get(i).getKind()%></td>
+				<td class="text-center"><%=reservations.get(i).getKindLabel()%></td>
    				<td class="text-center"><%=reservations.get(i).getClient().getFirstName()%></td>
    				<td class="text-center"><%=reservations.get(i).getClient().getLastName()%></td>
 				<td class="text-center"><%=reservations.get(i).getDateStart()%></td>
