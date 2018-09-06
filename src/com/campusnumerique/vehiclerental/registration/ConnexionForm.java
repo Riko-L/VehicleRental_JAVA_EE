@@ -1,5 +1,7 @@
 package com.campusnumerique.vehiclerental.registration;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.dao.ClientDAO;
 import com.campusnumerique.vehiclerental.entity.Client;
+import com.campusnumerique.vehiclerental.utils.HashPassword;
 
 public final class ConnexionForm {
 
@@ -27,8 +30,17 @@ public final class ConnexionForm {
 		
 		
 		if(request.getParameter("password") != null && request.getParameter("mail") != null ) {
-			String password = request.getParameter("password");
-			String mail = request.getParameter("mail");
+			String password = request.getParameter("password").toString().trim();
+			String mail = request.getParameter("mail").toString().trim();
+			
+			try {
+				password = HashPassword.securePassword(password);
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			} catch (NoSuchProviderException e1) {
+		
+				e1.printStackTrace();
+			}
 			
 			if(validateConnection(mail , password)) {
 				

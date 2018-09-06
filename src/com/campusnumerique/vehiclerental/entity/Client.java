@@ -3,9 +3,15 @@ package com.campusnumerique.vehiclerental.entity;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
+
+import com.campusnumerique.vehiclerental.utils.HashPassword;
 
 public class Client {
 
@@ -13,6 +19,8 @@ public class Client {
 	private String login="";
 	private String firstName="";
 	private String lastName="";
+	private String password;
+	private byte [] salt;
 	private String mail="";
 	private boolean isGuest=false;
 	private int age;
@@ -37,8 +45,6 @@ public class Client {
 		setBirthDate(birthDate);
 		setLicenseNumber(licenseNumber);
 		setLicenseDate(licenseDate);
-		
-		setAge(birthDate);
 		setReservations(new ArrayList<Reservation>());
 	}
 	
@@ -68,6 +74,25 @@ public class Client {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password)  {
+		
+		try {
+			this.password = HashPassword.securePassword(password);
+		} catch (NoSuchAlgorithmException e) {
+			
+			e.printStackTrace();
+		} catch (NoSuchProviderException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -115,16 +140,13 @@ public class Client {
 	}	
 	
 	public int getAge() {
-		return age;
-	}
-	public void setAge(Date birthDate) {
 		Calendar current = Calendar.getInstance();
 		Calendar birth = Calendar.getInstance();
 		birth.setTime(birthDate);
 		int age = current.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
-		
-		this.age = age;
+		return age;
 	}
+	
 
 	public JSONObject getInfos(){
 		JSONObject infos= new JSONObject();
@@ -140,6 +162,8 @@ public class Client {
 		infos.put("licenceDate", licenseDate);
 		return infos;
 	}
+	
+	
 	
 	public String toString(){
 		return getInfos().toString();
