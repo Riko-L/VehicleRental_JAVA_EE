@@ -26,14 +26,14 @@ public class Reservation implements Serializable{
 	public Reservation() {}
 	
 	
-	public Reservation(String reservationNumber, Date dateStart, Date dateEnd, int kilometerNumber, Double rentalPrice , int kind) {
+	public Reservation(int id, String reservationNumber, Date dateStart, Date dateEnd, int kilometerNumber, Double rentalPrice , int kind) {
 		this.reservationNumber = reservationNumber;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.kilometerNumber = kilometerNumber;
 		this.rentalPrice = rentalPrice;
 		this.kind = kind;
-		
+		this.id = id;
 	}
 
 

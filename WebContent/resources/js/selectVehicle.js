@@ -49,6 +49,10 @@ function getMotorBikesInfos(id) {
 	});
 }
 
+function getReservationInfos(id) {
+	$("#reservationId").val(id);
+}
+
 
 
 $(function() {
@@ -63,7 +67,9 @@ $(function() {
 
 		} else if (document.getElementById("motorBikeTable") != undefined && document.getElementById("motorBikeTable").length != 0) {
 			$tr = $("#motorBikeTable > tbody > tr");
-		}
+		
+		} else if (document.getElementById("reservationTable") != undefined && document.getElementById("reservationTable").length != 0) {
+			$tr = $("#reservationTable > tbody > tr");
 		
 		$tr.on("mouseenter mouseleave", function(event) {
 
@@ -91,11 +97,15 @@ $(function() {
 
 			} else if (document.getElementById("motorBikeTable") != undefined && document.getElementById("motorBikeTable").length != 0) {
 				getMotorBikesInfos(id);
-			}
+			
+			} else if (document.getElementById("reservationTable") != undefined && document.getElementById("reservationTable").length != 0) {
+				getReservationInfos(id);
+			} 
 			
 
 		});
-
+		
+		}
 	}
 });
 
@@ -121,6 +131,13 @@ $(document).ready(function() {
 		var id = $firstElement.find('input[name=choiceCheck]').data('id');
 		$firstElement.addClass('selectColor');
 		getMotorBikesInfos(id);
+		
+		} else if (document.getElementById("reservationTable") != undefined && document.getElementById("reservationTable").length != 0) {
+			
+			var $firstElement = $("#reservationTable > tbody > tr").first();
+			var id = $firstElement.find('input[name=choiceCheck]').data('id');
+			$firstElement.addClass('selectColor');
+			getReservationInfos(id);
 		}
 	}
 

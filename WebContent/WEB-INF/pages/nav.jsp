@@ -20,7 +20,7 @@
 				href="./clients">Client List</a></li>
 		</c:if>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
-			href="./reservationList">Reservation List</a></li>
+			href="./reservationManage">Reservation List</a></li>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./cars">Cars List</a></li>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
