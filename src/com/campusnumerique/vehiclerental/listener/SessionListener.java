@@ -53,7 +53,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
      * @see HttpSessionAttributeListener#attributeRemoved(HttpSessionBindingEvent)
      */
     public void attributeRemoved(HttpSessionBindingEvent arg0)  { 
-         // TODO Auto-generated method stub
+    	LOG.log(Level.INFO, "############### SESSION ATTRIBUTE REMOVED : " + arg0.getName());
     }
 
 	/**
