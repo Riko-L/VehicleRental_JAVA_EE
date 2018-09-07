@@ -46,7 +46,7 @@
 		<c:if test="${not clientBean.isGuest()}">
 			<button class="btn btn-info nav-item">Profil
 				${clientBean.getLogin()}</button>
-			<form action="/logout" method="POST">
+			<form action="./logout" method="POST">
 				<button type="submit" class="btn btn-danger nav-item ml-3">Logout</button>
 			</form>
 		</c:if>
@@ -68,7 +68,7 @@
 				<c:if test="${not empty sessionScope.errorLogin}">
 					<span class="text-danger text-center">${sessionScope.errorLogin}</span>
 				</c:if>
-				<form action="/connection" method="POST">
+				<form action="./connection" method="POST">
 					<div class="modal-body">
 						<div class="input-group">
 							<div class="input-group-prepend">
@@ -112,7 +112,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="/register" method="POST">
+				<form action="./register" method="POST">
 					<div class="modal-body">
 						<div class="form-row">
 							<div class="form-group col-md-6">

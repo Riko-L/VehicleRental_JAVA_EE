@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/pages/header.jsp">
-	<jsp:param name="title" value="MotorBikes List" />
+	<jsp:param name="title" value="Utility Cars List" />
 </jsp:include>
 <body>
 	<jsp:include page="/WEB-INF/pages/nav.jsp" />

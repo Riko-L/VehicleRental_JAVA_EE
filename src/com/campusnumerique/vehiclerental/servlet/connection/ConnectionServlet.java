@@ -61,7 +61,7 @@ public class ConnectionServlet extends HttpServlet {
 			if (form.getErrors().isEmpty()) {
 				session.setAttribute("clientBean", clientBeanOK);
 				response.setStatus(HttpServletResponse.SC_OK);
-				response.sendRedirect("/home");
+				response.sendRedirect("./home");
 				return;
 			} else {
 				session.setAttribute("clientBean", clientBean);
@@ -82,7 +82,7 @@ public class ConnectionServlet extends HttpServlet {
 		} else {
 			clientBean = (ClientBean) session.getAttribute("clientBean");
 			response.setStatus(HttpServletResponse.SC_OK);
-			response.sendRedirect("/home");
+			response.sendRedirect("./home");
 		}
 
 	}

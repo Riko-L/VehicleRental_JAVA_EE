@@ -54,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
 			if(registerForm.getErrors().isEmpty()) {
 				session.setAttribute("clientBean", clientBean);
 				response.setStatus(HttpServletResponse.SC_OK);
-				response.sendRedirect("/home");
+				response.sendRedirect("./home");
 				
 			}else {
 				session.setAttribute("clientBean", clientBean);

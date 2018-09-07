@@ -15,7 +15,7 @@
 		<h2 class="text-center text-primary">Hello ${clientBean.getLogin()}.
 			You can now select your vehicle</h2>
 		<br />
-		<form action="/validation" method="POST">
+		<form action="./validation" method="POST">
 		
 			<c:if test="${not empty requestScope.cars}">
 				<jsp:include page="/WEB-INF/pages/tableCars.jsp"></jsp:include>
@@ -42,7 +42,7 @@
 						my reservation</button>
 				</div>
 				<div class="form-group col-md-3">
-					<a href="/reservation"
+					<a href="./reservation"
 						class="form-control btn-secondary nounderline text-center"
 						id="returnBTN" role="button">Return</a>
 				</div>

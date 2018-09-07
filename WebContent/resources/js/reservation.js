@@ -44,7 +44,7 @@ $(document).ready(function() {
 		theme : "bootstrap4",
 		placeholder : 'Select an option',
 		ajax : {
-			url : "/reservationajax",
+			url : "./reservationajax",
 			dataType : 'json',
 			type : "GET",
 			data : function() {
@@ -77,7 +77,7 @@ $(document).ready(function() {
 		theme : "bootstrap4",
 		placeholder : 'Select a customer',
 		ajax : {
-			url : "/clientajax",
+			url : "./clientajax",
 			dataType : 'json',
 			type : "GET",
 			data : function() {

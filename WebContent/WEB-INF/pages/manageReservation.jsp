@@ -12,7 +12,7 @@
 	<body>
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
 	
-		<div class="container" id="content">
+		<div class="container " id="content">
 			<h2 class="text-center text-primary">Reservations Manager</h2>
 			<br/>
 			
@@ -41,6 +41,7 @@
 				</div>
 			
 		</div>
+		
 		<jsp:include page="/WEB-INF/pages/footer.jsp" />
 	</body>
 </html>

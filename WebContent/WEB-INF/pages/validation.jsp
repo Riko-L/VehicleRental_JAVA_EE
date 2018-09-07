@@ -16,7 +16,7 @@
 	</jsp:include>
 	<body>
 		<jsp:include page="/WEB-INF/pages/nav.jsp" />
-		<div id="reservationvalidate">
+		<div class="scroll">
 		<div class="container" id="content">
 			<h2 class="text-center text-primary">Your reservation <c:if test="${recordOk}">is validate </c:if><c:if test="${!recordOk}">is not validate</c:if> </h2><br/>
 			<p class="font-weight-bold text-uppercase">Identity</p>
