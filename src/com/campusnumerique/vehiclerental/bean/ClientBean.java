@@ -23,6 +23,7 @@ public class ClientBean implements Serializable{
 	public ClientBean(){
 		setLogin("Guest");
 		setGuest(true);
+		setRole("customer");
 	}
 
 	public ClientBean(String aLogin){
