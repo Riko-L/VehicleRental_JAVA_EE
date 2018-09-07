@@ -15,6 +15,7 @@
 }
 .selectColor{
 	background-color: #0080ff!important;
+	color: white;
 	
 }
 
@@ -22,7 +23,7 @@
 	z-index:1151 !important;
 	}
 .hoverColor{
-	background-color: #869ba8!important;
+	background-color: #ffc107!important;
 }
 .nounderline{
    text-decoration-line: none !important;

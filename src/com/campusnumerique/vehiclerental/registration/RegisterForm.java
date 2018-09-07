@@ -14,6 +14,7 @@ import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.bean.RegisterBean;
 import com.campusnumerique.vehiclerental.dao.ClientDAO;
 import com.campusnumerique.vehiclerental.entity.Client;
+import com.campusnumerique.vehiclerental.exception.DuplicateMailException;
 
 public class RegisterForm {
 
@@ -196,9 +197,17 @@ public class RegisterForm {
 
 		if (getErrors().isEmpty()) {
 
-			clientDAO.create(client);
+			boolean result = false;
+			try {
+				result = clientDAO.create(client);
+			} catch (DuplicateMailException e) {
+				setErrors("email", "Email is already exist");
+				e.printStackTrace();
+			}
 
-			clientBean = new ClientBean(client.getLogin());
+			if(result) {
+				clientBean = new ClientBean(client.getLogin());
+			}
 
 		} 
 
