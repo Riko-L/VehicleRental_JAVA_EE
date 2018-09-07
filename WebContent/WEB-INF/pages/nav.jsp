@@ -16,7 +16,7 @@
 	</div>
 	</a>
 	<ul class="nav nav-pills">
-		<c:if test="${not clientBean.isGuest()}">
+		<c:if test="${clientBean.getRole() == 'agent'}">
 			<li class="nav-item"><a class="btn btn-outline-warning"
 				href="./clients">Client List</a></li>
 		</c:if>

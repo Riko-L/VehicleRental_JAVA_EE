@@ -42,8 +42,6 @@ public class ReservationManageServlet extends HttpServlet {
 		RequestDispatcher rdReservationManage = request.getServletContext().getNamedDispatcher("manageReservation_VUE");
 		Reservation reservation = null;
 		
-		//if (request.getAttribute("reservation") != null) {
-		
 			try {
 				List<Reservation> reservations = reservationDAO.findAll();
 				request.setAttribute("reservations", reservations);
@@ -55,14 +53,7 @@ public class ReservationManageServlet extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 				e.printStackTrace();
 			}
-		
-		
-	
-	
-	
 	}
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-	//}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -74,8 +65,6 @@ public class ReservationManageServlet extends HttpServlet {
 		}
 		
 		doGet(request, response);
-		
-		
 	}
 
 	/**
@@ -105,12 +94,6 @@ public class ReservationManageServlet extends HttpServlet {
 			}
 			
 			reservationDAO.delete(reservation);
-			
-			//response.sendRedirect("/home");
-			
 		}
-		
-		
 	}
-
 }
