@@ -72,7 +72,7 @@
 					<div class="modal-body">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">@</span>
+								<span class="labelSize input-group-text" id="basic-addon1">Mail</span>
 							</div>
 							<input type="email" class="form-control" placeholder="Email"
 								aria-label="Email" aria-describedby="basic-addon1" name="mail">
@@ -81,7 +81,7 @@
 					<div class="modal-body">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">Pwd</span>
+								<span class="labelSize input-group-text" id="basic-addon1">Password</span>
 							</div>
 							<input type="password" class="form-control"
 								placeholder="Password" aria-label="Password"

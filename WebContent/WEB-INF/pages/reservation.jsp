@@ -29,7 +29,7 @@
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text">From</div>
+					          <div class="labelSize input-group-text">From</div>
 					        </div>
 							<input type="text" id="dateStart" class="form-control" name="dateStart" placeholder="Date" value="${dateStart}">
 						</div>
@@ -37,7 +37,7 @@
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text">To</div>
+					          <div class="labelSize input-group-text">To</div>
 					        </div>
 							<input type="text" id="dateEnd" class="form-control" name="dateEnd" placeholder="Date" value="${dateEnd}">
 						</div>
@@ -45,7 +45,7 @@
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text">Days</div>
+					          <div class="labelSize input-group-text">Days</div>
 					        </div>
 							<input type="text" id="dayNumber" class="form-control" name="dayNumber" placeholder="Days of booking" value="${reservation.dayNumber}" style="background-color:white;" readonly="readonly">
 								
@@ -57,7 +57,7 @@
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text">Customer</div>
+					          <div class="labelSize input-group-text">Customer</div>
 					        </div>
 							<select class="form-control" id="customerId" name="customerId"></select><br/> 
 						</div>
@@ -66,7 +66,7 @@
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text">Kind</div>
+					          <div class="labelSize input-group-text">Kind</div>
 					        </div>
 							<select class="form-control" id="kind" name="kind"></select><br/> 
 						</div>
@@ -74,9 +74,9 @@
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text">Km</div>
+					          <div class="labelSize input-group-text">Km</div>
 					        </div>
-							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="estimate during the rental period" value="${reservation.kilometerNumber}"><br/>
+							<input type="text" id="kilometerNumber" class="form-control" name="kilometerNumber" placeholder="Estimate during the rental period" value="${reservation.kilometerNumber}"><br/>
 						</div>
 					</div>
 				</div>
