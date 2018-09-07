@@ -20,8 +20,10 @@
 			<li class="nav-item"><a class="btn btn-outline-warning"
 				href="./clients">Client List</a></li>
 		</c:if>
+		<c:if test="${clientBean.getRole() == 'agent'}">
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./reservationManage">Reservation List</a></li>
+		</c:if>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
 			href="./cars">Cars List</a></li>
 		<li class="nav-item"><a class="btn btn-outline-warning ml-3"
@@ -121,11 +123,10 @@
 									</div>
 									<input type="text" class="form-control" name="firstname"
 										value="${registerBean.firstName}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('firstname')}">
-										<div class="text-danger">${errorRegister.getString('firstname')}</div>
-									</c:if>
 								</div>
+								<c:if test="${ not empty errorRegister and errorRegister.has('firstname')}">
+									<span class="text-danger">${errorRegister.getString('firstname')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-6">
 								<div class="input-group">
@@ -134,11 +135,10 @@
 									</div>
 									<input type="text" class="form-control" name="lastname"
 										value="${registerBean.lastName}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('lastname')}">
-										<div class="text-danger">${errorRegister.getString('lastname')}</div>
-									</c:if>
 								</div>
+								<c:if test="${ not empty errorRegister and errorRegister.has('lastname')}">
+									<span class="text-danger">${errorRegister.getString('lastname')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-12">
 								<div class="input-group">
@@ -146,11 +146,10 @@
 										<div class="input-group-text">Email</div>
 									</div>
 									<input type="email" class="form-control" name="email" value="${registerBean.mail}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('email')}">
-										<div class="text-danger">${errorRegister.getString('email')}</div>
-									</c:if>
 								</div>
+								<c:if test="${ not empty errorRegister and errorRegister.has('email')}">
+									<span class="text-danger">${errorRegister.getString('email')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-12">
 								<div class="input-group">
@@ -161,11 +160,11 @@
 									<input id="birthdate" type="text"
 										class="form-control datepickerRegister" name="birthdate"
 										value="${birthDate}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('birthdate')}">
-										<div class="text-danger">${errorRegister.getString('birthdate')}</div>
-									</c:if>
 								</div>
+								<c:if
+									test="${ not empty errorRegister and errorRegister.has('birthdate')}">
+									<span class="text-danger">${errorRegister.getString('birthdate')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-6">
 								<div class="input-group">
@@ -174,11 +173,11 @@
 									</div>
 									<input type="text" class="form-control" name="licensenumber"
 										value="${registerBean.licenseNumber}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('licensenumber')}">
-										<div class="text-danger">${errorRegister.getString('licensenumber')}</div>
-									</c:if>
 								</div>
+								<c:if
+									test="${ not empty errorRegister and errorRegister.has('licensenumber')}">
+									<span class="text-danger">${errorRegister.getString('licensenumber')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-6">
 								<div class="input-group">
@@ -189,11 +188,11 @@
 									<input type="text" id="licensedate"
 										class="form-control datepickerRegister" name="licensedate"
 										value="${licensedate}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('licensedate')}">
-										<div class="text-danger">${errorRegister.getString('licensedate')}</div>
-									</c:if>
 								</div>
+								<c:if
+									test="${ not empty errorRegister and errorRegister.has('licensedate')}">
+									<span class="text-danger">${errorRegister.getString('licensedate')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-12">
 								<div class="input-group">
@@ -202,11 +201,11 @@
 									</div>
 									<input type="text" class="form-control" name="login"
 										placeholder="Choose a login" value="${registerBean.login}">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('login')}">
-										<div class="text-danger">${errorRegister.getString('login')}</div>
-									</c:if>
 								</div>
+								<c:if
+									test="${ not empty errorRegister and errorRegister.has('login')}">
+									<span class="text-danger">${errorRegister.getString('login')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-12">
 								<div class="input-group">
@@ -215,11 +214,11 @@
 									</div>
 									<input type="password" class="form-control" name="password"
 										placeholder="3 characters at least" value="">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('password')}">
-										<div class="text-danger">${errorRegister.getString('password')}</div>
-									</c:if>
 								</div>
+								<c:if
+									test="${ not empty errorRegister and errorRegister.has('password')}">
+									<span class="text-danger">${errorRegister.getString('password')}</span>
+								</c:if>
 							</div>
 							<div class="form-group col-md-12">
 								<div class="input-group">
@@ -228,11 +227,11 @@
 									</div>
 									<input type="password" class="form-control"
 										name="password_confirm" placeholder="Re-type" value="">
-									<c:if
-										test="${ not empty errorRegister and errorRegister.has('password_confirm')}">
-										<div class="text-danger">${errorRegister.getString('password_confirm')}</div>
-									</c:if>
 								</div>
+								<c:if
+									test="${ not empty errorRegister and errorRegister.has('password_confirm')}">
+									<span class="text-danger">${errorRegister.getString('password_confirm')}</span>
+								</c:if>
 							</div>
 						</div>
 					</div>

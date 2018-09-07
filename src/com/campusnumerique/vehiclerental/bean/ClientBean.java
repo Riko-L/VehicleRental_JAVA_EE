@@ -18,6 +18,7 @@ public class ClientBean implements Serializable{
 	private Client client;
 	private ClientDAO clientDAO;
 	private boolean isGuest=false;
+	private String role; 
 
 	public ClientBean(){
 		setLogin("Guest");
@@ -79,6 +80,14 @@ public class ClientBean implements Serializable{
 		this.isGuest = isGuest;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 	private void initialize() {
 		try {
 			client = clientDAO.findByLogin(getLogin());
@@ -90,6 +99,7 @@ public class ClientBean implements Serializable{
 		this.setFirstName(client.getFirstName());
 		this.setLastName(client.getLastName());
 		this.setMail(client.getMail());
+		this.setRole(client.getRole());
 		return;
 	}
 
@@ -103,6 +113,7 @@ public class ClientBean implements Serializable{
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 
@@ -139,14 +150,23 @@ public class ClientBean implements Serializable{
 				return false;
 		} else if (!mail.equals(other.mail))
 			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "ClientBean [id=" + id + ", login=" + login + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", mail=" + mail + ", isGuest=" + isGuest + "]";
+				+ ", mail=" + mail + ", isGuest=" + isGuest + ", role=" + role + "]";
 	}
+
+	
+
+	
 
 	
 	

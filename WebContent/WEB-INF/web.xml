@@ -129,6 +129,14 @@
     <url-pattern>/reservationajax</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>ClientAjaxServlet</servlet-name>
+    <servlet-class>com.campusnumerique.vehiclerental.servlet.client.ClientAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientAjaxServlet</servlet-name>
+    <url-pattern>/clientajax</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>clients_VUE</servlet-name>
     <jsp-file>/WEB-INF/pages/clients.jsp</jsp-file>
   </servlet>
@@ -171,7 +179,6 @@
   <welcome-file-list>
     <welcome-file>home</welcome-file>
   </welcome-file-list>
-  
   <filter>
   <filter-name>LogFilter</filter-name>
   <filter-class>com.campusnumerique.vehiclerental.filters.LogFilter</filter-class>
@@ -180,5 +187,4 @@
   <filter-name>LogFilter</filter-name>
   <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
 </web-app>
