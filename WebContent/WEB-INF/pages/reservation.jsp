@@ -53,17 +53,21 @@
 					</div>
 				</div>
 				<div class="form-row">
+<!-- 				/**-- Mettre une condition Visible seulement pour l'agent--**/ -->
+					<div class="form-group col-md-4">
+						<div class="input-group">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text">Customer</div>
+					        </div>
+							<select class="form-control" id="customer" name="customer"></select><br/> 
+						</div>
+					</div>
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Kind</div>
 					        </div>
-							<select class="form-control" id="kind" name="kind">
-<%-- 								<option value="${ Constante.KIND_NO_CHOICE }" <c:if test="${reservation.kind == Constante.KIND_NO_CHOICE }"> selected </c:if>>Choose...</option> --%>
-<%-- 								<option value="${ Constante.KIND_TOURISM_CAR }" <c:if test="${reservation.kind == Constante.KIND_TOURISM_CAR }"> selected </c:if>>Tourism Car</option> --%>
-<%-- 	      						<option value="${ Constante.KIND_UTILITY_CAR }" <c:if test="${reservation.kind == Constante.KIND_UTILITY_CAR }"> selected </c:if>>Utility Car</option> --%>
-<%-- 	      						<option value="${ Constante.KIND_MOTORBIKE }" <c:if test="${reservation.kind == Constante.KIND_MOTORBIKE }"> selected </c:if>>Motorbike</option> --%>
-							</select><br/> 
+							<select class="form-control" id="kind" name="kind"></select><br/> 
 						</div>
 					</div>
 					<div class="form-group col-md-4">

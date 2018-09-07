@@ -52,7 +52,7 @@ public class RegisterForm {
 					}
 
 				} else {
-					setErrors("firstname", "firstname is required ");
+					setErrors("firstname", "Firstname is required ");
 				}
 				}
 				
@@ -67,7 +67,7 @@ public class RegisterForm {
 					}
 
 				} else {
-					setErrors("lastname", "lastname is required ");
+					setErrors("lastname", "Lastname is required ");
 				}
 				}
 
@@ -83,7 +83,7 @@ public class RegisterForm {
 						setErrors("email", "Email not valid");
 					}
 				} else {
-					setErrors("email", "email is required ");
+					setErrors("email", "Email is required ");
 
 				}
 				}
@@ -99,12 +99,12 @@ public class RegisterForm {
 						registerBean.setBirthDate(birthDate);
 						
 					} else {
-						setErrors("birthdate", "You must have 18 old");
+						setErrors("birthdate", "You must have 18 years old");
 
 					}
 
 				} else {
-					setErrors("birthdate", "birthdate is required ");
+					setErrors("birthdate", "Birthdate is required ");
 				}
 				}
 				
@@ -117,7 +117,7 @@ public class RegisterForm {
 						registerBean.setLicenseNumber(licenseNumber);
 						
 					} else {
-						setErrors("licensenumber", "License Number not correct");
+						setErrors("licensenumber", "License Number is not correct");
 
 					}
 
@@ -149,7 +149,7 @@ public class RegisterForm {
 					}
 
 				} else {
-					setErrors("login", "login is required ");
+					setErrors("login", "Login is required ");
 				}
 				}
 				
@@ -161,11 +161,11 @@ public class RegisterForm {
 						password = request.getParameter(param.toString()).trim();
 
 					} else {
-						setErrors("password", "password length must be in 3 to 25 caracters");
+						setErrors("password", "Password length must be in 3 to 25 caracters");
 					}
 
 				} else {
-					setErrors("password", "password is required ");
+					setErrors("password", "Password is required ");
 				}
 				}
 				
@@ -179,15 +179,15 @@ public class RegisterForm {
 							client.setPassword(password);
 
 						} else {
-							setErrors("password_confirm", "password don't match");
+							setErrors("password_confirm", "Password don't match");
 						}
 
 					} else {
-						setErrors("password_confirm", "password length must be in 3 to 25 caracters");
+						setErrors("password_confirm", "Password length must be in 3 to 25 caracters");
 					}
 
 				} else {
-					setErrors("password_confirm", "password confirm is required ");
+					setErrors("password_confirm", "Password confirm is required ");
 				}
 				}
 			}
