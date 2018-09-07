@@ -59,7 +59,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text">Customer</div>
 					        </div>
-							<select class="form-control" id="customer" name="customer"></select><br/> 
+							<select class="form-control" id="customerId" name="customerId"></select><br/> 
 						</div>
 					</div>
 					</c:if>

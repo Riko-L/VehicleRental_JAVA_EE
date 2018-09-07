@@ -118,7 +118,7 @@
 							<div class="form-group col-md-6">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">Firstname</div>
+										<div class="labelSize input-group-text">Firstname</div>
 									</div>
 									<input type="text" class="form-control" name="firstname"
 										value="${registerBean.firstName}">
@@ -130,7 +130,7 @@
 							<div class="form-group col-md-6">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">LastName</div>
+										<div class="labelSize input-group-text">LastName</div>
 									</div>
 									<input type="text" class="form-control" name="lastname"
 										value="${registerBean.lastName}">
@@ -142,7 +142,7 @@
 							<div class="form-group col-md-12">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">Email</div>
+										<div class="labelSize input-group-text">Email</div>
 									</div>
 									<input type="email" class="form-control" name="email" value="${registerBean.mail}">
 								</div>
@@ -153,7 +153,7 @@
 							<div class="form-group col-md-12">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">BirthDate</div>
+										<div class="labelSize input-group-text">BirthDate</div>
 									</div>
 									<fmt:formatDate value="${registerBean.birthDate}" var="birthDate" type="date" pattern="dd-MM-yyyy" />
 									<input id="birthdate" type="text"
@@ -168,7 +168,7 @@
 							<div class="form-group col-md-6">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">License n°</div>
+										<div class="labelSize input-group-text">License n°</div>
 									</div>
 									<input type="text" class="form-control" name="licensenumber"
 										value="${registerBean.licenseNumber}">
@@ -181,7 +181,7 @@
 							<div class="form-group col-md-6">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">Date</div>
+										<div class="labelSize input-group-text">Date</div>
 									</div>
 									<fmt:formatDate value="${registerBean.licenseDate}" var="licensedate" type="date" pattern="dd-MM-yyyy" />
 									<input type="text" id="licensedate"
@@ -196,7 +196,7 @@
 							<div class="form-group col-md-12">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">Login</div>
+										<div class="labelSize input-group-text">Login</div>
 									</div>
 									<input type="text" class="form-control" name="login"
 										placeholder="Choose a login" value="${registerBean.login}">
@@ -209,7 +209,7 @@
 							<div class="form-group col-md-12">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">Password</div>
+										<div class="labelSize input-group-text">Password</div>
 									</div>
 									<input type="password" class="form-control" name="password"
 										placeholder="3 characters at least" value="">
@@ -222,7 +222,7 @@
 							<div class="form-group col-md-12">
 								<div class="input-group">
 									<div class="input-group-prepend">
-										<div class="input-group-text">Password Confirm</div>
+										<div class="labelSize input-group-text">Confirm</div>
 									</div>
 									<input type="password" class="form-control"
 										name="password_confirm" placeholder="Re-type" value="">
