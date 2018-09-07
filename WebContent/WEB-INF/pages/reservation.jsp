@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="form-row">
-<!-- 				/**-- Mettre une condition Visible seulement pour l'agent--**/ -->
+					<c:if test="${clientBean.getRole() == 'agent'}">
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
@@ -62,6 +62,7 @@
 							<select class="form-control" id="customer" name="customer"></select><br/> 
 						</div>
 					</div>
+					</c:if>
 					<div class="form-group col-md-4">
 						<div class="input-group">
 					        <div class="input-group-prepend">
