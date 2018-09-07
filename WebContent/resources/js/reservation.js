@@ -69,3 +69,36 @@ $(document).ready(function() {
 	});
 
 });
+
+$(document).ready(function() {
+
+	$('#customer').select2({
+		minimumResultsForSearch : -1,
+		theme : "bootstrap4",
+		placeholder : 'Select a customer',
+		ajax : {
+			url : "/clientajax",
+			dataType : 'json',
+			type : "GET",
+			data : function() {
+				return {
+					action : "getClient"
+				};
+			},
+			processResults : function(data) {
+				var res = data.results.map(function(item) {
+
+					return {
+						id : item.id,
+						text : item.firstName +' '+ item.lastName
+					};
+				});
+				return {
+					results : res
+				};
+			}
+		},
+
+	});
+
+});

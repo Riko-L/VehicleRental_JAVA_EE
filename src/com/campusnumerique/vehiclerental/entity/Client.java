@@ -20,19 +20,20 @@ public class Client {
 	private String firstName="";
 	private String lastName="";
 	private String password;
-	private byte [] salt;
 	private String mail="";
 	private boolean isGuest=false;
 	private int age;
 	private Date birthDate;
 	private String licenseNumber;
 	private Date licenseDate;
+	private String role;
 	private List<Reservation> reservations = null;
 	
 	
 	public Client(){
 		setLogin("guest");
 		setGuest(true);
+		setRole("customer");
 	}
 	
 	public Client(int id, String login, String firstName, String lastName, String mail, Date birthDate, String licenseNumber, Date licenseDate){
@@ -45,6 +46,7 @@ public class Client {
 		setBirthDate(birthDate);
 		setLicenseNumber(licenseNumber);
 		setLicenseDate(licenseDate);
+		setRole("customer");
 		setReservations(new ArrayList<Reservation>());
 	}
 	
@@ -160,6 +162,7 @@ public class Client {
 		infos.put("age", age);
 		infos.put("licenseNumber", licenseNumber);
 		infos.put("licenceDate", licenseDate);
+		infos.put("role", role);
 		return infos;
 	}
 	
@@ -167,5 +170,13 @@ public class Client {
 	
 	public String toString(){
 		return getInfos().toString();
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

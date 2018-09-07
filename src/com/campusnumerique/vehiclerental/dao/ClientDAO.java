@@ -16,8 +16,8 @@ public class ClientDAO extends DAO<Client>{
 	@Override
 	public boolean create(Client obj) {
 		boolean result = false;
-		String sql = "INSERT INTO client (login,firstName,lastName,mail,birthDate,age,licenseNumber,licenseDate,password)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO client (login,firstName,lastName,mail,birthDate,age,licenseNumber,licenseDate,password,role)"
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?);";
 		
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
@@ -31,6 +31,7 @@ public class ClientDAO extends DAO<Client>{
 			stmt.setString(7, obj.getLicenseNumber());
 			stmt.setDate(8, new java.sql.Date(obj.getLicenseDate().getTime() + Constante.DAY));
 			stmt.setString(9, obj.getPassword());
+			stmt.setString(10, obj.getRole());
 			
 			result = stmt.execute();
 			
@@ -98,7 +99,8 @@ public class ClientDAO extends DAO<Client>{
 					result.getDate("birthDate"),
 					result.getString("licenseNumber"),
 					result.getDate("licenseDate")
-					);          
+					);
+			client.setRole(result.getString("role"));
 		
 		return client;
 	}
@@ -121,7 +123,8 @@ public class ClientDAO extends DAO<Client>{
 					result.getDate("birthDate"),
 					result.getString("licenseNumber"),
 					result.getDate("licenseDate")
-					);          
+					);
+			client.setRole(result.getString("role"));
 		
 		return client;
 	}
@@ -143,7 +146,8 @@ public class ClientDAO extends DAO<Client>{
 					result.getDate("birthDate"),
 					result.getString("licenseNumber"),
 					result.getDate("licenseDate")
-					);          
+					);  
+		client.setRole(result.getString("role"));
 		
 		return client;
 	}
@@ -167,7 +171,8 @@ public class ClientDAO extends DAO<Client>{
 					result.getDate("birthDate"),
 					result.getString("licenseNumber"),
 					result.getDate("licenseDate")
-					);    
+					); 
+			client.setRole(result.getString("role"));
 			clients.add(client);
 		}
 		return clients;
@@ -192,7 +197,8 @@ public class ClientDAO extends DAO<Client>{
 						result.getDate("birthDate"),
 						result.getString("licenseNumber"),
 						result.getDate("licenseDate")
-						);     
+						); 
+				client.setRole(result.getString("role"));
 				clients.put(client.getInfos());
 			}
 		} catch (SQLException e) {
