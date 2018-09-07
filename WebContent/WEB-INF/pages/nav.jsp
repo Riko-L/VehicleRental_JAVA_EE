@@ -99,7 +99,6 @@
 		</div>
 	</div>
 
-
 	<!-- 	Modal d'Inscription -->
 	<div class="modal fade" id="registrationModal" tabindex="-1"
 		role="dialog" aria-labelledby="registrationModalLabel"
