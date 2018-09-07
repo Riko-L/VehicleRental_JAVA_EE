@@ -14,9 +14,10 @@
 	
 	<div class="row m-2">
 		<div class="col-md-6 pb-1">
-			<br/><span class="text-white font-weight-bold">Developped by</span><br/>
-			<span class="text-white font-weight-bold">Eric LE DEVEDEC</span><br/>
-			<span class="text-white font-weight-bold">Alexandre BIAGI</span>
+			<br/>
+			<span class="text-warning font-weight-bold">Developped by</span><br/>
+			<span class="text-warning font-weight-bold">Eric LE DEVEDEC</span><br/>
+			<span class="text-warning font-weight-bold">Alexandre BIAGI</span>
 		</div>
 		<div class="col-md-6">
 			<img src="${pageContext.servletContext.contextPath}/resources/images/challenger-srt-392.png"/>

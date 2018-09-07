@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.campusnumerique.vehiclerental.exception.DuplicateMailException;
+
 
 public abstract class DAO<T> {
   protected Connection connection = null;
@@ -41,7 +43,7 @@ public abstract class DAO<T> {
   * @param obj
   * @return boolean 
   */
-  public abstract boolean create(T obj);
+  public abstract boolean create(T obj) throws DuplicateMailException ;
 
   /**
   * Méthode pour effacer

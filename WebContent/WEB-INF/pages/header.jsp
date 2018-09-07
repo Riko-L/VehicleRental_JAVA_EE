@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- JQuery UI 1.12.1 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 
 <!-- Bootstrap 4.1.3 -->
 <link rel="stylesheet"

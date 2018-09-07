@@ -7,13 +7,14 @@
 
 
 <nav class="navbar navbar-light " id="header">
+	<a href="./home">
 	<div class="navbar-brand">
 		<img
 			src="${pageContext.servletContext.contextPath}/resources/images/challenger-srt-392.png" />
 		<img
 			src="${pageContext.servletContext.contextPath}/resources/images/SIXT.png" />
 	</div>
-
+	</a>
 	<ul class="nav nav-pills">
 		<c:if test="${not clientBean.isGuest()}">
 			<li class="nav-item"><a class="btn btn-outline-warning"

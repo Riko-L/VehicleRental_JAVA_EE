@@ -9,37 +9,38 @@ import java.util.List;
 import org.json.JSONArray;
 
 import com.campusnumerique.vehiclerental.entity.Client;
+import com.campusnumerique.vehiclerental.exception.DuplicateMailException;
 import com.campusnumerique.vehiclerental.utils.Constante;
 
 public class ClientDAO extends DAO<Client>{
 
 	@Override
-	public boolean create(Client obj) {
+	public boolean create(Client obj) throws DuplicateMailException {
 		boolean result = false;
 		String sql = "INSERT INTO client (login,firstName,lastName,mail,birthDate,age,licenseNumber,licenseDate,password,role)"
 				+ " VALUES (?,?,?,?,?,?,?,?,?,?);";
-		
-		try {
-			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			
-			stmt.setString(1, obj.getLogin());
-			stmt.setString(2, obj.getFirstName());
-			stmt.setString(3, obj.getLastName());
-			stmt.setString(4, obj.getMail());
-			stmt.setDate(5, new java.sql.Date(obj.getBirthDate().getTime() + Constante.DAY));
-			stmt.setInt(6, obj.getAge());
-			stmt.setString(7, obj.getLicenseNumber());
-			stmt.setDate(8, new java.sql.Date(obj.getLicenseDate().getTime() + Constante.DAY));
-			stmt.setString(9, obj.getPassword());
-			stmt.setString(10, obj.getRole());
-			
-			result = stmt.execute();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-			
+	
+			PreparedStatement stmt;
+			try {
+				stmt = this.connection.prepareStatement(sql);
+				stmt.setString(1, obj.getLogin());
+				stmt.setString(2, obj.getFirstName());
+				stmt.setString(3, obj.getLastName());
+				stmt.setString(4, obj.getMail());
+				stmt.setDate(5, new java.sql.Date(obj.getBirthDate().getTime() + Constante.DAY));
+				stmt.setInt(6, obj.getAge());
+				stmt.setString(7, obj.getLicenseNumber());
+				stmt.setDate(8, new java.sql.Date(obj.getLicenseDate().getTime() + Constante.DAY));
+				stmt.setString(9, obj.getPassword());
+        stmt.setString(10, obj.getRole());
+				stmt.execute();
+				result = true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				result = false;
+				throw new DuplicateMailException(e.getMessage());
+				
+			}
 		return result;
 	}
 
