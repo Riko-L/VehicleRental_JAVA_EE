@@ -72,7 +72,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-	$('#customer').select2({
+	$('#customerId').select2({
 		minimumResultsForSearch : -1,
 		theme : "bootstrap4",
 		placeholder : 'Select a customer',
@@ -91,6 +91,7 @@ $(document).ready(function() {
 					return {
 						id : item.id,
 						text : item.firstName +' '+ item.lastName
+						
 					};
 				});
 				return {

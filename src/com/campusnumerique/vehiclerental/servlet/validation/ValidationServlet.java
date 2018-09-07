@@ -62,41 +62,50 @@ public class ValidationServlet extends HttpServlet {
 		UtilityCar utilityCar;
 		MotorBike motorBike;
 		HttpSession session = request.getSession();
-		clientBean = (ClientBean)session.getAttribute("clientBean");
+		clientBean = (ClientBean) session.getAttribute("clientBean");
 
 		if (!session.isNew() && session != null) {
 			if (session.getAttribute("reservation") != null) {
 				reservation = (Reservation) session.getAttribute("reservation");
-				
-				try {
-					client = clientDAO.findByLogin(clientBean.getLogin());
-				} catch (SQLException e) {
-					
-					e.printStackTrace();
+
+				if (session.getAttribute("customerId") != null && clientBean.getRole().equals("agent")) {
+					int customerId = Integer.parseInt((String) session.getAttribute("customerId"));
+					try {
+						client = clientDAO.find(customerId);
+					} catch (SQLException e) {
+
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						client = clientDAO.findByLogin(clientBean.getLogin());
+					} catch (SQLException e) {
+
+						e.printStackTrace();
+					}
 				}
-				
-				
-				if(request.getAttribute("car") != null) {
+
+				if (request.getAttribute("car") != null) {
 					car = (Car) request.getAttribute("car");
 					reservation.setCar(car);
 					client.addReservations(reservation);
 					car.addReservation(reservation);
-				}else if(request.getAttribute("utilityCar") != null) {
-					utilityCar = (UtilityCar) request.getAttribute("utilityCar"); 
+				} else if (request.getAttribute("utilityCar") != null) {
+					utilityCar = (UtilityCar) request.getAttribute("utilityCar");
 					reservation.setUtilityCar(utilityCar);
 					client.addReservations(reservation);
 					utilityCar.addReservation(reservation);
-				}else if(request.getAttribute("motorBike") != null) {
-					motorBike = (MotorBike) request.getAttribute("motorBike"); 
+				} else if (request.getAttribute("motorBike") != null) {
+					motorBike = (MotorBike) request.getAttribute("motorBike");
 					reservation.setMotorBike(motorBike);
 					client.addReservations(reservation);
 					motorBike.addReservation(reservation);
-					
+
 				}
 				reservation.setClient(client);
-				
+
 				boolean recordOk = reservationDAO.create(reservation);
-				
+
 				request.getSession().removeAttribute("reservation");
 				session.removeAttribute("reservation");
 				request.setAttribute("recordOk", recordOk);
@@ -104,16 +113,16 @@ public class ValidationServlet extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_OK);
 				rd.forward(request, response);
 				return;
-				
-			}else{
+
+			} else {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-				
+
 				return;
 			}
 
-		}else {
+		} else {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			
+
 			return;
 		}
 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.campusnumerique.vehiclerental.bean.ClientBean;
 import com.campusnumerique.vehiclerental.entity.Reservation;
 
 /**
@@ -65,8 +66,14 @@ public class ReservationServlet extends HttpServlet {
 		StringBuilder reservationNumber = new StringBuilder("RESA_");
 		reservationNumber.append(Calendar.getInstance().getTimeInMillis());
 		reservation.setReservationNumber(reservationNumber.toString());
+		ClientBean clientBean = (ClientBean) session.getAttribute("clientBean");
 		
-	
+		if (request.getParameter("customerId") != null && !request.getParameter("customerId").isEmpty() && clientBean.getRole().equals("agent")) {
+			String customer = request.getParameter("customerId");
+			session.setAttribute("customerId", customer);
+		}
+		
+		
 		if (request.getParameter("dateStart") != null && !request.getParameter("dateStart").isEmpty()) {
 			try {
 				dateStart = formater.parse(request.getParameter("dateStart"));
